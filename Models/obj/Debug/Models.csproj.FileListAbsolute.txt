@@ -1,0 +1,4 @@
+c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Models\bin\Debug\Models.dll
+c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Models\bin\Debug\Models.pdb
+c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Models\obj\Debug\Models.dll
+c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Models\obj\Debug\Models.pdb

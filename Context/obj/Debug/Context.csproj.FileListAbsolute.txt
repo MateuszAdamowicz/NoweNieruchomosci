@@ -1,0 +1,9 @@
+c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\bin\Debug\Context.dll
+c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\bin\Debug\Context.pdb
+c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\obj\Debug\Context.dll
+c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\obj\Debug\Context.pdb
+C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\bin\Debug\EntityFramework.dll
+C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\bin\Debug\EntityFramework.xml
+C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\obj\Debug\Context.csprojResolveAssemblyReference.cache
