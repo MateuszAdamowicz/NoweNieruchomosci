@@ -2,3 +2,10 @@ c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Models
 c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Models\bin\Debug\Models.pdb
 c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Models\obj\Debug\Models.dll
 c:\users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Models\obj\Debug\Models.pdb
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\Models.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\Models.pdb
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\obj\Debug\Models.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\obj\Debug\Models.pdb
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\PagedList.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\PagedList.xml

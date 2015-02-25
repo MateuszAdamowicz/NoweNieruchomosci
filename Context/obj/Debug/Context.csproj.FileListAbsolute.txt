@@ -7,3 +7,12 @@ C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Contex
 C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\bin\Debug\EntityFramework.xml
 C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Context\obj\Debug\Context.csprojResolveAssemblyReference.cache
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Context\obj\Debug\Context.csprojResolveAssemblyReference.cache
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Context\bin\Debug\Context.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Context\bin\Debug\Context.pdb
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Context\bin\Debug\EntityFramework.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Context\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Context\bin\Debug\EntityFramework.xml
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Context\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Context\obj\Debug\Context.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Context\obj\Debug\Context.pdb

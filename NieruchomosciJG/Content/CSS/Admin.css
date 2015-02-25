@@ -1,0 +1,28 @@
+﻿.find-input {
+    font-size: 12px !important;
+    height: 30px;
+    width: auto;
+}
+
+.find-input-description {
+    font-size: smaller;
+}
+
+.find-input-sm {
+    width: 80px !important;
+    font-size: 12px !important;
+    height: 30px;
+}
+
+body {
+    background-color: #757575;
+}
+
+.body-content {
+    background-color: white;
+    box-shadow: 5px 3px 30px;
+}
+
+.top-menu {
+    border-radius: 0px;
+}

@@ -36,3 +36,4 @@ C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\Nieruc
 C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\NieruchomosciJG.Tests\obj\Debug\NieruchomosciJG.Tests.csprojResolveAssemblyReference.cache
 C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\NieruchomosciJG.Tests\obj\Debug\NieruchomosciJG.Tests.dll
 C:\Users\madamowicz\documents\visual studio 2013\Projects\NieruchomosciJG\NieruchomosciJG.Tests\obj\Debug\NieruchomosciJG.Tests.pdb
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\NieruchomosciJG.Tests\obj\Debug\NieruchomosciJG.Tests.csprojResolveAssemblyReference.cache
