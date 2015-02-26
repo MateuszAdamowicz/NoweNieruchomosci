@@ -53,11 +53,16 @@
     <Compile Include="ViewModels\AdminMenuCountsViewModel.cs" />
     <Compile Include="ViewModels\AdminSortOption.cs" />
     <Compile Include="ViewModels\AdTypeAdmin.cs" />
-    <Compile Include="ViewModels\AdType.cs" />
     <Compile Include="ViewModels\SelectOption.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Context\Context.csproj">
+      <Project>{9ef27efa-3d87-46ce-ba8e-68fa036823d6}</Project>
+      <Name>Context</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

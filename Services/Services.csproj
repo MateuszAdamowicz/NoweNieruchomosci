@@ -107,7 +107,7 @@
     <Compile Include="AdminMenuServices\IAdminMenuService.cs" />
     <Compile Include="AdminMenuServices\Implementation\AdminMenuService.cs" />
     <Compile Include="EnumNameService\Implementation\EnumNameService.cs" />
-    <Compile Include="EnumNameService\Implementation\IEnumNameService.cs" />
+    <Compile Include="EnumNameService\IEnumNameService.cs" />
     <Compile Include="GenericRepository\Implementation\GenericRepository.cs" />
     <Compile Include="GenericRepository\IGenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

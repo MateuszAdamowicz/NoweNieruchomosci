@@ -10,7 +10,7 @@ namespace NieruchomosciJG
         public static void Register()
         {
             Mapper.CreateMap<Advert, AdminAdvertToShow>()
-                .ForMember(dest => dest.Number, opts => opts.MapFrom(src => String.Format("{0}{1}", src.Id*9999, 18)));
+                .ForMember(dest => dest.Number, opts => opts.MapFrom(src =>src.Id));
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Models.ViewModels;
-using Services.EnumNameService.Implementation;
+using Services.EnumNameService;
 
 namespace Services.SortService.SortAdminService.Implementation
 {

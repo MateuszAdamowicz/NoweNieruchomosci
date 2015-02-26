@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Context;
 using Context.Entities;
+using Context.PartialModels;
 using Models.ViewModels;
 using Services.GenericRepository;
 using Services.SortService.SortAdminService;
@@ -134,7 +135,7 @@ namespace Services.AdminIndexService.AdminFilterAdvertService.Implementation
         {
             if ( adType != AdTypeAdmin.All && adType != null)
             {
-                advertsToShow = advertsToShow.Where(x => x.AdType == (AdType)adType);
+                advertsToShow = advertsToShow.Where(x => x.AdType == (AdvertType)adType);
             }
             return advertsToShow;
         }

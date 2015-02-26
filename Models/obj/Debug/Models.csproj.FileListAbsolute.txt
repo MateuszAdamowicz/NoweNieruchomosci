@@ -9,3 +9,7 @@ C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\obj\Debug\Models.dll
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\obj\Debug\Models.pdb
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\PagedList.dll
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\PagedList.xml
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\Context.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\EntityFramework.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\Context.pdb
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\EntityFramework.xml

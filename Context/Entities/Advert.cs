@@ -17,6 +17,6 @@ namespace Context.Entities
         public AdvertType AdvertType { get; set; }
         public IEnumerable<Photo> Photos { get; set; }
         public IEnumerable<Property> Properties { get; set; }
-        public MapCords MapCords { get; set; }
+        public virtual MapCords MapCords { get; set; }
     }
 }

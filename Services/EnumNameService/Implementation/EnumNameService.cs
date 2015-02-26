@@ -1,20 +1,15 @@
-﻿using Models.ViewModels;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
+using Context.PartialModels;
 
 namespace Services.EnumNameService.Implementation
 {
     public class EnumNameService : IEnumNameService
     {
-        public string GetName(AdType adType)
+        public string GetName(AdvertType adType)
         {
-            if (adType == AdType.Flat)
-            {
-                return "Mieszkanie";
-            }
-            if (adType == AdType.House)
-            {
-                return "Dom";
-            }
-            return "Działka";
+            return Enum.GetName(typeof (AdvertType), adType);
         }
     }
 }

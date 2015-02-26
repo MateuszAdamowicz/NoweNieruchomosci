@@ -7,6 +7,7 @@ using Services.AdminIndexService.AdminFilterAdvertService;
 using Services.AdminIndexService.AdminFilterAdvertService.Implementation;
 using Services.AdminIndexService.AdminFilterOptionsService;
 using Services.AdminIndexService.AdminFilterOptionsService.Implementation;
+using Services.EnumNameService;
 using Services.EnumNameService.Implementation;
 using Services.GenericRepository;
 using Services.GenericRepository.Implementation;

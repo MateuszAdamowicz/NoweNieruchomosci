@@ -23,7 +23,8 @@ namespace NieruchomosciJG.Controllers
             _adminMenuService = adminMenuService;
             _adminFilterAdvertService = adminFilterAdvertService;
         }
-        // GET: Admin
+
+
         public ActionResult Index(int? page, string number, bool? toLet, AdTypeAdmin? adType, string flatCity, string houseCity, string landCity, string allCity, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, DateTime? dateFrom, DateTime? dateTo, bool? filter, AdminSortOption? sortOption, bool? showHidden, bool sortDescAsc = false, int? perPage = 20)
         {
             var adminIndexFiltred = new AdminIndexFiltred()
@@ -70,13 +71,6 @@ namespace NieruchomosciJG.Controllers
             model.AdminIndexFilterOptions = options;
             model.AdminIndexFiltred = adminIndexFiltred;
             return View(model);
-        }
-
-
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View();
         }
 
         public ActionResult TopMenu()

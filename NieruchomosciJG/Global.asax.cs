@@ -15,6 +15,7 @@ namespace NieruchomosciJG
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             Bootstrapper.Initialise();
+            MapperConfig.Register();
         }
     }
 }

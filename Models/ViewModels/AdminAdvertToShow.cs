@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Web;
+using Context.PartialModels;
 
 namespace Models.ViewModels
 {
@@ -10,7 +11,7 @@ namespace Models.ViewModels
         public string Title { get; set; }
         public string City { get; set; }
         public bool Visible { get; set; }
-        public AdType AdType { get; set; }
+        public AdvertType AdType { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Number { get; set; }
         public bool Deleted { get; set; }
@@ -31,6 +32,13 @@ namespace Models.ViewModels
                 {
                     return "";
                 }
+            }
+        }
+        public string GetAvertTypeName
+        {
+            get
+            {
+                return Enum.GetName(typeof(AdvertType), AdType);
             }
         }
     }

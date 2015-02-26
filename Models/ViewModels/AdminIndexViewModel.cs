@@ -31,28 +31,28 @@ namespace Models.ViewModels
             public int? PerPage { get; set; }
             public AdminSortOption? SortOption { get; set; }
             public bool? SortDescAsc { get; set; }
-            //public object GetValues(int? page)
-            //{
-            //    return new
-            //    {
-            //        Page = page,
-            //        Number,
-            //        ToLet,
-            //        FlatCity,
-            //        HouseCity,
-            //        LandCity,
-            //        AllCity,
-            //        PriceFrom,
-            //        PriceTo,
-            //        AreaFrom,
-            //        AreaTo,
-            //        DateFrom,
-            //        DateTo,
-            //        Filter,
-            //        ShowHidden,
-            //        PerPage,
-            //        SortDescAsc,
-            //    };
-            //}
+            public object GetValues(int? page)
+            {
+                return new
+                {
+                    Page = page,
+                    Number,
+                    ToLet,
+                    FlatCity,
+                    HouseCity,
+                    LandCity,
+                    AllCity,
+                    PriceFrom,
+                    PriceTo,
+                    AreaFrom,
+                    AreaTo,
+                    DateFrom,
+                    DateTo,
+                    Filter,
+                    ShowHidden,
+                    PerPage,
+                    SortDescAsc,
+                };
+            }
         }
     }
