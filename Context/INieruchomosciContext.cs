@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using Context.Entities;
+using Context.PartialModels;
 
 namespace Context
 {
@@ -12,12 +14,11 @@ namespace Context
         IDbSet<Message> Messages { get; set; }
         IDbSet<Property> Properties { get; set; }
         IDbSet<PropertyDictionary> PropertyDictionaries { get; set; }
+        IDbSet<AdvertType> AdvertTypes { get; set; }
         int SaveChanges();
 
-        IEnumerable<T> GetSet<T>() where T : DbTable;
-        T Add<T>(T entity) where T : DbTable;
-        T FindById<T>(int id) where T : DbTable;
-        T DeleteById<T>(int id) where T : DbTable;
-        T UpdateById<T>(T source) where T : DbTable;
+        IDbSet<T> GetSet<T>() where T : DbTable;
+        EntityState EntityState<T>(T entity) where T : DbTable;
+        void Modified<T>(T entity) where T : DbTable;
     }
 }

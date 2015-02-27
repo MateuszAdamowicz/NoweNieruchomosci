@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using Context.Entities;
+using Context.PartialModels;
 
 namespace Context
 {
@@ -15,18 +16,33 @@ namespace Context
 
         protected override void Seed(NieruchomosciContext context)
         {
-            var prop1 = new PropertyDictionary() {Mask = 1, Name = "Forma własności"};
-            var prop2 = new PropertyDictionary() {Mask = 1, Name = "Ogrzewanie"};
-            var prop3 = new PropertyDictionary() {Mask = 1, Name = "Kondygnacja"};
-            var prop4 = new PropertyDictionary() {Mask = 1, Name = "Stan techniczny"};
-            var prop5 = new PropertyDictionary() {Mask = 1, Name = "Liczba pokoi"};
+
+            var flat = new AdvertType(){Name = "Mieszkanie", Mask = 1};
+            var house = new AdvertType(){Name = "Dom", Mask = 2};
+            var land = new AdvertType(){Name = "Działka", Mask = 4};
 
 
-            context.PropertyDictionaries.Add(prop1);
-            context.PropertyDictionaries.Add(prop2);
-            context.PropertyDictionaries.Add(prop3);
-            context.PropertyDictionaries.Add(prop4);
-            context.PropertyDictionaries.Add(prop5);
+            context.AdvertTypes.AddOrUpdate(x => x.Name, flat);
+            context.AdvertTypes.AddOrUpdate(x => x.Name, house);
+            context.AdvertTypes.AddOrUpdate(x => x.Name, land);
+
+
+            var properties = new List<PropertyDictionary>
+            {
+                new PropertyDictionary() {Name = "Forma własności", Mask = 1 + 2 + 4},
+                new PropertyDictionary() {Name = "Ogrzewanie", Mask = 1 + 2},
+                new PropertyDictionary() {Name = "Kondygnacja", Mask = 1},
+                new PropertyDictionary() {Name = "Stan techniczny", Mask = 1 + 2},
+                new PropertyDictionary() {Name = "Liczba pokoi", Mask = 1 + 2},
+                new PropertyDictionary() {Name = "Liczba pomieszczeń", Mask = 1 + 2}
+            };
+
+
+            foreach (var prop in properties)
+            {
+                context.PropertyDictionaries.AddOrUpdate(x => x.Name, prop);
+            }
+
             context.SaveChanges();
         }
     }

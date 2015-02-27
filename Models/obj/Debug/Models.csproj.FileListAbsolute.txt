@@ -9,3 +9,14 @@ C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\obj\Debug\Models.dll
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\obj\Debug\Models.pdb
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\PagedList.dll
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci\Models\bin\Debug\PagedList.xml
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\obj\Debug\Models.dll
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\obj\Debug\Models.pdb
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\bin\Debug\Models.dll
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\bin\Debug\Models.pdb
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\bin\Debug\PagedList.dll
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\bin\Debug\PagedList.xml
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\bin\Debug\Context.dll
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\bin\Debug\EntityFramework.dll
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\bin\Debug\Context.pdb
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\bin\Debug\EntityFramework.xml
+C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache

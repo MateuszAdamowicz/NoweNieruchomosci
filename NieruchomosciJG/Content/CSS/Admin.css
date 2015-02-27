@@ -26,3 +26,155 @@ body {
 .top-menu {
     border-radius: 0px;
 }
+
+.top-menu-blue {
+    color: #337ab7;
+}
+
+.form-control-feedback {
+    margin-right: 5px;
+}
+
+.label-sup {
+    margin-right: 0px;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.alert-sup {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+    font-size: x-small;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+}
+
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+.feedback-error {
+    font-size: x-small;
+    font-weight: bold;
+    display: inherit;
+    border-radius: 0;
+    margin-top: 2px;
+    padding: 3px;
+    padding-left: 10px;
+    margin-bottom: 0;
+    box-shadow: 1px 1px 1px;
+}
+
+.feedback-error:before {
+    font-family: 'Glyphicons Halflings';
+    content: "\e101";
+    margin-right: 5px;
+}
+
+.field-info {
+    box-shadow: 1px 1px 1px;
+    font-size: x-small;
+    font-weight: bold;
+    display: inherit;
+    border-radius: 0;
+    margin-top: 2px;
+    padding: 3px;
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+
+.field-info:before {
+    font-family: 'Glyphicons Halflings';
+    content: "\e085";
+    margin-right: 5px;
+}
+
+.removeImage {
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.5em;
+    color: black;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    background: white;
+}
+
+
+.required {
+    border: 1px solid black;
+}
+    .form-control-feedback {
+        color: red;
+        font-size: 0.5em;
+    }
+
+.modal-open {
+    overflow: auto;
+}
+
+.modal-backdrop {
+   background-color: transparent!important;
+}
+
+.spinner {
+  margin: 100px auto;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.cube1, .cube2 {
+  background-color: #333;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  -webkit-animation: cubemove 1.8s infinite ease-in-out;
+  animation: cubemove 1.8s infinite ease-in-out;
+}
+
+.cube2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+@-webkit-keyframes cubemove {
+  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+  100% { -webkit-transform: rotate(-360deg) }
+}
+
+@keyframes cubemove {
+  25% { 
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+  } 50% { 
+    transform: translateX(42px) translateY(42px) rotate(-179deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+  } 50.1% { 
+    transform: translateX(42px) translateY(42px) rotate(-180deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+  } 75% { 
+    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+  } 100% { 
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+}

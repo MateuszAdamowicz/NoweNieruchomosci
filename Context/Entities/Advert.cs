@@ -6,6 +6,12 @@ namespace Context.Entities
 {
     public class Advert : DbTable
     {
+        public Advert()
+        {
+            Photos = new List<Photo>();
+            Properties = new List<Property>();
+        }
+
         public string Title { get; set; }
         public bool ToLet { get; set; }
         public int Price { get; set; }

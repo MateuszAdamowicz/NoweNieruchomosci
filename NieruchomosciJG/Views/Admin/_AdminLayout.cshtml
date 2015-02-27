@@ -1,0 +1,43 @@
+﻿<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Nieruchomości Jeleniogórskie</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/Content/CSS/Admin.css" />
+    <script type="text/javascript" src="/Scripts/jquery-2.1.3.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
+    <meta name="description" content="The description of my page" />
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-12 body-content" style="padding-bottom: 20px; padding-right: 0px; padding-left: 0px;">
+            
+            <div class="col-md-12">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Number.prototype.formatMoney = function (places, symbol, thousand, decimal) {
+        places = !isNaN(places = Math.abs(places)) ? places : 2;
+        symbol = symbol !== undefined ? symbol : "$";
+        thousand = thousand || ",";
+        decimal = decimal || ".";
+        var number = this,
+            negative = number < 0 ? "-" : "",
+            i = parseInt(number = Math.abs(+number || 0).toFixed(places), 10) + "",
+            j = (j = i.length) > 3 ? j % 3 : 0;
+        return symbol + negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "");
+    };
+    var prices = $(".pln");
+    for (var i = 0; i < prices.length; i++) {
+        var value = +prices[i].innerHTML;
+        var formattedValue = value.formatMoney(0, "", " ");
+        prices[i].innerHTML = formattedValue;
+    }
+</script>

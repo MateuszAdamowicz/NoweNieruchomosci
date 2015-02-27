@@ -3,12 +3,12 @@ using Context.Entities;
 
 namespace Services.GenericRepository
 {
-    public interface IGenericRepository
+    public interface IGenericRepository<T> where T : DbTable
     {
-        IEnumerable<T> GetSet<T>() where T:DbTable;
-        T Add<T>(T entity) where T : DbTable;
-        T Find<T>(int id) where T : DbTable;
-        T Delete<T>(int id) where T : DbTable;
-        T Update<T>(T entity) where T : DbTable;
+        IEnumerable<T> GetSet();
+        T Add(T entity);
+        T Find(int id);
+        T Delete(int id);
+        T Update(T entity);
     }
 }

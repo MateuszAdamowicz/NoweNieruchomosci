@@ -1,89 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Context.PartialModels;
 using Models.ViewModels;
-using Services.AdminIndexService.AdminFilterAdvertService;
-using Services.AdminIndexService.AdminFilterOptionsService;
-using Services.AdminMenuServices;
-using PagedList;
+using Services.GetAvailableAdvertTypes;
+using Services.GetPropertiesByAdvertType;
+using Services.PhotoService;
 
 namespace NieruchomosciJG.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly IAdminMenuService _adminMenuService;
-        private readonly IAdminFilterOptionsService _adminFilterOptionsService;
-        private readonly IAdminFilterAdvertService _adminFilterAdvertService;
+        private readonly IGetPropertiesByAdvertType _getPropertiesByAdvertType;
+        private readonly IPhotoService _photoService;
+        private readonly IGetAvailableAdvertTypes _getAvailableAdvertTypes;
 
-        public AdminController(IAdminMenuService adminMenuService, IAdminFilterOptionsService adminFilterOptionsService, IAdminFilterAdvertService adminFilterAdvertService)
+        public AdminController(
+            IGetPropertiesByAdvertType getPropertiesByAdvertType,
+            IPhotoService photoService,
+            IGetAvailableAdvertTypes getAvailableAdvertTypes)
         {
-            _adminFilterOptionsService = adminFilterOptionsService;
-            _adminMenuService = adminMenuService;
-            _adminFilterAdvertService = adminFilterAdvertService;
+            _getPropertiesByAdvertType = getPropertiesByAdvertType;
+            _photoService = photoService;
+            _getAvailableAdvertTypes = getAvailableAdvertTypes;
         }
-        // GET: Admin
-        public ActionResult Index(int? page, string number, bool? toLet, AdTypeAdmin? adType, string flatCity, string houseCity, string landCity, string allCity, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, DateTime? dateFrom, DateTime? dateTo, bool? filter, AdminSortOption? sortOption, bool? showHidden, bool sortDescAsc = false, int? perPage = 20)
-        {
-            var adminIndexFiltred = new AdminIndexFiltred()
-            {
-                Filter = filter,
-                Page = (page ?? 1),
-                AdTypeAdmin = adType,
-                FlatCity = flatCity,
-                HouseCity = houseCity,
-                LandCity = landCity,
-                AllCity = allCity,
-                PriceFrom = priceFrom,
-                PriceTo = priceTo,
-                AreaFrom = areaFrom,
-                AreaTo = areaTo,
-                DateFrom = dateFrom,
-                DateTo = dateTo,
-                ShowHidden = showHidden,
-                ToLet = toLet,
-                Number = number,
-                PerPage = perPage,
-                SortDescAsc = sortDescAsc,
-                SortOption = sortOption
-            };
-
-            var model = new AdminIndexViewModel();
-
-            int pageSize = (perPage ?? 20);
-            int pageNumber = (page ?? 1);
-
-            if (filter != null && filter == true)
-            {
-
-                var adverts = _adminFilterAdvertService.FilterAdverts(showHidden, dateFrom, dateTo, adType, number,
-                    priceFrom, priceTo, areaFrom, areaTo, flatCity, houseCity, landCity, allCity, toLet, sortOption, sortDescAsc);
-                model.Adverts = adverts.ToPagedList(pageNumber, pageSize);
-            }
-            else
-            {
-                var adverts = _adminFilterAdvertService.ActiveAdverts(sortOption, sortDescAsc);
-                model.Adverts = adverts.ToPagedList(pageNumber, pageSize);
-            }
-            var options = _adminFilterOptionsService.GetOptions();
-            model.AdminIndexFilterOptions = options;
-            model.AdminIndexFiltred = adminIndexFiltred;
-            return View(model);
-        }
-
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            var advertTypes = _getAvailableAdvertTypes.GetAdvertTypes();
+            return View(advertTypes);
         }
 
-        public ActionResult TopMenu()
+        [HttpGet]
+        public ActionResult Create(AdvertType advertType)
         {
-            var counters = _adminMenuService.GetMenuCounters();
+            var properties = _getPropertiesByAdvertType.GetProperties(advertType);
+            var model = new CreateAdvertViewModel() {Properties = properties, AdvertType = advertType};
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(CreateAdvertViewModel model, List<PropertyViewModel> property)
+        {
+            model.Properties = property;
+            if (ModelState.IsValid)
+            {
+
+            }
             
-            return PartialView("_Menu", counters);
+            model.SavedPhotos = _photoService.GetPhotosById(model.PhotosToSave);
+            return View(model);
         }
     }
 }

@@ -45,19 +45,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AdminAdvertToShow.cs" />
-    <Compile Include="ViewModels\AdminIndexFilterOptions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ViewModels\AdminIndexViewModel.cs" />
-    <Compile Include="ViewModels\AdminMenuCountsViewModel.cs" />
-    <Compile Include="ViewModels\AdminSortOption.cs" />
-    <Compile Include="ViewModels\AdTypeAdmin.cs" />
-    <Compile Include="ViewModels\AdType.cs" />
-    <Compile Include="ViewModels\SelectOption.cs" />
+    <Compile Include="ViewModels\AdvertTypeViewModel.cs" />
+    <Compile Include="ViewModels\CreateAdvertViewModel.cs" />
+    <Compile Include="ViewModels\PhotoViewModel.cs" />
+    <Compile Include="ViewModels\PropertyViewModel.cs" />
+    <Compile Include="ViewModels\UploadedPhoto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Context\Context.csproj">
+      <Project>{9EF27EFA-3D87-46CE-BA8E-68FA036823D6}</Project>
+      <Name>Context</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

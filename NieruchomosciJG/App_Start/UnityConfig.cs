@@ -1,19 +1,15 @@
-using System;
-using System.Runtime.InteropServices.ComTypes;
 using Context;
+using Context.Entities;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
-using Services.AdminIndexService.AdminFilterAdvertService;
-using Services.AdminIndexService.AdminFilterAdvertService.Implementation;
-using Services.AdminIndexService.AdminFilterOptionsService;
-using Services.AdminIndexService.AdminFilterOptionsService.Implementation;
-using Services.EnumNameService.Implementation;
 using Services.GenericRepository;
 using Services.GenericRepository.Implementation;
-using Services.AdminMenuServices;
-using Services.AdminMenuServices.Implementation;
-using Services.SortService.SortAdminService;
-using Services.SortService.SortAdminService.Implementation;
+using Services.GetAvailableAdvertTypes;
+using Services.GetPropertiesByAdvertType;
+using Services.GetPropertiesByAdvertType.Implementation;
+using Services.PhotoService;
+using Services.PhotoService.Implementation;
+using Services.ResizeImageService;
+using Services.ResizeImageService.Implementation;
 
 namespace NieruchomosciJG.App_Start
 {
@@ -22,12 +18,15 @@ namespace NieruchomosciJG.App_Start
         public static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<INieruchomosciContext, NieruchomosciContext>(new HierarchicalLifetimeManager());
-            container.RegisterType<IGenericRepository, GenericRepository>();
-            container.RegisterType<IAdminMenuService, AdminMenuService>();
-            container.RegisterType<IAdminFilterOptionsService, AdminFilterOptionsService>();
-            container.RegisterType<IAdminFilterAdvertService, AdminFilterAdvertService>();
-            container.RegisterType<ISortAdminService, SortAdminService>();
-            container.RegisterType<IEnumNameService, EnumNameService>();
+            container.RegisterType<IGenericRepository<Advert>, GenericRepository<Advert>>();
+            container.RegisterType<IGenericRepository<Photo>, GenericRepository<Photo>>();
+            container.RegisterType<IGenericRepository<Message>, GenericRepository<Message>>();
+            container.RegisterType<IGenericRepository<Property>, GenericRepository<Property>>();
+            container.RegisterType<IGenericRepository<PropertyDictionary>, GenericRepository<PropertyDictionary>>();
+            container.RegisterType<IGetPropertiesByAdvertType, GetPropertiesByAdvertType>();
+            container.RegisterType<IPhotoService, PhotoService>();
+            container.RegisterType<IResizeImageService, ResizeImageService>();
+            container.RegisterType<IGetAvailableAdvertTypes, IGetAvailableAdvertTypes>();
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Http;
+using AutoMapper;
+using NieruchomosciJG.App_Start;
 
 namespace NieruchomosciJG
 {
@@ -14,7 +16,9 @@ namespace NieruchomosciJG
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            MapperConfig.Register();
             Bootstrapper.Initialise();
+
         }
     }
 }

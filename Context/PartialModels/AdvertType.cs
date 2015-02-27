@@ -1,16 +1,14 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using Context.Entities;
 
 namespace Context.PartialModels
 {
-    public enum AdvertType
+    public class AdvertType:DbTable
     {
-        [Description("Mieszkanie")]
-        Flat = 1,
+        public string Name { get; set; }
+        public int Mask { get; set; }
 
-        [Description("Dom")]
-        House = 2,
-
-        [Description("Działka")]
-        Land = 4
+        public virtual IEnumerable<Advert> Adverts { get; set; }
     }
 }
