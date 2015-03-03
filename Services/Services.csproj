@@ -102,8 +102,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CountMessagesAndAdverts\Implementation\CountMessagesAndAdverts.cs" />
+    <Compile Include="CountMessagesAndAdverts\ICountMessagesAndAdverts.cs" />
     <Compile Include="CRUDAdvert Services\CreateAdvertService\Implementation\CreateAdvertService.cs" />
     <Compile Include="CRUDAdvert Services\CreateAdvertService\ICreateAdvertService.cs" />
+    <Compile Include="FilterOptionService\Implementation\FilterOptionService.cs" />
+    <Compile Include="FilterOptionService\IFilterOptionService.cs" />
     <Compile Include="FindPhotosById\Implementation\FindPhotosByIdService.cs" />
     <Compile Include="FindPhotosById\IFindPhotosByIdService.cs" />
     <Compile Include="GenericRepository\Implementation\GenericRepository.cs" />

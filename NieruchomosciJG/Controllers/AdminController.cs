@@ -4,7 +4,9 @@ using System.Web.Mvc;
 using Context.Entities;
 using Context.PartialModels;
 using Models.ViewModels;
+using Services.CountMessagesAndAdverts;
 using Services.CRUD.AdvertServices.CreateAdvertService;
+using Services.FilterOptionService;
 using Services.GetAdvertTypes;
 using Services.GetPropertiesByAdvertType;
 using Services.PhotoService;
@@ -17,31 +19,34 @@ namespace NieruchomosciJG.Controllers
         private readonly IPhotoService _photoService;
         private readonly IGetAdvertTypes _getAvailableAdvertTypes;
         private readonly ICreateAdvertService _createAdvertService;
+        private readonly ICountMessagesAndAdverts _countMessagesAndAdverts;
+        private readonly IFilterOptionService _filterOptionService;
 
         public AdminController(
             IGetPropertiesByAdvertType getPropertiesByAdvertType,
             IPhotoService photoService,
             IGetAdvertTypes getAvailableAdvertTypes,
-            ICreateAdvertService createAdvertService)
+            ICreateAdvertService createAdvertService,
+            ICountMessagesAndAdverts countMessagesAndAdverts,
+            IFilterOptionService filterOptionService)
         {
             _getPropertiesByAdvertType = getPropertiesByAdvertType;
             _photoService = photoService;
             _getAvailableAdvertTypes = getAvailableAdvertTypes;
             _createAdvertService = createAdvertService;
+            _countMessagesAndAdverts = countMessagesAndAdverts;
+            _filterOptionService = filterOptionService;
         }
 
 
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
-        }
+            var model = new AdminIndexViewModel();
 
-        [HttpGet]
-        public ActionResult Create()
-        {
-            var advertTypes = _getAvailableAdvertTypes.GetAdvertTypeNameAndMask();
-            return View(advertTypes);
+            var options = _filterOptionService.GetOptions();
+            model.AdminIndexFilterOptions = options;
+            return View(model);
         }
 
         [HttpGet]
@@ -73,6 +78,8 @@ namespace NieruchomosciJG.Controllers
         {
             var model = new AdminMenuViewModel();
             model.AdvertTypes = _getAvailableAdvertTypes.GetAdvertTypeNameAndMask();
+            model = _countMessagesAndAdverts.Count(model);
+
             return View("_AdminMenu", model);
         }
     }

@@ -2,8 +2,12 @@ using Context;
 using Context.Entities;
 using Microsoft.Practices.Unity;
 using Models.ViewModels;
+using Services.CountMessagesAndAdverts;
+using Services.CountMessagesAndAdverts.Implementation;
 using Services.CRUD.AdvertServices.CreateAdvertService;
 using Services.CRUD.AdvertServices.CreateAdvertService.Implementation;
+using Services.FilterOptionService;
+using Services.FilterOptionService.Implementation;
 using Services.FindPhotosById;
 using Services.FindPhotosById.Implementation;
 using Services.GenericRepository;
@@ -36,6 +40,8 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<IGetAdvertTypes, GetAdvertTypes>();
             container.RegisterType<ICreateAdvertService, CreateAdvertService>();
             container.RegisterType<IFindPhotosByIdService, FindPhotosByIdService>();
+            container.RegisterType<ICountMessagesAndAdverts, CountMessagesAndAdverts>();
+            container.RegisterType<IFilterOptionService, FilterOptionService>();
         }
     }
 }
