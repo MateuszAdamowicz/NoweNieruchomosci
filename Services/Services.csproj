@@ -108,7 +108,7 @@
     <Compile Include="FindPhotosById\IFindPhotosByIdService.cs" />
     <Compile Include="GenericRepository\Implementation\GenericRepository.cs" />
     <Compile Include="GenericRepository\IGenericRepository.cs" />
-    <Compile Include="GetAdvertTypes\Implementation\GetAvailableAdvertTypes.cs" />
+    <Compile Include="GetAdvertTypes\Implementation\GetAdvertTypes.cs" />
     <Compile Include="GetAdvertTypes\IGetAdvertTypes.cs" />
     <Compile Include="GetPropertiesByAdvertType\IGetPropertiesByAdvertType.cs">
       <SubType>Code</SubType>
