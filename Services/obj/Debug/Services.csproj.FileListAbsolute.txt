@@ -127,3 +127,4 @@ C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Services\bin\Debug\System.We
 C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Services\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Services\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\Services\bin\Debug\PagedList.xml
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\Services\obj\Debug\Services.csprojResolveAssemblyReference.cache
