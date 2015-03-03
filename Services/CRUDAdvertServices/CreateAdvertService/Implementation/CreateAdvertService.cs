@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Linq;
 using AutoMapper;
 using Context.Entities;
 using Models.ViewModels;
+using Services.CRUD.AdvertServices.CreateAdvertService;
 using Services.FindPhotosById;
 using Services.GenericRepository;
 using Services.PhotoService;
 
-namespace Services.CRUD.AdvertServices.CreateAdvertService.Implementation
+namespace Services.CRUDAdvertServices.CreateAdvertService.Implementation
 {
     public class CreateAdvertService : ICreateAdvertService
     {
