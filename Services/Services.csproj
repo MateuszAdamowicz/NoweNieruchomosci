@@ -108,11 +108,12 @@
     <Compile Include="CRUDAdvert Services\CreateAdvertService\ICreateAdvertService.cs" />
     <Compile Include="FilterOptionService\Implementation\FilterOptionService.cs" />
     <Compile Include="FilterOptionService\IFilterOptionService.cs" />
+    <Compile Include="CRUDAdvertServices\DeleteAdvertService\Implementation\DeleteAdvertService.cs" />
     <Compile Include="FindPhotosById\Implementation\FindPhotosByIdService.cs" />
     <Compile Include="FindPhotosById\IFindPhotosByIdService.cs" />
     <Compile Include="GenericRepository\Implementation\GenericRepository.cs" />
     <Compile Include="GenericRepository\IGenericRepository.cs" />
-    <Compile Include="GetAdvertTypes\Implementation\GetAvailableAdvertTypes.cs" />
+    <Compile Include="GetAdvertTypes\Implementation\GetAdvertTypes.cs" />
     <Compile Include="GetAdvertTypes\IGetAdvertTypes.cs" />
     <Compile Include="GetPropertiesByAdvertType\IGetPropertiesByAdvertType.cs">
       <SubType>Code</SubType>
@@ -142,9 +143,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CRUDAdvert Services\DeleteAdvertService\Implementation\" />
-    <Folder Include="CRUDAdvert Services\ReadAdvertService\Implementation\" />
-    <Folder Include="CRUDAdvert Services\UpdateAdvertService\Implementation\" />
+    <Folder Include="CRUDAdvertServices\ReadAdvertService\Implementation\" />
+    <Folder Include="CRUDAdvertServices\UpdateAdvertService\Implementation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
