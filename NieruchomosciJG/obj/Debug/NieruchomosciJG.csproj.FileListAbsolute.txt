@@ -159,3 +159,4 @@ C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\NieruchomosciJG\bin\System.W
 C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\NieruchomosciJG\bin\System.Web.WebPages.Razor.xml
 C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\NieruchomosciJG\bin\Unity.Mvc4.dll
 C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\NieruchomosciJG\bin\Unity.WebApi.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\NieruchomosciJG\obj\Debug\NieruchomosciJG.csprojResolveAssemblyReference.cache
