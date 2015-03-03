@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Context.Entities;
 using Context.PartialModels;
 using Models.ViewModels;
-using Services.GetAvailableAdvertTypes;
+using Services.CRUD.AdvertServices.CreateAdvertService;
+using Services.GetAdvertTypes;
 using Services.GetPropertiesByAdvertType;
 using Services.PhotoService;
 
@@ -13,28 +15,40 @@ namespace NieruchomosciJG.Controllers
     {
         private readonly IGetPropertiesByAdvertType _getPropertiesByAdvertType;
         private readonly IPhotoService _photoService;
-        private readonly IGetAvailableAdvertTypes _getAvailableAdvertTypes;
+        private readonly IGetAdvertTypes _getAvailableAdvertTypes;
+        private readonly ICreateAdvertService _createAdvertService;
 
         public AdminController(
             IGetPropertiesByAdvertType getPropertiesByAdvertType,
             IPhotoService photoService,
-            IGetAvailableAdvertTypes getAvailableAdvertTypes)
+            IGetAdvertTypes getAvailableAdvertTypes,
+            ICreateAdvertService createAdvertService)
         {
             _getPropertiesByAdvertType = getPropertiesByAdvertType;
             _photoService = photoService;
             _getAvailableAdvertTypes = getAvailableAdvertTypes;
+            _createAdvertService = createAdvertService;
+        }
+
+
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View();
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            var advertTypes = _getAvailableAdvertTypes.GetAdvertTypes();
+            var advertTypes = _getAvailableAdvertTypes.GetAdvertTypeNameAndMask();
             return View(advertTypes);
         }
 
         [HttpGet]
-        public ActionResult Create(AdvertType advertType)
+        public ActionResult CreateAdvert(int mask)
         {
+
+            var advertType = _getAvailableAdvertTypes.FindAdvertTypeByMask(mask);
             var properties = _getPropertiesByAdvertType.GetProperties(advertType);
             var model = new CreateAdvertViewModel() {Properties = properties, AdvertType = advertType};
 
@@ -42,12 +56,13 @@ namespace NieruchomosciJG.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CreateAdvertViewModel model, List<PropertyViewModel> property)
+        public ActionResult CreateAdvert(CreateAdvertViewModel model, List<PropertyViewModel> property)
         {
             model.Properties = property;
             if (ModelState.IsValid)
             {
-
+                var id = _createAdvertService.CreateAdvert(model);
+                return RedirectToAction("Index");
             }
             
             model.SavedPhotos = _photoService.GetPhotosById(model.PhotosToSave);

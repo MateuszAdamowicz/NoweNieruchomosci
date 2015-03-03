@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Entities\Advert.cs" />
-    <Compile Include="PartialModels\AdvertType.cs" />
+    <Compile Include="Entities\AdvertType.cs" />
     <Compile Include="Entities\DbTable.cs" />
     <Compile Include="Entities\PropertyDictionary.cs" />
     <Compile Include="INieruchomosciContext.cs" />

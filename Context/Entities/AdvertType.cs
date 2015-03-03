@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using Context.Entities;
 
-namespace Context.PartialModels
+namespace Context.Entities
 {
     public class AdvertType:DbTable
     {

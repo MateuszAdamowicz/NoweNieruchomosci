@@ -16,7 +16,7 @@ namespace Services.GetPropertiesByAdvertType.Implementation
             _genericRepository = genericRepository;
         }
 
-        public List<PropertyViewModel> GetProperties(AdvertType advertType)
+        public List<PropertyViewModel> GetProperties(AdvertTypeViewModel advertType)
         {
             var availableProperties = _genericRepository.GetSet().Where(x => (x.Mask & advertType.Mask) > 0);
             var propertyList = availableProperties.Select(prop => new PropertyViewModel(prop.Name)).ToList();

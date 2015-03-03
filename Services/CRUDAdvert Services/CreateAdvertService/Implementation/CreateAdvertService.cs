@@ -1,26 +1,49 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using AutoMapper;
 using Context.Entities;
 using Models.ViewModels;
+using Services.FindPhotosById;
 using Services.GenericRepository;
+using Services.GetAdvertTypes;
+using Services.PhotoService;
 
 namespace Services.CRUD.AdvertServices.CreateAdvertService.Implementation
 {
-    public class CreateAdvertService
+    public class CreateAdvertService : ICreateAdvertService
     {
         private readonly IGenericRepository<Advert> _genericRepository;
+        private readonly IPhotoService _photoService;
+        private readonly IGetAdvertTypes _getAdvertTypes;
+        private readonly IGenericRepository<AdvertType> _advertTypeRepository;
+        private readonly IFindPhotosByIdService _findPhotosByIdService;
 
-        public CreateAdvertService(IGenericRepository<Advert> genericRepository)
+        public CreateAdvertService(IGenericRepository<Advert> genericRepository,
+            IPhotoService photoService,
+            IGetAdvertTypes getAdvertTypes,
+            IGenericRepository<AdvertType> advertTypeRepository,
+            IFindPhotosByIdService findPhotosByIdService)
         {
             _genericRepository = genericRepository;
+            _photoService = photoService;
+            _getAdvertTypes = getAdvertTypes;
+            _advertTypeRepository = advertTypeRepository;
+            _findPhotosByIdService = findPhotosByIdService;
         }
 
         public int CreateAdvert(CreateAdvertViewModel createAdvert)
         {
-            var advert = Mapper.Map<Advert>(createAdvert);
+            var advertToSave = Mapper.Map<Advert>(createAdvert);
+            advertToSave.AdvertType = _advertTypeRepository.GetSet().Single(x => x.Mask == createAdvert.AdvertType.Mask);
 
-            var savedAdvert = _genericRepository.Add(advert);
+            var advert = _genericRepository.Add(advertToSave);
 
-            return savedAdvert.Id;
+
+            var savedPhotos = _findPhotosByIdService.Find(createAdvert.PhotosToSave);
+            _photoService.AddAdvertToPhotos(advert, savedPhotos);
+
+            return advert.Id;
         }
     }
 }

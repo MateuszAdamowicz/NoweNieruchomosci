@@ -102,10 +102,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRUDAdvert Services\CreateAdvertService\Implementation\CreateAdvertService.cs" />
+    <Compile Include="CRUDAdvert Services\CreateAdvertService\ICreateAdvertService.cs" />
+    <Compile Include="FindPhotosById\Implementation\FindPhotosByIdService.cs" />
+    <Compile Include="FindPhotosById\IFindPhotosByIdService.cs" />
     <Compile Include="GenericRepository\Implementation\GenericRepository.cs" />
     <Compile Include="GenericRepository\IGenericRepository.cs" />
-    <Compile Include="GetAvailableAdvertTypes\Implementation\GetAvailableAdvertTypes.cs" />
-    <Compile Include="GetAvailableAdvertTypes\IGetAvailableAdvertTypes.cs" />
+    <Compile Include="GetAdvertTypes\Implementation\GetAvailableAdvertTypes.cs" />
+    <Compile Include="GetAdvertTypes\IGetAdvertTypes.cs" />
     <Compile Include="GetPropertiesByAdvertType\Implementation\GetPropertiesByAdvertType.cs" />
     <Compile Include="GetPropertiesByAdvertType\IGetPropertiesByAdvertType.cs" />
     <Compile Include="PhotoService\IPhotoService.cs" />

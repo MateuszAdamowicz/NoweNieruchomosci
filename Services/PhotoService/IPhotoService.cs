@@ -9,5 +9,6 @@ namespace Services.PhotoService
     {
         List<Photo> AddAdvertPhotos(IEnumerable<HttpPostedFileBase> files);
         IEnumerable<PhotoViewModel> GetPhotosById(IEnumerable<int> photosToSave);
+        void AddAdvertToPhotos(Advert advert, IEnumerable<Photo> photos);
     }
 }

@@ -20,7 +20,7 @@ namespace Context.Entities
         public string Description { get; set; }
         public string Details { get; set; }
         public bool Visible { get; set; }
-        public AdvertType AdvertType { get; set; }
+        public virtual AdvertType AdvertType { get; set; }
         public IEnumerable<Photo> Photos { get; set; }
         public IEnumerable<Property> Properties { get; set; }
         public MapCords MapCords { get; set; }

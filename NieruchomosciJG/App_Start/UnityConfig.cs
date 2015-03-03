@@ -1,9 +1,15 @@
 using Context;
 using Context.Entities;
 using Microsoft.Practices.Unity;
+using Models.ViewModels;
+using Services.CRUD.AdvertServices.CreateAdvertService;
+using Services.CRUD.AdvertServices.CreateAdvertService.Implementation;
+using Services.FindPhotosById;
+using Services.FindPhotosById.Implementation;
 using Services.GenericRepository;
 using Services.GenericRepository.Implementation;
-using Services.GetAvailableAdvertTypes;
+using Services.GetAdvertTypes;
+using Services.GetAdvertTypes.Implementation;
 using Services.GetPropertiesByAdvertType;
 using Services.GetPropertiesByAdvertType.Implementation;
 using Services.PhotoService;
@@ -23,10 +29,13 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<IGenericRepository<Message>, GenericRepository<Message>>();
             container.RegisterType<IGenericRepository<Property>, GenericRepository<Property>>();
             container.RegisterType<IGenericRepository<PropertyDictionary>, GenericRepository<PropertyDictionary>>();
+            container.RegisterType<IGenericRepository<AdvertType>, GenericRepository<AdvertType>>();
             container.RegisterType<IGetPropertiesByAdvertType, GetPropertiesByAdvertType>();
             container.RegisterType<IPhotoService, PhotoService>();
             container.RegisterType<IResizeImageService, ResizeImageService>();
-            container.RegisterType<IGetAvailableAdvertTypes, IGetAvailableAdvertTypes>();
+            container.RegisterType<IGetAdvertTypes, GetAdvertTypes>();
+            container.RegisterType<ICreateAdvertService, CreateAdvertService>();
+            container.RegisterType<IFindPhotosByIdService, FindPhotosByIdService>();
         }
     }
 }

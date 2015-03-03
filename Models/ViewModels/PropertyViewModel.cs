@@ -13,7 +13,6 @@ namespace Models.ViewModels
         {
         }
         public string Name { get; set; }
-        [MaxLength(3)]
         public string Value { get; set; }
     }
 }

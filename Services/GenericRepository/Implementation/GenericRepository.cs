@@ -23,7 +23,9 @@ namespace Services.GenericRepository.Implementation
 
         public T Add(T entity)
         {
-            return _context.GetSet<T>().Add(entity);
+            var model = _context.GetSet<T>().Add(entity);
+            _context.SaveChanges();
+            return model;
         }
 
         public T Find(int id)
@@ -44,9 +46,9 @@ namespace Services.GenericRepository.Implementation
             if (_context.EntityState(entity) == EntityState.Detached)
             {
                 _context.GetSet<T>().Attach(entity);
-                _context.Modified(entity);
+                
             }
-
+            _context.Modified(entity);
             return entity;
         }
     }

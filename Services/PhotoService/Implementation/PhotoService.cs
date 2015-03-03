@@ -23,6 +23,16 @@ namespace Services.PhotoService.Implementation
             _resizeImageService = resizeImageService;
         }
 
+
+        public void AddAdvertToPhotos(Advert advert, IEnumerable<Photo> photos)
+        {
+            foreach (var photo in photos)
+            {
+                photo.Advert = advert;
+                _genericRepository.Update(photo);
+            }
+        } 
+
         public List<Photo> AddAdvertPhotos(IEnumerable<HttpPostedFileBase> files)
         {
             return files.Select(SavePhotoAndThumbnail).ToList();
