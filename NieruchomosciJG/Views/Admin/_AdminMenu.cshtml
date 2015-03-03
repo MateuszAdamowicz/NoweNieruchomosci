@@ -1,0 +1,19 @@
+﻿﻿@model Models.ViewModels.AdminMenuViewModel
+
+
+@{
+    Layout = null;
+}
+<div class="navbar navbar-inverse top-menu" style="margin-bottom: 0px;">
+    <ul class="nav navbar-nav ">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dodaj nową ofertę<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                @foreach (var type in Model.AdvertTypes)
+                {
+                    <li><a href="@Url.Action("CreateAdvert", "Admin", new {mask = type.Mask})">@type.Name</a></li>
+                }
+            </ul>
+        </li>
+    </ul>
+</div>

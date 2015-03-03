@@ -6,7 +6,6 @@ using Context.Entities;
 using Models.ViewModels;
 using Services.FindPhotosById;
 using Services.GenericRepository;
-using Services.GetAdvertTypes;
 using Services.PhotoService;
 
 namespace Services.CRUD.AdvertServices.CreateAdvertService.Implementation
@@ -15,19 +14,16 @@ namespace Services.CRUD.AdvertServices.CreateAdvertService.Implementation
     {
         private readonly IGenericRepository<Advert> _genericRepository;
         private readonly IPhotoService _photoService;
-        private readonly IGetAdvertTypes _getAdvertTypes;
         private readonly IGenericRepository<AdvertType> _advertTypeRepository;
         private readonly IFindPhotosByIdService _findPhotosByIdService;
 
         public CreateAdvertService(IGenericRepository<Advert> genericRepository,
             IPhotoService photoService,
-            IGetAdvertTypes getAdvertTypes,
             IGenericRepository<AdvertType> advertTypeRepository,
             IFindPhotosByIdService findPhotosByIdService)
         {
             _genericRepository = genericRepository;
             _photoService = photoService;
-            _getAdvertTypes = getAdvertTypes;
             _advertTypeRepository = advertTypeRepository;
             _findPhotosByIdService = findPhotosByIdService;
         }
@@ -36,9 +32,8 @@ namespace Services.CRUD.AdvertServices.CreateAdvertService.Implementation
         {
             var advertToSave = Mapper.Map<Advert>(createAdvert);
             advertToSave.AdvertType = _advertTypeRepository.GetSet().Single(x => x.Mask == createAdvert.AdvertType.Mask);
-
+            
             var advert = _genericRepository.Add(advertToSave);
-
 
             var savedPhotos = _findPhotosByIdService.Find(createAdvert.PhotosToSave);
             _photoService.AddAdvertToPhotos(advert, savedPhotos);
