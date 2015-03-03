@@ -5,7 +5,7 @@ using Models.ViewModels;
 using Services.CountMessagesAndAdverts;
 using Services.CountMessagesAndAdverts.Implementation;
 using Services.CRUD.AdvertServices.CreateAdvertService;
-using Services.CRUD.AdvertServices.CreateAdvertService.Implementation;
+using Services.CRUDAdvertServices.CreateAdvertService.Implementation;
 using Services.FilterOptionService;
 using Services.FilterOptionService.Implementation;
 using Services.FindPhotosById;

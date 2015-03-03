@@ -104,8 +104,8 @@
   <ItemGroup>
     <Compile Include="CountMessagesAndAdverts\Implementation\CountMessagesAndAdverts.cs" />
     <Compile Include="CountMessagesAndAdverts\ICountMessagesAndAdverts.cs" />
-    <Compile Include="CRUDAdvert Services\CreateAdvertService\Implementation\CreateAdvertService.cs" />
-    <Compile Include="CRUDAdvert Services\CreateAdvertService\ICreateAdvertService.cs" />
+    <Compile Include="CRUDAdvertServices\CreateAdvertService\ICreateAdvertService.cs" />
+    <Compile Include="CRUDAdvertServices\CreateAdvertService\Implementation\CreateAdvertService.cs" />
     <Compile Include="FilterOptionService\Implementation\FilterOptionService.cs" />
     <Compile Include="FilterOptionService\IFilterOptionService.cs" />
     <Compile Include="CRUDAdvertServices\DeleteAdvertService\Implementation\DeleteAdvertService.cs" />
