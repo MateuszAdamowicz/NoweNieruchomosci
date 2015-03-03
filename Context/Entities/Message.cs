@@ -1,6 +1,6 @@
 ﻿namespace Context.Entities
 {
-    public class Message:DbTable
+    public class Message:BusinessObject
     {
         public string FullName { get; set; }
         public string Email { get; set; }

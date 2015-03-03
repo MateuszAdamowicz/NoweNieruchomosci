@@ -4,7 +4,7 @@ using Context.PartialModels;
 
 namespace Context.Entities
 {
-    public class Advert : DbTable
+    public class Advert : BusinessObject
     {
         public Advert()
         {

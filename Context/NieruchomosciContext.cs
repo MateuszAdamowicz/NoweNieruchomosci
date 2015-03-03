@@ -28,18 +28,18 @@ namespace Context
         }
 
 
-        public IDbSet<T> GetSet<T>() where T: DbTable
+        public IDbSet<T> GetSet<T>() where T: BusinessObject
         {
             return Set<T>();
         }
 
-        public EntityState EntityState<T>(T entity) where T : DbTable
+        public EntityState EntityState<T>(T entity) where T : BusinessObject
         {
             return Entry(entity).State;
         }
 
 
-        public void Modified<T>(T entity) where T : DbTable
+        public void Modified<T>(T entity) where T : BusinessObject
         {
             Entry(entity).State = System.Data.Entity.EntityState.Modified;
             SaveChanges();

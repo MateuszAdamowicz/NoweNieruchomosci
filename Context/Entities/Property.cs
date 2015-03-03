@@ -2,7 +2,7 @@
 
 namespace Context.Entities
 {
-    public class Property: DbTable
+    public class Property: BusinessObject
     {
         public virtual Advert Advert { get; set; }
         public virtual AdvertType AdvertType { get; set; }

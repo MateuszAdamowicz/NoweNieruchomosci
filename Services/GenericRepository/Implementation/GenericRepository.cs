@@ -7,7 +7,7 @@ using Context.Entities;
 
 namespace Services.GenericRepository.Implementation
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : DbTable
+    public class GenericRepository<T> : IGenericRepository<T> where T : BusinessObject
     {
         private readonly INieruchomosciContext _context;
 

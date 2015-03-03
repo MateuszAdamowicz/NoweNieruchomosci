@@ -1,6 +1,6 @@
 ﻿namespace Context.Entities
 {
-    public class Photo:DbTable
+    public class Photo:BusinessObject
     {
         public string Name { get; set; }
         public string Thumbnail { get; set; }

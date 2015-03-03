@@ -2,9 +2,9 @@
 
 namespace Context.Entities
 {
-    public class DbTable
+    public class BusinessObject
     {
-        public DbTable()
+        public BusinessObject()
         {
             CreatedAt = DateTime.Now;
         }

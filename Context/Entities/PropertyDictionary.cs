@@ -2,7 +2,7 @@
 
 namespace Context.Entities
 {
-    public sealed class PropertyDictionary: DbTable
+    public sealed class PropertyDictionary: BusinessObject
     {
         public PropertyDictionary()
         {

@@ -2,7 +2,7 @@
 
 namespace Context.Entities
 {
-    public class AdvertType:DbTable
+    public class AdvertType:BusinessObject
     {
         public string Name { get; set; }
         public int Mask { get; set; }

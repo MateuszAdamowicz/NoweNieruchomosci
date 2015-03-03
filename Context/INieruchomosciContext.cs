@@ -17,8 +17,8 @@ namespace Context
         IDbSet<AdvertType> AdvertTypes { get; set; }
         int SaveChanges();
 
-        IDbSet<T> GetSet<T>() where T : DbTable;
-        EntityState EntityState<T>(T entity) where T : DbTable;
-        void Modified<T>(T entity) where T : DbTable;
+        IDbSet<T> GetSet<T>() where T : BusinessObject;
+        EntityState EntityState<T>(T entity) where T : BusinessObject;
+        void Modified<T>(T entity) where T : BusinessObject;
     }
 }

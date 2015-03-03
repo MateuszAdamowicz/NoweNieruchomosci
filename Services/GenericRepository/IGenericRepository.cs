@@ -3,7 +3,7 @@ using Context.Entities;
 
 namespace Services.GenericRepository
 {
-    public interface IGenericRepository<T> where T : DbTable
+    public interface IGenericRepository<T> where T : BusinessObject
     {
         IEnumerable<T> GetSet();
         T Add(T entity);
