@@ -109,8 +109,10 @@
     <Compile Include="GenericRepository\IGenericRepository.cs" />
     <Compile Include="GetAdvertTypes\Implementation\GetAvailableAdvertTypes.cs" />
     <Compile Include="GetAdvertTypes\IGetAdvertTypes.cs" />
+    <Compile Include="GetPropertiesByAdvertType\IGetPropertiesByAdvertType.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GetPropertiesByAdvertType\Implementation\GetPropertiesByAdvertType.cs" />
-    <Compile Include="GetPropertiesByAdvertType\IGetPropertiesByAdvertType.cs" />
     <Compile Include="PhotoService\IPhotoService.cs" />
     <Compile Include="PhotoService\Implementation\PhotoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

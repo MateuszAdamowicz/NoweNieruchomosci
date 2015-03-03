@@ -68,5 +68,12 @@ namespace NieruchomosciJG.Controllers
             model.SavedPhotos = _photoService.GetPhotosById(model.PhotosToSave);
             return View(model);
         }
+
+        public ActionResult Menu()
+        {
+            var model = new AdminMenuViewModel();
+            model.AdvertTypes = _getAvailableAdvertTypes.GetAdvertTypeNameAndMask();
+            return View("_AdminMenu", model);
+        }
     }
 }
