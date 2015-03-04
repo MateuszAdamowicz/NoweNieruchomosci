@@ -1,40 +1,204 @@
-﻿<!DOCTYPE html>
+﻿<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @RenderSection("head", false)
+    <title>@ViewBag.Title - Nieruchomości Jeleniogórskie</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Content/ng-grid.css" rel="stylesheet" type="text/css" />*@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Content/CSS/Site.css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script tyle="text/javascript" src="~/Scripts/slider/jquery-1.11.1.min.js"></script>
+    <script tyle="text/javascript" src="~/Scripts/slider/jquery.cycle.all.js"></script>
+    <script tyle="text/javascript" src="/Scripts/slider/slider.js"></script>
+    <link href="~/Scripts/fancyapps-fancyBox-18d1712/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Scripts/fancyapps-fancyBox-18d1712/source/jquery.fancybox.js"></script>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="container">
+        <div class="col-md-12 body-content" style="padding-bottom: 20px; padding-right: 0px;">
+            <div class="row" style="padding-top: 20px; padding-left: 20px; padding-right: 20px;">
+                <div class="col-md-6">
+                    <img src="~/Content/img/logo.png" />
+                </div>
+                <div class="col-md-6" style="text-align: right; font-size: 30px; font-weight: bold; color: #545454">
+                    tel. 570 170 007
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 469px;"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="margin-top: -469px; position: absolute;">
+                    <div class="slider" id="slider1">
+                        <img class="first" src="~/Content/img/slider/slider1.png" width="1110px" height="495px" />
+                        <img src="~/Content/img/slider/slider2.png" width="1110px" height="495px" />
+                        <img src="~/Content/img/slider/slider3.png" width="1110px" height="495px" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <img src="~/Content/img/mainmenu_upperslant.png" width="100%" />
+                </div>
+                <div class="row">
+                    <div class="left-menu">
+                        <a class="menu-item-link" href="/Home/">
+                            <div class="menu-item">Strona główna</div>
+                        </a>
+                        <a class="menu-item-link" href="/Home/About">
+                            <div class="menu-item">O firmie</div>
+                        </a>
+                        <a class="menu-item-link" href="/Home/Credits">
+                            <div class="menu-item">Kredyty</div>
+                        </a>
+                        <div class="menu-item">Oferty:</div>
+                        @{ Html.RenderAction("Cities", "Home"); }
+                        <div class="menu-item-searcher">
+                            @using (Html.BeginForm("Show", "Home", FormMethod.Get))
+                            {
+                                <div class="menu-item">Wyszukaj ofertę:</div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <input class="form-control menu-item-input" name="Key" placeholder="Numer oferty?" style="height: 30px; font-size: 12px;" />
+                                    </div>
+                                    <div class="col-md-5" style="padding-left: 0px">
+                                        <button type="submit" class="menu-item-button">Znajdź</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <a class="menu-item-link" href="/Home/CreateOffer">
+                            <div class="menu-item">Dodaj własną ofertę</div>
+                        </a>
+                        <a class="menu-item-link" href="/Home/Contact">
+                            <div class="menu-item">Skontaktuj się z nami</div>
+                        </a>
+                        <div class="menu-item-contact">
+                            <div class="menu-item-contact-phone">
+                                <div class="row">
+                                    <div class="col-md-2" style="text-align: center">
+                                        <span class="glyphicon glyphicon-phone-alt" style="font-size: 21px;"></span>
+                                    </div>
+                                    <div class="col-md-10">570 170 007</div>
+                                </div>
+                            </div>
+                            <div class="menu-item-contact-email">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span class="glyphicon glyphicon-envelope" style="font-size: 21px;"></span>
+                                    </div>
+                                    <div class="col-md-9">biuro@nieruchomoscijg.pl</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @{
+                            var url = this.Url.Action("Index", "Home", new { }, this.Request.Url.Scheme);
+                        }
+                        <div class="menu-item-social-media">
+                            <div class="row">
+                                <div class="col-md-6 pull-right">
+                                    <div class="col-md-4" style="padding: 0">
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=@(url)" target="_blank" title="Podziel się na Facebooku">
+                                            <img src="/Content/img/icons/social-31-facebook.png" />
+                                        </a>
+
+                                    </div>
+                                    <div class="col-md-4" style="padding: 0">
+
+                                        <a href="https://twitter.com/intent/tweet?url=@(url)" target="_blank" title="Podziel się na Twitterze">
+                                            <img src="/Content/img/icons/social-32-twitter.png" />
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4" style="padding: 0">
+                                        <a href="https://plus.google.com/share?url=@(url)" target="_blank" title="Podziel się na Google+">
+                                            <img src="/Content/img/icons/social-3-google-plus.png" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <img src="~/Content/img/mainmenu_slant.png" width="100%" />
+                </div>
+                <div class="row">
+                    <div class="left-newest">
+                        <div class="left-newest-title">Ostatnio dodane:</div>
+                        @{Html.RenderAction("NewestAdverts", "Home");}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9" style="padding-right: 0px;">
+                @RenderBody()
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+<footer style="padding-top: 0; padding-bottom: 0">
+    <div class="container" style="padding-top: 0; padding-bottom: 0; color: white;">
+        <div class="col-md-12" style="background-color: #333333; padding-top: 20px; padding-bottom: 20px">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <b>NIERUCHOMOŚCI JELENIOGÓRSKIE</b>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-md-12">
+                        <small>Jelenia Góra ul. Podwale 22 a/1</small><br />
+                        <small>tel. 570 170 007</small>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-md-12">
+                        <small>e-mail: biuro@nieruchomoscijg.pl</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <b>Skup, sprzedaż, wynajem nieruchomości</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="margin-top: 10px;">
+                        <small>Jelenia Góra, Cieplice, Karpacz, Szklarska Poręba, Świeradów, Maciejowa, Piechowice, Podgórzyn, Przesieka, Sosnówka, Michałowice, Jeżów, Płoszczyna, Dziwiszów, Siedlęcin</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-6 pull-right">
+                    <div class="col-md-4" style="padding: 0">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=@(url)" target="_blank" title="Podziel się na Facebooku">
+                            <img src="/Content/img/icons/social-31-facebook.png" />
+                        </a>
+
+                    </div>
+                    <div class="col-md-4" style="padding: 0">
+
+                        <a href="https://twitter.com/intent/tweet?url=@(url)" target="_blank" title="Podziel się na Twitterze">
+                            <img src="/Content/img/icons/social-32-twitter.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-4" style="padding: 0">
+                        <a href="https://plus.google.com/share?url=@(url)" target="_blank" title="Podziel się na Google+">
+                            <img src="/Content/img/icons/social-3-google-plus.png" />
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-</body>
-</html>
+</footer>
