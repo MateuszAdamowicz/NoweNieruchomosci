@@ -102,14 +102,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="CitiesService\Implementation\CitiesService.cs" />
-    <Compile Include="CitiesService\ICitiesService.cs" />
-    <Compile Include="CRUDAdvertServices\CreateAdvertService\Implementation\CreateAdvertService.cs" />
-=======
     <Compile Include="CountMessagesAndAdverts\Implementation\CountMessagesAndAdverts.cs" />
     <Compile Include="CountMessagesAndAdverts\ICountMessagesAndAdverts.cs" />
->>>>>>> 2ea2219b68c15634f305deec80d4dc27841ae8a4
     <Compile Include="CRUDAdvertServices\CreateAdvertService\ICreateAdvertService.cs" />
     <Compile Include="CRUDAdvertServices\CreateAdvertService\Implementation\CreateAdvertService.cs" />
     <Compile Include="FilterOptionService\Implementation\FilterOptionService.cs" />
@@ -125,8 +119,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GetPropertiesByAdvertType\Implementation\GetPropertiesByAdvertType.cs" />
-    <Compile Include="NewestAdvertsService\INewestAdvertsService.cs" />
-    <Compile Include="NewestAdvertsService\Implementation\NewestAdvertsService.cs" />
     <Compile Include="PhotoService\IPhotoService.cs" />
     <Compile Include="PhotoService\Implementation\PhotoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

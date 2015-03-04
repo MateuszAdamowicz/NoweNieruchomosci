@@ -45,8 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AdminIndexFilterOptions.cs" />
-    <Compile Include="ViewModels\AdminIndexViewModel.cs" />
     <Compile Include="ViewModels\AdminMenuViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -56,11 +54,7 @@
     <Compile Include="ViewModels\NewestAdvert.cs" />
     <Compile Include="ViewModels\PhotoViewModel.cs" />
     <Compile Include="ViewModels\PropertyViewModel.cs" />
-<<<<<<< HEAD
     <Compile Include="ViewModels\ShowAdvertViewModel.cs" />
-=======
-    <Compile Include="ViewModels\SelectOption.cs" />
->>>>>>> 2ea2219b68c15634f305deec80d4dc27841ae8a4
     <Compile Include="ViewModels\UploadedPhoto.cs" />
   </ItemGroup>
   <ItemGroup>
