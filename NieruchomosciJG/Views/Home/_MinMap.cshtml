@@ -1,0 +1,5 @@
+﻿@model Context.PartialModels.MapCords
+
+<div style="width: 200px; height: 200px; border:1px solid white">
+    <img src="https://maps.googleapis.com/maps/api/staticmap?&center=Jelenia%Gora&size=200x200&markers=@(Model.Lat.ToString().Replace(",", ".")),@(Model.Lng.ToString().Replace(",","."))">
+</div>

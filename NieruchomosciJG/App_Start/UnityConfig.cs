@@ -2,6 +2,8 @@ using Context;
 using Context.Entities;
 using Microsoft.Practices.Unity;
 using Models.ViewModels;
+using Services.CitiesService;
+using Services.CitiesService.Implementation;
 using Services.CRUD.AdvertServices.CreateAdvertService;
 using Services.CRUDAdvertServices.CreateAdvertService.Implementation;
 using Services.FindPhotosById;
@@ -12,6 +14,8 @@ using Services.GetAdvertTypes;
 using Services.GetAdvertTypes.Implementation;
 using Services.GetPropertiesByAdvertType;
 using Services.GetPropertiesByAdvertType.Implementation;
+using Services.NewestAdvertsService;
+using Services.NewestAdvertsService.Implementation;
 using Services.PhotoService;
 using Services.PhotoService.Implementation;
 using Services.ResizeImageService;
@@ -36,6 +40,8 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<IGetAdvertTypes, GetAdvertTypes>();
             container.RegisterType<ICreateAdvertService, CreateAdvertService>();
             container.RegisterType<IFindPhotosByIdService, FindPhotosByIdService>();
+            container.RegisterType<INewestAdvertsService, NewestAdvertsService>();
+            container.RegisterType<ICitiesService, CitiesService>(); 
         }
     }
 }

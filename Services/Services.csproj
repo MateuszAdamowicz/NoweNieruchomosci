@@ -102,6 +102,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CitiesService\Implementation\CitiesService.cs" />
+    <Compile Include="CitiesService\ICitiesService.cs" />
     <Compile Include="CRUDAdvertServices\CreateAdvertService\Implementation\CreateAdvertService.cs" />
     <Compile Include="CRUDAdvertServices\CreateAdvertService\ICreateAdvertService.cs" />
     <Compile Include="CRUDAdvertServices\DeleteAdvertService\Implementation\DeleteAdvertService.cs" />
@@ -115,6 +117,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GetPropertiesByAdvertType\Implementation\GetPropertiesByAdvertType.cs" />
+    <Compile Include="NewestAdvertsService\INewestAdvertsService.cs" />
+    <Compile Include="NewestAdvertsService\Implementation\NewestAdvertsService.cs" />
     <Compile Include="PhotoService\IPhotoService.cs" />
     <Compile Include="PhotoService\Implementation\PhotoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

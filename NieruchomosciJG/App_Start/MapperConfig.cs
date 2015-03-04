@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using AutoMapper;
 using Context.Entities;
 using Context.PartialModels;
@@ -17,6 +19,12 @@ namespace NieruchomosciJG.App_Start
             Mapper.CreateMap<PhotoViewModel, Photo>();
             Mapper.CreateMap<PropertyViewModel, Property>();
             Mapper.CreateMap<AdvertTypeViewModel, AdvertType>();
+            Mapper.CreateMap<Advert, NewestAdvert>().
+                ForMember(dst => dst.Picture, opts => opts.MapFrom(x => x.Photos.FirstOrDefault()))
+                .ForMember(dst => dst.AdType, opts => opts.MapFrom(x => x.AdvertType.Name));
+
+            Mapper.CreateMap<Advert, ShowAdvertViewModel>()
+                .ForMember(x => x.AdvertType, opts => opts.MapFrom(x => x.AdvertType.Name));
         }
     }
 }

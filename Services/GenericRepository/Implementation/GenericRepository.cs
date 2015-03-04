@@ -18,7 +18,7 @@ namespace Services.GenericRepository.Implementation
 
         public IEnumerable<T> GetSet()
         {
-            return _context.GetSet<T>();
+            return _context.GetSet<T>().Where(x => !x.Deleted);
         }
 
         public T Add(T entity)
