@@ -40,12 +40,33 @@ namespace NieruchomosciJG.Controllers
 
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int? page, string number, bool? toLet, string city, string adType, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, DateTime? dateFrom, DateTime? dateTo, bool? filter, AdminSortOption? sortOption, bool? showHidden, bool sortDescAsc = false, int? perPage = 20)
         {
-            var model = new AdminIndexViewModel();
+            var adminIndexFiltered = new AdminIndexFiltered()
+            {              
+                Page = (page ?? 1),
+                AdTypeAdmin = adType,
+                City = city,
+                PriceFrom = priceFrom,
+                PriceTo = priceTo,
+                AreaFrom = areaFrom,
+                AreaTo = areaTo,
+                DateFrom = dateFrom,
+                DateTo = dateTo,
+                ShowHidden = showHidden,
+                ToLet = toLet,
+                Number = number,
+                PerPage = perPage,
+                SortDescAsc = sortDescAsc,
+                SortOption = sortOption
+            };
 
+            var model = new AdminIndexViewModel();
+            int pageSize = (perPage ?? 20);
+            int pageNumber = (page ?? 1);
             var options = _filterOptionService.GetOptions();
             model.AdminIndexFilterOptions = options;
+            model.AdminIndexFiltered = adminIndexFiltered;
             return View(model);
         }
 
