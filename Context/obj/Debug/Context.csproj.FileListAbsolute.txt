@@ -32,3 +32,11 @@ C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\Context\bin\Debug\EntityFramewor
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\Context\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\Context\obj\Debug\Context.dll
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\Context\obj\Debug\Context.pdb
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\Context\bin\Debug\Context.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\Context\bin\Debug\Context.pdb
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\Context\bin\Debug\EntityFramework.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\Context\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\Context\bin\Debug\EntityFramework.xml
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\Context\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\Context\obj\Debug\Context.dll
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\Context\obj\Debug\Context.pdb

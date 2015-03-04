@@ -171,3 +171,4 @@ C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\Services\bin\Debug\System.Web.We
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\Services\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\Services\obj\Debug\Services.dll
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\Services\obj\Debug\Services.pdb
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\Services\obj\Debug\Services.csprojResolveAssemblyReference.cache

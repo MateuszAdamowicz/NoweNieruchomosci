@@ -84,3 +84,4 @@ C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\NieruchomosciJG.Tests\bin\De
 C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\NieruchomosciJG.Tests\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\NieruchomosciJG.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\madamowicz\Source\Repos\NoweNieruchomosci2\NieruchomosciJG.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\NieruchomosciJG.Tests\obj\Debug\NieruchomosciJG.Tests.csprojResolveAssemblyReference.cache

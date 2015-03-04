@@ -217,3 +217,4 @@ C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\NieruchomosciJG\bin\System.Web.W
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\NieruchomosciJG\bin\System.Web.WebPages.Razor.xml
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\NieruchomosciJG\obj\Debug\NieruchomosciJG.dll
 C:\Users\mkoren\Source\Repos\NoweNieruchomosci2\NieruchomosciJG\obj\Debug\NieruchomosciJG.pdb
+C:\Users\mkoren\Source\Repos\NoweNieruchomosci3\NieruchomosciJG\obj\Debug\NieruchomosciJG.csprojResolveAssemblyReference.cache
