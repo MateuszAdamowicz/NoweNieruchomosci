@@ -49,9 +49,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\AdvertTypeViewModel.cs" />
+    <Compile Include="ViewModels\CityCount.cs" />
     <Compile Include="ViewModels\CreateAdvertViewModel.cs" />
+    <Compile Include="ViewModels\NewestAdvert.cs" />
     <Compile Include="ViewModels\PhotoViewModel.cs" />
     <Compile Include="ViewModels\PropertyViewModel.cs" />
+    <Compile Include="ViewModels\ShowAdvertViewModel.cs" />
     <Compile Include="ViewModels\UploadedPhoto.cs" />
   </ItemGroup>
   <ItemGroup>
