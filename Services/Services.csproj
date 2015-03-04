@@ -108,6 +108,8 @@
     <Compile Include="CountMessagesAndAdverts\ICountMessagesAndAdverts.cs" />
     <Compile Include="CRUDAdvertServices\CreateAdvertService\ICreateAdvertService.cs" />
     <Compile Include="CRUDAdvertServices\CreateAdvertService\Implementation\CreateAdvertService.cs" />
+    <Compile Include="CRUDAdvertServices\ReadAdvertService\Implementation\ReadAdvertService.cs" />
+    <Compile Include="CRUDAdvertServices\ReadAdvertService\IReadAdvertService.cs" />
     <Compile Include="FilterOptionService\Implementation\FilterOptionService.cs" />
     <Compile Include="FilterOptionService\IFilterOptionService.cs" />
     <Compile Include="CRUDAdvertServices\DeleteAdvertService\Implementation\DeleteAdvertService.cs" />
@@ -147,7 +149,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CRUDAdvertServices\ReadAdvertService\Implementation\" />
     <Folder Include="CRUDAdvertServices\UpdateAdvertService\Implementation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

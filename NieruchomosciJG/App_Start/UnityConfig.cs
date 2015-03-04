@@ -8,6 +8,8 @@ using Services.CountMessagesAndAdverts;
 using Services.CountMessagesAndAdverts.Implementation;
 using Services.CRUD.AdvertServices.CreateAdvertService;
 using Services.CRUDAdvertServices.CreateAdvertService.Implementation;
+using Services.CRUDAdvertServices.ReadAdvertService;
+using Services.CRUDAdvertServices.ReadAdvertService.Implementation;
 using Services.FilterOptionService;
 using Services.FilterOptionService.Implementation;
 using Services.FindPhotosById;
@@ -48,7 +50,7 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<ICitiesService, CitiesService>(); 
             container.RegisterType<ICountMessagesAndAdverts, CountMessagesAndAdverts>();
             container.RegisterType<IFilterOptionService, FilterOptionService>();
-
+            container.RegisterType<IReadAdvertService, ReadAdvertService>();
         }
     }
 }
