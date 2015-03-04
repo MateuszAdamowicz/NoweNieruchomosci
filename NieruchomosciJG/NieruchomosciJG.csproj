@@ -1050,6 +1050,10 @@
     <Content Include="Views\Home\_MinMap.cshtml" />
     <Content Include="Views\Home\Show.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Home\_Gallery.cshtml" />
+    <Content Include="Views\Home\_Ask.cshtml" />
+    <Content Include="Views\Home\_Map.cshtml" />
+    <Content Include="Views\Home\_SocialMedia.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

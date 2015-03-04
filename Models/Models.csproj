@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="ViewModels\AdvertTypeViewModel.cs" />
     <Compile Include="ViewModels\CityCount.cs" />
+    <Compile Include="ViewModels\ContactEmailViewModel.cs" />
     <Compile Include="ViewModels\CreateAdvertViewModel.cs" />
     <Compile Include="ViewModels\NewestAdvert.cs" />
     <Compile Include="ViewModels\PhotoViewModel.cs" />

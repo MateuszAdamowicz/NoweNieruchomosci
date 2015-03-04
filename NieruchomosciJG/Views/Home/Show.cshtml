@@ -51,10 +51,10 @@
                                 <div class="col-md-7">
                                     <div class="short-advert-price">
                                         <span class="pln">@Model.Price</span> PLN
-                                        @if (Model.Area != 0)
+                                        @if (!String.IsNullOrEmpty(Model.PricePerMeter))
                                         {
                                             <small class="price">
-                                                (<span class="pln">@(Model.PricePerMeter)</span>
+                                                (@(Model.PricePerMeter)
                                                 zł/m<sup>2</sup>)
                                             </small>
                                         }
@@ -66,10 +66,10 @@
                             <div class="col-md-12">
                                 <div class="col-md-3" style="padding: 0; padding-right: 15px">
                                     <div class="short-advert-photo">
-                                        @if (Model.Pictures != null && Model.Pictures.Any())
+                                        @if (Model.Photos != null && Model.Photos.Any())
                                         {
-                                            <a class="fancybox" rel="gallery1" href="/Content/Photos/@Model.Pictures[0].Link">
-                                                <img src="/Content/Photos/@Model.Pictures[0].Min" onerror="this.src = '/Content/img/brakzdjecia.png'" style="border: 1px solid white" />
+                                            <a class="fancybox" rel="gallery1" href="@Model.Photos[0].Name">
+                                                <img src="@Model.Photos[0].Thumbnail" onerror="this.src = '/Content/img/brakzdjecia.png'" style="border: 1px solid white" />
                                             </a>
                                         }
                                         else
@@ -86,89 +86,39 @@
                                                     Nieruchomość:
                                                 </div>
                                                 <div class="col-md-7">
-                                                    @String.Format("{0}", Model.OfferType)
+                                                    @String.Format("{0}", Model.AdvertType)
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-5">
-                                                    Lokalizacja:
+                                                    Miejscowość:
                                                 </div>
                                                 <div class="col-md-7">
-                                                    @if (!String.IsNullOrEmpty(Model.Location))
-                                                    {
-                                                        @String.Format("{0} - {1}", Model.City, Model.Location)
-                                                    }
-                                                    else
-                                                    {
-                                                        @String.Format("{0}", Model.City)
-                                                    }
-
+                                                    @String.Format("{0}", Model.City)
                                                 </div>
                                             </div>
-                                            @if (!String.IsNullOrEmpty(Model.Rooms) && Model.Area != 0)
-                                            {
-                                                <div class="row">
-                                                    <div class="col-md-5">Liczba pokoi:</div>
-                                                    <div class="col-md-7">
-                                                        <b>@Model.Rooms</b> o łącznej powierzchni <b>@Model.Area m<sup>2</sup></b>
-                                                    </div>
-                                                </div>
-                                            }
-                                            else if (!String.IsNullOrEmpty(Model.Rooms))
-                                            {
-                                                <div class="row">
-                                                    <div class="col-md-5">Liczba pokoi:</div>
-                                                    <div class="col-md-7">
-                                                        <b>@Model.Rooms</b>
-                                                    </div>
-                                                </div>
-                                            }
-                                            @if (!String.IsNullOrEmpty(Model.Storey))
-                                            {
-                                                <div class="row">
-                                                    <div class="col-md-5">Kondygnacja:</div>
-                                                    <div class="col-md-7">
-                                                        @Model.Storey
-                                                    </div>
-                                                </div>
-                                            }
-                                            @if (!String.IsNullOrEmpty(Model.TechnicalCondition))
-                                            {
-                                                <div class="row">
-                                                    <div class="col-md-5">Stan techniczny:</div>
-                                                    <div class="col-md-7">
-                                                        @Model.TechnicalCondition
-                                                    </div>
-                                                </div>
-                                            }
-                                            @if (!String.IsNullOrEmpty(Model.Heating))
-                                            {
-                                                <div class="row">
-                                                    <div class="col-md-5">Ogrzewanie:</div>
-                                                    <div class="col-md-7">
-                                                        @Model.Heating
-                                                    </div>
-                                                </div>
-                                            }
-                                            @if (!String.IsNullOrEmpty(Model.Ownership))
-                                            {
-                                                <div class="row">
-                                                    <div class="col-md-5">Forma własności:</div>
-                                                    <div class="col-md-7">
-                                                        @Model.Ownership
-                                                    </div>
-                                                </div>
-                                            }
-                                            @if (Model.Rent != 0)
+                                            @if (!String.IsNullOrEmpty(Model.Location))
                                             {
                                                 <div class="row">
                                                     <div class="col-md-5">
-                                                        <b>Czynsz:</b>
+                                                        Lokalizacja:
                                                     </div>
                                                     <div class="col-md-7">
-                                                        <b><span class="pln">@Model.Rent</span> zł</b>
+                                                        @String.Format("{0}", Model.Location)
                                                     </div>
                                                 </div>
+                                            }
+                                            @foreach (var property in Model.Properties)
+                                            {
+                                                if (!String.IsNullOrEmpty(property.Value))
+                                                {
+                                                    <div class="row">
+                                                        <div class="col-md-5">@property.Name :</div>
+                                                        <div class="col-md-7">
+                                                            @property.Value
+                                                        </div>
+                                                    </div>
+                                                }
                                             }
                                         </div>
                                     </div>
@@ -192,11 +142,11 @@
                             </div>
                         }
 
-                        @{ Html.RenderPartial("_Gallery", Model.Pictures); }
+                        @{ Html.RenderPartial("_Gallery", Model.Photos); }
 
                         @{ Html.RenderPartial("_Ask", Model.ContactEmail); }
 
-                        @{ Html.RenderPartial("_Map", Model.Cords); }
+                        @{ Html.RenderPartial("_Map", Model.MapCords); }
 
                     </div>
                 </div>
@@ -208,7 +158,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="short-advert-number">
-                                    Numer oferty: <b>@Model.Number</b>
+                                    Numer oferty: todo
                                 </div>
                             </div>
                             <div class="col-md-6" style="text-align: right">

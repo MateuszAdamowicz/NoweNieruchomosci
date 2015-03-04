@@ -4,6 +4,7 @@ using Context.Entities;
 using Context.PartialModels;
 using Models.ViewModels;
 using Services.CitiesService;
+using Services.CRUDAdvertServices.ReadAdvertService;
 using Services.GenericRepository;
 using Services.NewestAdvertsService;
 namespace NieruchomosciJG.Controllers
@@ -12,12 +13,24 @@ namespace NieruchomosciJG.Controllers
     {
         private readonly INewestAdvertsService _newestAdvertsService;
         private readonly ICitiesService _citiesService;
+        private readonly IReadAdvertService _readAdvertService;
+
 
         // GET: Home
-        public HomeController(INewestAdvertsService newestAdvertsService, ICitiesService citiesService)
+        public HomeController(INewestAdvertsService newestAdvertsService,
+            ICitiesService citiesService,
+            IReadAdvertService readAdvertService)
         {
             _newestAdvertsService = newestAdvertsService;
             _citiesService = citiesService;
+            _readAdvertService = readAdvertService;
+        }
+
+        public ActionResult Show(int id)
+        {
+            var model = _readAdvertService.GetAdvertById(id);
+
+            return View(model);
         }
 
         public ActionResult Index()
