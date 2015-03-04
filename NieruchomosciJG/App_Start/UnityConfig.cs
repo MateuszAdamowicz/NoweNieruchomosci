@@ -2,10 +2,17 @@ using Context;
 using Context.Entities;
 using Microsoft.Practices.Unity;
 using Models.ViewModels;
+<<<<<<< HEAD
 using Services.CitiesService;
 using Services.CitiesService.Implementation;
+=======
+using Services.CountMessagesAndAdverts;
+using Services.CountMessagesAndAdverts.Implementation;
+>>>>>>> 2ea2219b68c15634f305deec80d4dc27841ae8a4
 using Services.CRUD.AdvertServices.CreateAdvertService;
 using Services.CRUDAdvertServices.CreateAdvertService.Implementation;
+using Services.FilterOptionService;
+using Services.FilterOptionService.Implementation;
 using Services.FindPhotosById;
 using Services.FindPhotosById.Implementation;
 using Services.GenericRepository;
@@ -40,8 +47,13 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<IGetAdvertTypes, GetAdvertTypes>();
             container.RegisterType<ICreateAdvertService, CreateAdvertService>();
             container.RegisterType<IFindPhotosByIdService, FindPhotosByIdService>();
+<<<<<<< HEAD
             container.RegisterType<INewestAdvertsService, NewestAdvertsService>();
             container.RegisterType<ICitiesService, CitiesService>(); 
+=======
+            container.RegisterType<ICountMessagesAndAdverts, CountMessagesAndAdverts>();
+            container.RegisterType<IFilterOptionService, FilterOptionService>();
+>>>>>>> 2ea2219b68c15634f305deec80d4dc27841ae8a4
         }
     }
 }
