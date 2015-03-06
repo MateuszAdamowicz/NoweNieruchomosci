@@ -26,6 +26,15 @@ namespace NieruchomosciJG.Controllers
             _readAdvertService = readAdvertService;
         }
 
+
+
+        [HttpPost]
+        public ActionResult Show(ContactEmail contactEmail, int id)
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Show(int id)
         {
             var model = _readAdvertService.GetAdvertById(id);

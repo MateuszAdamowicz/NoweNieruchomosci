@@ -10,6 +10,6 @@
 
         public string Body { get; set; }
 
-        public string OfferLink { get; set; }
+        public int AdvertId { get; set; }
     }
 }
