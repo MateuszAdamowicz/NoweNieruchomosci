@@ -9,9 +9,10 @@ namespace Models.ViewModels
     {
         public ShowAdvertViewModel()
         {
-            ContactEmail = new ContactEmail();
+            AdvertContactEmail = new AdvertContactEmailViewModel();
         }
 
+        public int Number { get; set; }
         public string Title { get; set; }
         public bool ToLet { get; set; }
         public int Price { get; set; }
@@ -26,7 +27,7 @@ namespace Models.ViewModels
         public IEnumerable<PropertyViewModel> Properties { get; set; }
         public MapCords MapCords { get; set; }
         public DateTime CreatedAt { get; set; }
-        public ContactEmail ContactEmail { get; set; }
+        public AdvertContactEmailViewModel AdvertContactEmail { get; set; }
         public string FormattedPrice
         {
             get

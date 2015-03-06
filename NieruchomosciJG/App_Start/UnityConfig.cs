@@ -2,6 +2,8 @@ using Context;
 using Context.Entities;
 using Microsoft.Practices.Unity;
 using Models.ViewModels;
+using Services.AdvertSearchOptionsService;
+using Services.AdvertSearchOptionsService.Implementation;
 using Services.CitiesService;
 using Services.CitiesService.Implementation;
 using Services.CountMessagesAndAdverts;
@@ -26,6 +28,8 @@ using Services.PhotoService;
 using Services.PhotoService.Implementation;
 using Services.ResizeImageService;
 using Services.ResizeImageService.Implementation;
+using Services.SearchAdvertService;
+using Services.SearchAdvertService.Implementation;
 
 namespace NieruchomosciJG.App_Start
 {
@@ -51,6 +55,8 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<ICountMessagesAndAdverts, CountMessagesAndAdverts>();
             container.RegisterType<IFilterOptionService, FilterOptionService>();
             container.RegisterType<IReadAdvertService, ReadAdvertService>();
+            container.RegisterType<IAdvertSearchOptionService, AdvertSearchOptionService>();
+            container.RegisterType<ISearchAdvertService, SearchAdvertService>();
         }
     }
 }

@@ -23,13 +23,18 @@ namespace NieruchomosciJG.App_Start
             Mapper.CreateMap<AdvertTypeViewModel, AdvertType>();
             Mapper.CreateMap<Advert, NewestAdvert>().
                 ForMember(dst => dst.Picture, opts => opts.MapFrom(x => Mapper.Map<PhotoViewModel>(x.Photos.FirstOrDefault())))
-                .ForMember(dst => dst.AdType, opts => opts.MapFrom(x => x.AdvertType.Name));
+                .ForMember(dst => dst.AdType, opts => opts.MapFrom(x => x.AdvertType.Name))
+                .ForMember(dst => dst.Number, opts => opts.MapFrom(x => x.Id));
 
             Mapper.CreateMap<Advert, ShowAdvertViewModel>()
                 .ForMember(x => x.AdvertType, opts => opts.MapFrom(x => x.AdvertType.Name))
-                .ForMember(x => x.Photos, opts => opts.MapFrom(x => Mapper.Map<List<PhotoViewModel>>(x.Photos)));
+                .ForMember(x => x.Photos, opts => opts.MapFrom(x => Mapper.Map<List<PhotoViewModel>>(x.Photos)))
+                .ForMember(x => x.Number, opts => opts.MapFrom(x => x.Id));
 
             Mapper.CreateMap<Property, PropertyViewModel>();
+
+            Mapper.CreateMap<Advert, SimplifyAdvert>().ForMember(x => x.Photo, opts => opts.MapFrom(x => x.Photos.FirstOrDefault()))
+                .ForMember(x => x.Number, opts => opts.MapFrom(src => src.Id));
         }
     }
 }

@@ -5,8 +5,9 @@ namespace Models.ViewModels
 {
     public class NewestAdvert
     {
-        public string Number { get; set; }
+        public int Number { get; set; }
         public string City { get; set; }
+        public string Location { get; set; }
         public int Price { get; set; }
         public bool ToLet { get; set; }
         public string AdType { get; set; }
@@ -19,6 +20,16 @@ namespace Models.ViewModels
             get
             {
                 return Price.ToString("N0");
+            }
+        }
+
+        public string FullLocation
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(Location))
+                    return String.Format("{0} ({1})", City, Location);
+                return City;
             }
         }
     }

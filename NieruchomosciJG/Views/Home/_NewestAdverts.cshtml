@@ -23,14 +23,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <small><b>@advert.City</b></small>
+                            <small><b>@advert.FullLocation</b></small>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-10">
-                    <a href="/Home/Show?key=@advert.Number">
+                    <a href="/Home/Show/@advert.Number">
                         @if (advert.Picture != null)
                         {
                             <img src="@advert.Picture.Thumbnail" onerror="this.src = '/Content/img/brakzdjecia.png'" style="border: 1px solid white;" />
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="row">
-                        <a href="/Home/Search?key=@advert.Number"><span class="small-function glyphicon glyphicon-search" style="font-size: 1.5em"></span></a>
+                        <a href="/Home/Show/@advert.Number"><span class="small-function glyphicon glyphicon-search" style="font-size: 1.5em"></span></a>
                     </div>
                     <div class="row" style="margin-top: 5px">
                         @if (advert.MapCords != null && advert.MapCords.Lat != null && advert.MapCords.Lng != null)
@@ -52,7 +52,7 @@
                         }
                     </div>
                     <div class="row" style="margin-top: 5px">
-                        <a tabindex="0" class="small-function glyphicon glyphicon-user" style="font-size: 1.5em" data-container="body" data-placement="right" data-toggle="popover" title="Zapytaj o nieruchomość" data-html="true" data-content='<div class="col-md-12" style="text-align:right;"><form action="/Home/Show?key=@advert.Number" method="post">@Html.AntiForgeryToken()<input class="small-input" id="FullName" name="FullName" placeholder="Twoje imię i nazwisko" type="text"/><input class="small-input" id="Email" name="Email" placeholder="Twój adres email" type="text" /><input class="small-input" id="PhoneNumber" name="PhoneNumber" placeholder="Twój numer telefonu (opcjonalne)" type="text" /><textarea id="Body" name="Body" style="height:100px"class="small-input" placeholder="Treść Twojej wiadomości"></textarea><button type="submit" style="background-color: #B71C1C;border: 0;color: white;width: 50%;margin-top: 5px;box-shadow: 0px 3px 7px black;">Wyślij</button></form></div>'></a>
+                        <a tabindex="0" class="small-function glyphicon glyphicon-user" style="font-size: 1.5em" data-container="body" data-placement="right" data-toggle="popover" title="Zapytaj o nieruchomość" data-html="true" data-content='<div class="col-md-12" style="text-align:right;"><form action="/Home/Show/@advert.Number" method="post">@Html.AntiForgeryToken()<input class="small-input" id="FullName" name="FullName" placeholder="Twoje imię i nazwisko" type="text"/><input class="small-input" id="Email" name="Email" placeholder="Twój adres email" type="text" /><input class="small-input" id="PhoneNumber" name="PhoneNumber" placeholder="Twój numer telefonu (opcjonalne)" type="text" /><textarea id="Body" name="Body" style="height:100px"class="small-input" placeholder="Treść Twojej wiadomości"></textarea><button type="submit" style="background-color: #B71C1C;border: 0;color: white;width: 50%;margin-top: 5px;box-shadow: 0px 3px 7px black;">Wyślij</button></form></div>'></a>
                     </div>
                 </div>
             </div>
