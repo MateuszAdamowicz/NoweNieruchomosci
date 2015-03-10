@@ -102,6 +102,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvertSearchOptionsService\Implementation\AdvertSearchOptionService.cs" />
+    <Compile Include="AdvertSearchOptionsService\IAdvertSearchOptionService.cs" />
     <Compile Include="CitiesService\ICitiesService.cs" />
     <Compile Include="CitiesService\Implementation\CitiesService.cs" />
     <Compile Include="CountMessagesAndAdverts\Implementation\CountMessagesAndAdverts.cs" />
@@ -132,6 +134,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResizeImageService\IResizeImageService.cs" />
     <Compile Include="ResizeImageService\Implementation\ResizeImageService.cs" />
+    <Compile Include="SearchAdvertService\ISearchAdvertService.cs" />
+    <Compile Include="SearchAdvertService\Implementation\SearchAdvertService.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

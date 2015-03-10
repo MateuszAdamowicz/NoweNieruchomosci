@@ -1,6 +1,6 @@
 ﻿namespace Models.ViewModels
 {
-    public class ContactEmail
+    public class AdvertContactEmailViewModel
     {
         public string FullName { get; set; }
 
@@ -10,6 +10,6 @@
 
         public string Body { get; set; }
 
-        public string OfferLink { get; set; }
+        public int AdvertId { get; set; }
     }
 }

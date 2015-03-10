@@ -1,7 +1,344 @@
-﻿
+﻿@model Models.ViewModels.IndexViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Nieruchomości Jeleniogórskie";
 }
 
-<h2>Index</h2>
+@section head{
+    <meta property="og:title" content="Nieruchomości Jeleniogórskie" />
+    <meta property="og:description" content="Z nami znajdziesz swój wymarzony kąt!" />
+    <meta property="og:image" content="@(new Uri(Request.Url, Url.Content("~/Content/img/img_3.jpg")))" />
+}
 
+
+<style type="text/css">
+    option {
+        height: 40px;
+    }
+</style>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="about-us">
+                <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
+                    <div class="col-md-8">
+                        <h4 class="akapit">
+                            Z nami znajdziesz swój wymarzony kąt
+                        </h4>
+                        <p class="akapit">
+
+                            @{Html.RenderPartial("Texts/_IndexText");}
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="~/Content/img/img_3.jpg" width="100%" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3 searcher-label">
+                        Szukaj oferty:
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12 searcher">
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                        {
+                            <div class="row">
+                                <div class="col-md-4" style="padding-right: 5px">
+                                    @Html.DropDownList("AdType", new SelectList(Model.SearchOptions.PropertyTypes, "Value", "Text"), new { @class = "menu-item-input", @id = "AdType" })
+                                </div>
+                                <div class="col-md-4" style="padding-right: 5px">
+                                    @Html.DropDownList("ToLet", new SelectList(Model.SearchOptions.AdvertTypes, "Value", "Text"), new { @class = "menu-item-input" })
+                                </div>
+                                <div class="col-md-4" style="padding-right: 5px">
+                                    @Html.DropDownList("SortOptions", new SelectList(Model.SearchOptions.SortOptions, "Value", "Text"), new { @class = "menu-item-input" })
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-4" style="padding-right: 5px">
+                                    @Html.DropDownList("City", new SelectList(Model.SearchOptions.Cities, "Value", "Text"), new { @class = "menu-item-input", @id = "AdType" })
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-2" style="color: white">Cena:</div>
+                                        <div class="col-md-10" style="margin-top: 5px">
+                                            <div id="slider-range"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="padding-right: 5px">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="menu-item-button">Pokaż pasujące oferty</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-md-push-4">
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align: center;">
+                                            <input type="text" id="amount" readonly style="border: 0; color: white; font-weight: bold; background-color: #b31621; text-align: center; width: 100%" value="@((Model.RouteValues.PriceFrom)?? 0) - @((Model.RouteValues.PriceTo)?? Model.SearchOptions.MaxPrice) PLN">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            @Html.Hidden("Search", true);
+                            @Html.Hidden("PriceFrom", "0", new { @id = "PriceFrom" })
+                            @Html.Hidden("PriceTo", @Model.SearchOptions.MaxPrice, new { @id = "PriceTo" })
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @if (Model.SimplifyAdverts != null && @Model.SimplifyAdverts.TotalItemCount != 0)
+    {
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12 found-adverts-count">
+                            <div class="col-md-6" id="oferty">
+                                Znaleziono <b>@Model.SimplifyAdverts.TotalItemCount</b> pasujące oferty.
+                            </div>
+                            <div class="col-md-6" style="padding-right: 0px">
+                                <div class="col-md-9" style="text-align: right; font-size: 12px; padding-top: 3px">Strona @Model.SimplifyAdverts.PageNumber z @Model.SimplifyAdverts.PageCount</div>
+                                <div class="col-md-3" style="text-align: center">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-3" style="padding: 0">
+                                        @if (Model.SimplifyAdverts.PageNumber > 1)
+                                        {
+                                            <a style="color: white" href="@Url.Action("Index", "Home", new { search = Model.RouteValues.Search, page = Model.RouteValues.Page - 1, priceFrom = Model.RouteValues.PriceFrom, priceTo = Model.RouteValues.PriceTo, city = Model.RouteValues.City, toLet = Model.RouteValues.ToLet, adType = Model.RouteValues.AdType, sortOptions = Model.RouteValues.SortOption})">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                            </a>
+                                        }
+                                    </div>
+                                    <div class="col-md-3" style="padding: 0; padding-left: 5px">
+                                        @if (Model.SimplifyAdverts.PageNumber < Model.SimplifyAdverts.PageCount)
+                                        {
+                                            <a style="color: white" href="@Url.Action("Index", "Home", new { search = Model.RouteValues.Search, page = Model.RouteValues.Page + 1, priceFrom = Model.RouteValues.PriceFrom, priceTo = Model.RouteValues.PriceTo, city = Model.RouteValues.City, toLet = Model.RouteValues.ToLet, adType = Model.RouteValues.AdType, sortOptions = Model.RouteValues.SortOption})">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        foreach (var advert in Model.SimplifyAdverts)
+        {
+            <div class="row" style="margin-top: 20px">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3 short-advert-label">
+                                @(advert.ToLet ? "Do wynajęcia" : "Do sprzedania")
+                            </div>
+                            <div class="col-md-9 short-advert-title">
+                                <a href="/Home/Show/@advert.Number" style="color: #333333">@advert.Title</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12 short-advert-body">
+                                <div class="col-md-3" style="padding: 0; padding-right: 15px">
+                                    <div class="short-advert-photo">
+                                        @if (advert.Photo != null)
+                                        {
+                                            <a href="/Home/Show/@advert.Number">
+                                                <img src="@advert.Photo.Thumbnail" onerror=" this.src = '/Content/img/brakzdjecia.png' " style="border: 1px solid white" />
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/Home/Show/@advert.Number">
+                                                <img src="/Content/img/brakzdjecia.png" width="100%" style="border: 1px solid white" />
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="short-advert-price">
+                                        <span class="pln">@advert.FormattedPrice</span> PLN
+                                        @if (advert.Area != 0)
+                                        {
+                                            <small class="price">
+                                                (<span class="pln">@advert.PricePerMeter</span>
+                                                zł/m<sup>2</sup>)
+                                            </small>
+                                        }
+                                    </div>
+                                    <div>
+                                        @advert.FullLocation
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="short-advert-description">
+                                                @advert.Description
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" style="text-align: right">
+                                    <div class="row">
+                                        <a href="/Home/Show/@advert.Number"><span class="small-function glyphicon glyphicon-search" style="font-size: 1.5em"></span></a>
+                                    </div>
+                                    <div class="row" style="margin-top: 5px">
+                                        @if (advert.MapCords != null && advert.MapCords.Lat != null && advert.MapCords.Lng != null)
+                                        {
+                                            <a tabindex="0" class="small-function glyphicon glyphicon-map-marker" style="font-size: 1.5em" data-container="body" data-placement="auto right" data-toggle="popover" title="Zobacz na mapie" data-html="true" data-content='@{ Html.RenderAction("MinMap", new {lng = @advert.MapCords.Lng, lat = @advert.MapCords.Lat}); }'></a>
+                                        }
+                                    </div>
+                                    <div class="row" style="margin-top: 5px">
+                                        <a tabindex="0" class="small-function glyphicon glyphicon-user" style="font-size: 1.5em" data-container="body" data-placement="auto right" data-toggle="popover" title="Zapytaj o nieruchomość" data-html="true" data-content='<div class="col-md-12" style="text-align:right;"><form action="/Home/Show/@advert.Number" method="post">@Html.AntiForgeryToken()<input class="form control small-input" id="FullName" name="FullName" placeholder="Twoje imię i nazwisko" type="text"/><input class="form control small-input" id="Email" name="Email" placeholder="Twój adres email" type="text" /><input class="form control small-input" id="PhoneNumber" name="PhoneNumber" placeholder="Twój numer telefonu (opcjonalne)" type="text" /><textarea id="Body" name="Body" style="height:100px"class="form control small-input" placeholder="Treść Twojej wiadomości"></textarea><button type="submit" style="background-color: #B71C1C;border: 0;color: white;width: 50%;margin-top: 5px;box-shadow: 0px 3px 7px black;">Wyślij</button></form></div>'></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3 short-advert-social">
+                                <div class="row">
+                                    Okazja? przekaż dalej!
+                                </div>
+                                @{
+                                    var url = this.Url.Action("Home", "Show", new {key = advert.Number}, this.Request.Url.Scheme);
+                                }
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-3" style="padding: 0">
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=@(url)" target="_blank">
+                                                <img src="/Content/img/icons/social-31-facebook.png" />
+                                            </a>
+
+                                        </div>
+                                        <div class="col-md-3" style="padding: 0">
+
+                                            <a href="https://twitter.com/intent/tweet?url=@(url)" target="_blank" title="Tweet">
+                                                <img src="/Content/img/icons/social-32-twitter.png" />
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3" style="padding: 0">
+                                            <a href="https://plus.google.com/share?url=@(url)" target="_blank" title="Share on Google+">
+                                                <img src="/Content/img/icons/social-3-google-plus.png" />
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3" style="padding: 0">
+                                            <a href="mailto:"><img src="/Content/img/icons/social-40-e-mail.png" /></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="short-advert-number">
+                                            Numer oferty: <b>@advert.Number</b>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="text-align: right">
+                                        <div class="short-advert-date">
+                                            Data dodania: <b>@advert.CreatedAt.ToShortDateString()</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12 found-adverts-count">
+                            <div class="col-md-6" id="oferty">
+                                Znaleziono <b>@Model.SimplifyAdverts.TotalItemCount</b> pasujące oferty.
+                            </div>
+                            <div class="col-md-6" style="padding-right: 0px">
+                                <div class="col-md-9" style="text-align: right; font-size: 12px; padding-top: 3px">Strona @Model.SimplifyAdverts.PageNumber z @Model.SimplifyAdverts.PageCount</div>
+                                <div class="col-md-3" style="text-align: center">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-3" style="padding: 0">
+                                        @if (Model.SimplifyAdverts.PageNumber > 1)
+                                        {
+                                            <a style="color: white" href="@Url.Action("Index", "Home", new { search = Model.RouteValues.Search, page = Model.RouteValues.Page - 1, priceFrom = Model.RouteValues.PriceFrom, priceTo = Model.RouteValues.PriceTo, city = Model.RouteValues.City, toLet = Model.RouteValues.ToLet, adType = Model.RouteValues.AdType, sortOptions = Model.RouteValues.SortOption})">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                            </a>
+                                        }
+                                    </div>
+                                    <div class="col-md-3" style="padding: 0; padding-left: 5px">
+                                        @if (Model.SimplifyAdverts.PageNumber < Model.SimplifyAdverts.PageCount)
+                                        {
+                                            <a style="color: white" href="@Url.Action("Index", "Home", new { search = Model.RouteValues.Search, page = Model.RouteValues.Page + 1, priceFrom = Model.RouteValues.PriceFrom, priceTo = Model.RouteValues.PriceTo, city = Model.RouteValues.City, toLet = Model.RouteValues.ToLet, adType = Model.RouteValues.AdType, sortOptions = Model.RouteValues.SortOption})">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.SimplifyAdverts != null && Model.SimplifyAdverts.TotalItemCount == 0)
+    {
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12 found-adverts-count">
+                            <div class="col-md-6">
+                                Nie znaleziono pasujących ofert.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANJktXHK4ntWky3gGMSpM-7AvJeTYxHFk">
+
+        </script>
+        <link href="~/Content/themes/base/all.css" rel="stylesheet" type="text/css" />
+        @*<script src="/Scripts/jquery-1.10.2.js"></script>*@
+        <script src="/Scripts/jquery-ui-1.11.2.js"></script>
+        <script src="/Scripts/bootstrap.js"></script>
+
+        <script>
+    $(function () {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: @Model.SearchOptions.MaxPrice,
+            values: [@((Model.RouteValues.PriceFrom)?? 0), @((Model.RouteValues.PriceTo)?? Model.SearchOptions.MaxPrice)],
+            slide: function (event, ui) {
+                $("#amount").val(ui.values[0] + " - " + ui.values[1] + " PLN");
+                $("#PriceFrom").val(ui.values[0]);
+                $("#PriceTo").val(ui.values[1]);
+            }
+        });
+    });
+        </script>
