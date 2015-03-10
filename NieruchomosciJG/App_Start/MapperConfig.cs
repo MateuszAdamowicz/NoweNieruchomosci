@@ -17,7 +17,7 @@ namespace NieruchomosciJG.App_Start
             Mapper.CreateMap<Photo, PhotoViewModel>().ForMember(dest => dest.Thumbnail, opts => opts.MapFrom(src => String.Format("/Content/Photos/{0}", src.Thumbnail)))
                 .ForMember(dest => dest.Name, opts => opts.MapFrom(src => String.Format("/Content/Photos/{0}", src.Name)));
             Mapper.CreateMap<AdvertType, AdvertTypeViewModel>();
-            Mapper.CreateMap<CreateAdvertViewModel, Advert>();
+            Mapper.CreateMap<CreateAdvertViewModel, Advert>().ForMember(dest => dest.Visible, opts => opts.UseValue(true));
             Mapper.CreateMap<PhotoViewModel, Photo>();
             Mapper.CreateMap<PropertyViewModel, Property>();
             Mapper.CreateMap<AdvertTypeViewModel, AdvertType>();
@@ -35,6 +35,11 @@ namespace NieruchomosciJG.App_Start
 
             Mapper.CreateMap<Advert, SimplifyAdvert>().ForMember(x => x.Photo, opts => opts.MapFrom(x => x.Photos.FirstOrDefault()))
                 .ForMember(x => x.Number, opts => opts.MapFrom(src => src.Id));
+
+            Mapper.CreateMap<Advert, AdminAdvertToShow>()
+                .ForMember(x => x.Number, opts => opts.MapFrom(src => src.Id))
+                .ForMember(x => x.Thumbnail, opts => opts.MapFrom(x => x.Photos.FirstOrDefault().Thumbnail))
+                .ForMember(x => x.AdType, opts => opts.MapFrom(x => x.AdvertType));
         }
     }
 }

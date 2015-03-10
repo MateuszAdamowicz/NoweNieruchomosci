@@ -20,30 +20,22 @@ namespace Services.FilterOptionService.Implementation
 
         public AdminIndexFilterOptions GetOptions()
         {
-            var perPage = ItemsPerPage();
-            var toLets = ToLets();
-            var adType = AdTypes();
-            var cities = Cities();
+            var options = new AdminIndexFilterOptions();
+            options.PerPage = GetItemsPerPage();
+            options.ToLet = GetToLets();
+            options.AdTypes = GetAdTypes();
+            options.Cities = GetCities();
 
-            var adminIndexFilterOptions = new AdminIndexFilterOptions()
-            {
-                AdTypes = adType,
-                ToLet = toLets,
-                PerPage = perPage,
-                Cities = cities
-            };
-
-            return adminIndexFilterOptions;
+            return options;
         }
 
-        public List<SelectOption> Cities()
+        public List<SelectOption> GetCities()
         {
             var cities =
                 _advertRepository.GetSet()
                     .Where(x => x.Visible)
                     .Select(x => x.City)
-                    .GroupBy(x => x)
-                    .Select(x => x.Key)
+                    .Distinct()
                     .Select(city => new SelectOption(city, city))
                     .ToList();
 
@@ -52,19 +44,19 @@ namespace Services.FilterOptionService.Implementation
             return cities;
         } 
 
-        public List<SelectOption> AdTypes()
+        public List<SelectOption> GetAdTypes()
         {
             var adTypes =
                 _advertTypeRepository.GetSet()
-                    .GroupBy(x => x.Mask, x => x.Name,(key,g) => new SelectOption(g.First(),key.ToString()))
+                    .GroupBy(x => x.Mask, x => x.Name, (key,g) => new SelectOption(g.First(), key.ToString()))
                     .ToList();
-            
-            InsertAllValue(adTypes);
+
+            adTypes.Insert(0, new SelectOption("Wszystkie", ""));
             
             return adTypes;
         }
 
-        public List<SelectOption> ToLets()
+        public List<SelectOption> GetToLets()
         {
             var toLets = new List<SelectOption>();
             toLets.Add(new SelectOption("Wszystkie", ""));
@@ -78,7 +70,7 @@ namespace Services.FilterOptionService.Implementation
             list.Insert(0, new SelectOption("Wszystkie", ""));
         }
 
-        public List<SelectOption> ItemsPerPage()
+        public List<SelectOption> GetItemsPerPage()
         {
             var perPage = new List<SelectOption>();
             perPage.Add(new SelectOption("5", "5"));

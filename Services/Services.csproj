@@ -136,6 +136,8 @@
     <Compile Include="ResizeImageService\Implementation\ResizeImageService.cs" />
     <Compile Include="SearchAdvertService\ISearchAdvertService.cs" />
     <Compile Include="SearchAdvertService\Implementation\SearchAdvertService.cs" />
+    <Compile Include="SortAdvertService\ISortAdvertService.cs" />
+    <Compile Include="SortAdvertService\Implementation\SortAdvertService.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

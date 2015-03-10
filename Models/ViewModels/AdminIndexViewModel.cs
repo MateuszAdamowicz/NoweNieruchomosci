@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Web;
 using PagedList;
 
 namespace Models.ViewModels
@@ -12,7 +15,7 @@ namespace Models.ViewModels
     public class AdminIndexFiltered
     {
         public int? Page { get; set; }
-        public string AdTypeAdmin { get; set; }
+        public string AdType { get; set; }
         public string City { get; set; }
         public int? PriceFrom { get; set; }
         public int? PriceTo { get; set; }
@@ -48,4 +51,45 @@ namespace Models.ViewModels
             };
         }
     }
+
+    public class AdminIndexFilterOptions
+    {
+        public List<SelectOption> AdTypes { get; set; }
+        public List<SelectOption> ToLet { get; set; }
+        public List<SelectOption> PerPage { get; set; }
+        public List<SelectOption> Cities { get; set; }
+    }
+
+    public class AdminAdvertToShow
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string City { get; set; }
+        public bool Visible { get; set; }
+        public AdvertTypeViewModel AdType { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string Number { get; set; }
+        public bool Deleted { get; set; }
+        public int Price { get; set; }
+        public int Area { get; set; }
+        public bool ToLet { get; set; }
+        public string Thumbnail { get; set; }
+
+        public string GetPhotoPath
+        {
+            get
+            {
+                if (File.Exists(HttpContext.Current.Request.MapPath("/Content/Photos/" + Thumbnail)))
+                {
+                    return String.Format("/Content/Photos/{0}", Thumbnail);
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+    }
+
+
 }

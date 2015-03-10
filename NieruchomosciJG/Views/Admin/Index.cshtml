@@ -4,7 +4,7 @@
 @{
     Layout = "_AdminLayout.cshtml"; ;
 }
-
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <style type="text/css">
     .form-group {
         margin-right: 10px;
@@ -17,6 +17,7 @@
     table {
         font-size: 14px;
     }
+
     .pagination {
         margin: 0px;
     }
@@ -24,6 +25,25 @@
     a {
         color: black;
         text-decoration: none !important;
+    }
+
+        .clickable {
+        cursor: pointer;
+    }
+
+    .popover-content {
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    }
+
+    .popover {
+    background-color: black;
+    }
+
+    .popover.left>.arrow:after {
+    border-left-color: black;
     }
 </style>
 
@@ -96,6 +116,7 @@
                 }
             </div>
         </div>
+        
         @if (Model.AdminIndexFiltered.Filter != null && Model.AdminIndexFiltered.Filter == true && !Model.Adverts.Any())
         {
             <div class="row" style="margin-top: 60px;">
@@ -140,9 +161,8 @@
                                        page = Model.AdminIndexFiltered.Page,
                                        number = Model.AdminIndexFiltered.Number,
                                        toLet = Model.AdminIndexFiltered.ToLet,
-                                      // adType = Model.AdminIndexFiltered.AdTypeAdmin,
-
-                                       allCity = Model.AdminIndexFiltered.City,
+                                       adType = Model.AdminIndexFiltered.AdType,
+                                       city = Model.AdminIndexFiltered.City,
                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
                                        priceTo = Model.AdminIndexFiltered.PriceTo,
                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
@@ -170,9 +190,8 @@
                                        page = Model.AdminIndexFiltered.Page,
                                        number = Model.AdminIndexFiltered.Number,
                                        toLet = Model.AdminIndexFiltered.ToLet,
-                                       //adType = Model.AdminIndexFiltered.AdTypeAdmin,
-
-                                       allCity = Model.AdminIndexFiltered.City,
+                                       adType = Model.AdminIndexFiltered.AdType,
+                                       city = Model.AdminIndexFiltered.City,
                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
                                        priceTo = Model.AdminIndexFiltered.PriceTo,
                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
@@ -200,8 +219,8 @@
                                        page = Model.AdminIndexFiltered.Page,
                                        number = Model.AdminIndexFiltered.Number,
                                        toLet = Model.AdminIndexFiltered.ToLet,
-                                      // adType = Model.AdminIndexFiltered.AdTypeAdmin,
-                                       allCity = Model.AdminIndexFiltered.City,
+                                       adType = Model.AdminIndexFiltered.AdType,
+                                       city = Model.AdminIndexFiltered.City,
                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
                                        priceTo = Model.AdminIndexFiltered.PriceTo,
                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
@@ -229,8 +248,8 @@
                                        page = Model.AdminIndexFiltered.Page,
                                        number = Model.AdminIndexFiltered.Number,
                                        toLet = Model.AdminIndexFiltered.ToLet,
-                                     //  adType = Model.AdminIndexFiltered.AdTypeAdmin,
-                                       flatCity = Model.AdminIndexFiltered.City,
+                                       adType = Model.AdminIndexFiltered.AdType,
+                                       city = Model.AdminIndexFiltered.City,
                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
                                        priceTo = Model.AdminIndexFiltered.PriceTo,
                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
@@ -258,8 +277,8 @@
                                        page = Model.AdminIndexFiltered.Page,
                                        number = Model.AdminIndexFiltered.Number,
                                        toLet = Model.AdminIndexFiltered.ToLet,
-                                       //adType = Model.AdminIndexFiltered.AdTypeAdmin,
-                                       allCity = Model.AdminIndexFiltered.City,
+                                       adType = Model.AdminIndexFiltered.AdType,
+                                       city = Model.AdminIndexFiltered.City,
                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
                                        priceTo = Model.AdminIndexFiltered.PriceTo,
                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
@@ -287,8 +306,8 @@
                                        page = Model.AdminIndexFiltered.Page,
                                        number = Model.AdminIndexFiltered.Number,
                                        toLet = Model.AdminIndexFiltered.ToLet,
-                                   //    adType = Model.AdminIndexFiltered.AdTypeAdmin,
-                                       allCity = Model.AdminIndexFiltered.City,
+                                       adType = Model.AdminIndexFiltered.AdType,
+                                       city = Model.AdminIndexFiltered.City,
                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
                                        priceTo = Model.AdminIndexFiltered.PriceTo,
                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
@@ -316,8 +335,8 @@
                                        page = Model.AdminIndexFiltered.Page,
                                        number = Model.AdminIndexFiltered.Number,
                                        toLet = Model.AdminIndexFiltered.ToLet,
-                            //           adType = Model.AdminIndexFiltered.AdTypeAdmin,
-                                       allCity = Model.AdminIndexFiltered.City,
+                                       adType = Model.AdminIndexFiltered.AdType,
+                                       city = Model.AdminIndexFiltered.City,
                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
                                        priceTo = Model.AdminIndexFiltered.PriceTo,
                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
@@ -339,17 +358,17 @@
                                         <span class="glyphicon glyphicon-chevron-up" style="width: 20px"></span>
                                     }
                                 </th>
-                                
-                                    @if (Model.AdminIndexFiltered.ShowHidden == true)
-                                    {
-                                        <th>
+
+                                @if (Model.AdminIndexFiltered.ShowHidden == true)
+                                {
+                                    <th>
                                         @Html.ActionLink("Status", "Index", new
                                         {
                                             page = Model.AdminIndexFiltered.Page,
                                             number = Model.AdminIndexFiltered.Number,
                                             toLet = Model.AdminIndexFiltered.ToLet,
-                                           // adType = Model.AdminIndexFiltered.AdTypeAdmin,
-                                            allCity = Model.AdminIndexFiltered.City,
+                                            adType = Model.AdminIndexFiltered.AdType,
+                                            city = Model.AdminIndexFiltered.City,
                                             priceFrom = Model.AdminIndexFiltered.PriceFrom,
                                             priceTo = Model.AdminIndexFiltered.PriceTo,
                                             areaFrom = Model.AdminIndexFiltered.AreaFrom,
@@ -370,13 +389,13 @@
                                         {
                                             <span class="glyphicon glyphicon-chevron-up" style="width: 20px"></span>
                                         }
-                                        </th>
-                                    }
-                                    else
-                                    {  
-                                        <th>Status</th>
-                                    }
-                                
+                                    </th>
+                                }
+                                else
+                                {  
+                                    <th>Status</th>
+                                }
+
                                 <th style="text-align: center">Akcje</th>
                             </tr>
                         </thead>
@@ -384,27 +403,32 @@
                             @foreach (var advert in Model.Adverts)
                             {
                                 <tr>
-                                    <td >                                       
-                                        @if (advert.GetPhotoPath !="")
+                                    <td>
+                                        @if (advert.GetPhotoPath != "")
                                         {
-                                            <div class="col-md-12" style="text-align: center;padding-left: 0px; padding-right: 0px;"> 
-                                                <a tabindex="0"  style="font-size: 1.5em" data-placement="left" data-toggle="popover" data-trigger="hover" data-html="true" data-content='<img src="@advert.GetPhotoPath" style="border-radius: 6px;" />'><img src="@advert.GetPhotoPath" style="max-height:36px;  max-width:48px; cursor: pointer;"/></a>
+                                            <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                                                <a tabindex="0"  style="font-size: 1.5em" data-placement="left" data-toggle="popover" data-trigger="hover" data-html="true" data-content='<img src="@advert.GetPhotoPath" style="border-radius: 6px;" />'>
+                                                    <img src="@advert.GetPhotoPath" style="max-height:36px;  max-width:48px; cursor: pointer;"/></a>
                                             </div>
                                         }
                                     </td>
                                     <td>@advert.CreatedAt.ToShortDateString()</td>
-                                    <td><a href="/Home/Search?key=@advert.Number">@advert.Number</a>
+                                    <td><a href="/Home/Show?key=@advert.Number">@advert.Number</a>
                                     </td>
                                     <td>@advert.City</td>
-                                    <td></td>
+                                    <td>@advert.AdType.Name</td>
                                     <td>
                                         @if (@advert.ToLet)
                                         {
-                                            <span class="label label-primary">Wynajem</span>
+                                            <div style="padding-top: 4px">
+                                                <span class="label label-primary">Wynajem</span>
+                                            </div>
                                         }
                                         else
                                         {
-                                            <span class="label label-warning">Sprzedaż</span>
+                                            <div style="padding-top: 4px">
+                                                <span class="label label-warning">Sprzedaż</span>
+                                            </div>
                                         }
                                     </td>
                                     <td><span class="pln">@advert.Price</span> zł</td>
@@ -437,11 +461,11 @@
                                             </div>
                                             <div class="col-md-4" style="text-align: center">
                                                 @using (Html.BeginForm("EditAd", "Admin", FormMethod.Post))
-                                                 {
-                                                     <input type="hidden" name="id" value="@advert.Id"> 
-                                                     <input type="hidden" name="AdType" value="@advert.AdType">                                                      
-                                                     <a class="submit"><span class="glyphicon glyphicon-pencil clickable" style="font-size: 1.5em"></span></a>
-                                                 }
+                                                {
+                                                    <input type="hidden" name="id" value="@advert.Id"> 
+                                                    <input type="hidden" name="AdType" value="@advert.AdType">                                                      
+                                                    <a class="submit"><span class="glyphicon glyphicon-pencil clickable" style="font-size: 1.5em"></span></a>
+                                                }
                                             </div>
                                             <div class="col-md-4" style="text-align: center">
                                                 @using (Html.BeginForm("ChangeAd", "Admin", FormMethod.Post))
@@ -480,3 +504,25 @@
         }
     </div>
 </div>
+<script>
+    $(document).ready(
+        $('[data-toggle="popover"]').popover()
+    );
+
+    $("#ClearFilters").on("click", function () {
+        $("#Number").val('');
+        $("#AdType").val('All');
+        $("#ToLet").val('');
+        $("#FlatCity").val('');
+        $("#HouseCity").val('');
+        $("#LandCity").val('');
+        $("#AllCity").val('');
+        $("#PriceFrom").val('');
+        $("#PriceTo").val('');
+        $("#AreaFrom").val('');
+        $("#AreaTo").val('');
+        $("#dateFrom").val("2014-01-01");
+        $("#dateTo").val(year + "-" + month + "-" + day);
+        $("#ShowHidden").attr("checked", false);
+    });
+</script>

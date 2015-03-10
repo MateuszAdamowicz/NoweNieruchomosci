@@ -49,8 +49,9 @@ namespace NieruchomosciJG.Controllers
         {
             var adminIndexFiltered = new AdminIndexFiltered()
             {
+                Filter = filter,
                 Page = (page ?? 1),
-                AdTypeAdmin = adType,
+                AdType = adType,
                 City = city,
                 PriceFrom = priceFrom,
                 PriceTo = priceTo,
@@ -67,12 +68,21 @@ namespace NieruchomosciJG.Controllers
             };
 
             var model = new AdminIndexViewModel();
+
             int pageSize = (perPage ?? 20);
             int pageNumber = (page ?? 1);
 
-            var adverts = _filterAdvertService.ActiveAdverts(sortOption, sortDescAsc);
-            model.Adverts = adverts.ToPagedList(pageNumber, pageSize);
-
+            if (filter == true && filter != null)
+            {
+                var adverts = _filterAdvertService.FilterAdverts(showHidden, dateFrom, dateTo, adType, number,
+                       priceFrom, priceTo, areaFrom, areaTo, city, toLet, sortOption, sortDescAsc);
+                model.Adverts = adverts.ToPagedList(pageNumber, pageSize);    
+            }
+            else
+            {
+                var adverts = _filterAdvertService.ActiveAdverts(sortOption, sortDescAsc);
+                model.Adverts = adverts.ToPagedList(pageNumber, pageSize);
+            }
             var options = _filterOptionService.GetOptions();
             model.AdminIndexFilterOptions = options;
 

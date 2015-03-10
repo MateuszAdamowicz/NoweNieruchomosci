@@ -32,6 +32,8 @@ using Services.ResizeImageService;
 using Services.ResizeImageService.Implementation;
 using Services.SearchAdvertService;
 using Services.SearchAdvertService.Implementation;
+using Services.SortAdvertService;
+using Services.SortAdvertService.Implementation;
 
 namespace NieruchomosciJG.App_Start
 {
@@ -60,6 +62,7 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<IAdvertSearchOptionService, AdvertSearchOptionService>();
             container.RegisterType<ISearchAdvertService, SearchAdvertService>();
             container.RegisterType<IFilterAdvertService, FilterAdvertService>();
+            container.RegisterType<ISortAdvertService, SortAdvertService>();
         }
     }
 }

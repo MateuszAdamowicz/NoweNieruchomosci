@@ -1,24 +1,136 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Context.Entities;
 using Models.ViewModels;
 using Services.GenericRepository;
+using AutoMapper;
+using Services.SortAdvertService;
 
 namespace Services.FilterAdvertService.Implementation
 {
     public class FilterAdvertService : IFilterAdvertService
     {
         private readonly IGenericRepository<Advert> _genericRepository;
+        private readonly ISortAdvertService _sortAdvertService;
 
-        public FilterAdvertService(IGenericRepository<Advert> genericRepository)
+        public FilterAdvertService(IGenericRepository<Advert> genericRepository, ISortAdvertService sortAdvertService)
         {
             _genericRepository = genericRepository;
+            _sortAdvertService = sortAdvertService;
         }
         public IEnumerable<AdminAdvertToShow> ActiveAdverts(AdminSortOption? adminSortOption, bool sortDescAsc)
         {
             var adverts = _genericRepository.GetSet().Where(x => x.Visible);
-            var advertsToShow = AutoMapper.Mapper.Map<IEnumerable<AdminAdvertToShow>>(adverts);
-            
+            var advertsToShow = Mapper.Map<IEnumerable<AdminAdvertToShow>>(adverts);
+
+            advertsToShow = _sortAdvertService.SortAdverts(advertsToShow, adminSortOption, sortDescAsc);
+
+            return advertsToShow;
+        }
+
+        public IEnumerable<AdminAdvertToShow> FilterAdverts(bool? showHidden, DateTime? dateFrom, DateTime? dateTo, string adType, string number, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, string city, bool? toLet, AdminSortOption? adminSortOption, bool sortDescAsc)
+        {
+            var adverts = _genericRepository.GetSet();
+            var advertsToShow = Mapper.Map<IEnumerable<AdminAdvertToShow>>(adverts);
+
+            advertsToShow = FilterAdvertsByCity(city, advertsToShow);
+            advertsToShow = FilterAdvertsByNumber(number, advertsToShow);
+            advertsToShow = FilterHiddenAdverts(showHidden, advertsToShow);
+            advertsToShow = FilterAdvertsByDate(dateFrom, dateTo, advertsToShow);
+            advertsToShow = FilterAdvertsByPrice(priceFrom, priceTo, advertsToShow);
+            advertsToShow = FilterAdvertsByArea(areaFrom, areaTo, advertsToShow);
+            advertsToShow = FilterAdvertsByAdvertType(adType, advertsToShow);
+            advertsToShow = FilterAdvertsByToLet(toLet, advertsToShow);
+
+            advertsToShow = _sortAdvertService.SortAdverts(advertsToShow, adminSortOption, sortDescAsc);
+
+
+            return advertsToShow;
+        }
+
+        private IEnumerable<AdminAdvertToShow> FilterAdvertsByCity(string city, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (!String.IsNullOrEmpty(city))
+            {
+                advertsToShow = advertsToShow.Where(x => x.City == city);
+            }
+            return advertsToShow;
+        }
+
+        private IEnumerable<AdminAdvertToShow> FilterAdvertsByNumber(string number, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (!String.IsNullOrEmpty(number))
+            {
+                advertsToShow = advertsToShow.Where(x => x.Number == number);
+            }
+            return advertsToShow;
+        }
+
+        private IEnumerable<AdminAdvertToShow> FilterHiddenAdverts(bool? showHidden, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (showHidden == false)
+            {
+                advertsToShow = advertsToShow.Where(x => x.Visible);
+            }
+            return advertsToShow;
+        }
+
+        private IEnumerable<AdminAdvertToShow> FilterAdvertsByDate(DateTime? dateFrom, DateTime? dateTo, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (dateFrom != null)
+            {
+                advertsToShow = advertsToShow.Where(x => x.CreatedAt.Date >= dateFrom);
+            }
+
+            if (dateTo != null)
+            {
+                advertsToShow = advertsToShow.Where(x => x.CreatedAt.Date <= dateTo);
+            }
+            return advertsToShow;
+        }
+
+        private IEnumerable<AdminAdvertToShow> FilterAdvertsByPrice(int? priceFrom, int? priceTo, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (priceFrom != null)
+            {
+                advertsToShow = advertsToShow.Where(x => x.Price >= priceFrom);
+            }
+            if (priceTo != null)
+            {
+                advertsToShow = advertsToShow.Where(x => x.Price <= priceTo);
+            }
+            return advertsToShow;
+        }
+
+        private IEnumerable<AdminAdvertToShow> FilterAdvertsByArea(int? areaFrom, int? areaTo, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (areaFrom != null)
+            {
+                advertsToShow = advertsToShow.Where(x => x.Area >= areaFrom);
+            }
+            if (areaTo != null)
+            {
+                advertsToShow = advertsToShow.Where(x => x.Area <= areaTo);
+            }
+            return advertsToShow;
+        }
+
+        private IEnumerable<AdminAdvertToShow> FilterAdvertsByAdvertType(string adType, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (!String.IsNullOrEmpty(adType))
+            {
+                advertsToShow = advertsToShow.Where(x => x.AdType.Mask == Convert.ToInt32(adType));
+            }
+            return advertsToShow;
+        }
+
+        private IEnumerable<AdminAdvertToShow> FilterAdvertsByToLet(bool? toLet, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (toLet != null)
+            {
+                advertsToShow = advertsToShow.Where(x => x.ToLet == toLet);
+            }
             return advertsToShow;
         }
     }
