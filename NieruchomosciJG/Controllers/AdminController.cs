@@ -6,10 +6,12 @@ using Context.PartialModels;
 using Models.ViewModels;
 using Services.CountMessagesAndAdverts;
 using Services.CRUD.AdvertServices.CreateAdvertService;
+using Services.FilterAdvertService;
 using Services.FilterOptionService;
 using Services.GetAdvertTypes;
 using Services.GetPropertiesByAdvertType;
 using Services.PhotoService;
+using PagedList;
 
 namespace NieruchomosciJG.Controllers
 {
@@ -21,6 +23,7 @@ namespace NieruchomosciJG.Controllers
         private readonly ICreateAdvertService _createAdvertService;
         private readonly ICountMessagesAndAdverts _countMessagesAndAdverts;
         private readonly IFilterOptionService _filterOptionService;
+        private readonly IFilterAdvertService _filterAdvertService;
 
         public AdminController(
             IGetPropertiesByAdvertType getPropertiesByAdvertType,
@@ -28,7 +31,8 @@ namespace NieruchomosciJG.Controllers
             IGetAdvertTypes getAvailableAdvertTypes,
             ICreateAdvertService createAdvertService,
             ICountMessagesAndAdverts countMessagesAndAdverts,
-            IFilterOptionService filterOptionService)
+            IFilterOptionService filterOptionService,
+            IFilterAdvertService filterAdvertService)
         {
             _getPropertiesByAdvertType = getPropertiesByAdvertType;
             _photoService = photoService;
@@ -36,6 +40,7 @@ namespace NieruchomosciJG.Controllers
             _createAdvertService = createAdvertService;
             _countMessagesAndAdverts = countMessagesAndAdverts;
             _filterOptionService = filterOptionService;
+            _filterAdvertService = filterAdvertService;
         }
 
 
@@ -43,7 +48,7 @@ namespace NieruchomosciJG.Controllers
         public ActionResult Index(int? page, string number, bool? toLet, string city, string adType, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, DateTime? dateFrom, DateTime? dateTo, bool? filter, AdminSortOption? sortOption, bool? showHidden, bool sortDescAsc = false, int? perPage = 20)
         {
             var adminIndexFiltered = new AdminIndexFiltered()
-            {              
+            {
                 Page = (page ?? 1),
                 AdTypeAdmin = adType,
                 City = city,
@@ -64,9 +69,15 @@ namespace NieruchomosciJG.Controllers
             var model = new AdminIndexViewModel();
             int pageSize = (perPage ?? 20);
             int pageNumber = (page ?? 1);
+
+            var adverts = _filterAdvertService.ActiveAdverts(sortOption, sortDescAsc);
+            model.Adverts = adverts.ToPagedList(pageNumber, pageSize);
+
             var options = _filterOptionService.GetOptions();
             model.AdminIndexFilterOptions = options;
+
             model.AdminIndexFiltered = adminIndexFiltered;
+
             return View(model);
         }
 
@@ -76,7 +87,7 @@ namespace NieruchomosciJG.Controllers
 
             var advertType = _getAvailableAdvertTypes.FindAdvertTypeByMask(mask);
             var properties = _getPropertiesByAdvertType.GetProperties(advertType);
-            var model = new CreateAdvertViewModel() {Properties = properties, AdvertType = advertType};
+            var model = new CreateAdvertViewModel() { Properties = properties, AdvertType = advertType };
 
             return View(model);
         }
@@ -90,7 +101,7 @@ namespace NieruchomosciJG.Controllers
                 var id = _createAdvertService.CreateAdvert(model);
                 return RedirectToAction("Index");
             }
-            
+
             model.SavedPhotos = _photoService.GetPhotosById(model.PhotosToSave);
             return View(model);
         }

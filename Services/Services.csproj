@@ -110,6 +110,8 @@
     <Compile Include="CRUDAdvertServices\CreateAdvertService\Implementation\CreateAdvertService.cs" />
     <Compile Include="CRUDAdvertServices\ReadAdvertService\Implementation\ReadAdvertService.cs" />
     <Compile Include="CRUDAdvertServices\ReadAdvertService\IReadAdvertService.cs" />
+    <Compile Include="FilterAdvertService\Implementation\FilterAdvertService.cs" />
+    <Compile Include="FilterAdvertService\IFilterAdvertService.cs" />
     <Compile Include="FilterOptionService\Implementation\FilterOptionService.cs" />
     <Compile Include="FilterOptionService\IFilterOptionService.cs" />
     <Compile Include="CRUDAdvertServices\DeleteAdvertService\Implementation\DeleteAdvertService.cs" />
