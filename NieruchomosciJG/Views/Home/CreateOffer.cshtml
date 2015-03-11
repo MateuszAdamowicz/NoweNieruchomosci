@@ -1,0 +1,96 @@
+﻿﻿@model Models.ViewModels.CreateOfferViewModel
+
+@{
+    ViewBag.Title = "Dodaj własną ofertę";
+}
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3 short-advert-label">
+                        Dodaj ofertę
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12 short-advert-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p style="font-size:12px">
+                                    @{ Html.RenderPartial("Texts/_OfferText");}
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @using (Html.BeginForm("CreateOffer", "Home"))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row" style="font-size: large;">
+                                        <div class="col-md-12">
+                                            <span class="glyphicon glyphicon-user" style="margin-right: 10px;"></span>
+                                            <b>Dane personalne</b>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.ValidationMessageFor(x => x.FullName, "", new { @class = "error-feedback" })</div>
+                                        <div class="col-md-4">@Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "error-feedback" })</div>
+                                        <div class="col-md-4">@Html.ValidationMessageFor(x => x.Email, "", new { @class = "error-feedback" })</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.TextBoxFor(x => x.FullName, new { @class = "form-control menu-item-input", @placeholder = "Twoje imię i nazwisko" })</div>
+                                        <div class="col-md-4">@Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control menu-item-input", @placeholder = "Twój numer telefonu" })</div>
+                                        <div class="col-md-4">@Html.TextBoxFor(x => x.Email, new { @class = "form-control menu-item-input", @placeholder = "Twój adres e-mail" })</div>
+                                    </div>
+
+                                    <div class="row" style="font-size: large; margin-top: 10px">
+                                        <div class="col-md-12">
+                                            <span class="glyphicon glyphicon-home" style="margin-right: 10px;"></span>
+                                            <b>Informacje o nieruchomości</b>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.ValidationMessageFor(x => x.Price, "", new { @class = "error-feedback" })</div>
+                                        <div class="col-md-4">@Html.ValidationMessageFor(x => x.City, "", new { @class = "error-feedback" })</div>
+                                        <div class="col-md-4">@Html.ValidationMessageFor(x => x.Location, "", new { @class = "error-feedback" })</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">@Html.TextBoxFor(x => x.Price, new { @class = "form-control menu-item-input", @placeholder = "Cena (opcjonalne)" })</div>
+                                        <div class="col-md-4">@Html.TextBoxFor(x => x.City, new { @class = "form-control menu-item-input", @placeholder = "Miasto (opcjonalne)" })</div>
+                                        <div class="col-md-4">@Html.TextBoxFor(x => x.Location, new { @class = "form-control menu-item-input", @placeholder = "Lokalizacja (opcjonalne)" })</div>
+                                    </div>
+
+                                    <div class="row" style="margin-top: 10px">
+                                        <div class="col-md-4">@Html.ValidationMessageFor(x => x.AdvertType, "", new { @class = "error-feedback" })</div>
+                                        <div class="col-md-8">@Html.ValidationMessageFor(x => x.Description, "", new { @class = "error-feedback" })</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @Html.TextBoxFor(x => x.AdvertType, new { @class = "form-control menu-item-input", @placeholder = "Typ nieruchomości (mieszkanie...)" })
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top: 10px;">
+                                                <div class="col-md-12">
+                                                    <button type="submit" class="menu-item-button" style="width: 100%; height: 40px; background-color: #B71C1C">Wyślij zapytanie</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">@Html.TextAreaFor(x => x.Description, new { @class = "form-control menu-item-input", @style = "height:100px; width:100%; max-width:none", @placeholder = "Opis nieruchomości (opcjonalne)" })</div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

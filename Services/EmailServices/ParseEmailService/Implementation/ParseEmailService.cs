@@ -29,5 +29,35 @@ namespace Services.EmailServices.ParseEmailService.Implementation
 
             return message;
         }
+
+        public EmailMessage Question(ContactEmailViewModel model)
+        {
+            var template = _templateRepository.Question();
+            var body = Engine.Razor.RunCompile(template, "Question", typeof (ContactEmailViewModel), model);
+
+            var message = new EmailMessage()
+            {
+                Body = body,
+                From = model.Email,
+                Subject = "Pytanie od użytkownika"
+            };
+
+            return message;
+        }
+
+        public EmailMessage OfferFromUser(CreateOfferViewModel model)
+        {
+            var template = _templateRepository.OfferFromUser();
+            var body = Engine.Razor.RunCompile(template, "OfferFromUser", typeof(CreateOfferViewModel), model);
+
+            var message = new EmailMessage()
+            {
+                Body = body,
+                From = model.Email,
+                Subject = "Oferta od użytkownika"
+            };
+
+            return message;
+        }
     }
 }

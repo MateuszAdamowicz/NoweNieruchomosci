@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Context.Entities;
 using Context.PartialModels;
 using Models.ViewModels;
@@ -66,8 +67,17 @@ namespace NieruchomosciJG.Controllers
         public ActionResult Show(int id)
         {
             var model = _readAdvertService.GetAdvertById(id);
+            if (model != null)
+                return View(model);
 
-            return View(model);
+            return RedirectToAction("AdvertNotFound", new {id});
+        }
+
+
+        [HttpGet]
+        public ActionResult AdvertNotFound(int id)
+        {
+            return View(id);
         }
 
         public ActionResult Index(bool? search, int? page, int? priceFrom, int? priceTo, string city, bool? toLet, string adType, SortOption? sortOptions)
@@ -115,6 +125,50 @@ namespace NieruchomosciJG.Controllers
         public ActionResult MinMap(string lng, string lat)
         {
             return PartialView("_MinMap", new MapCords() { Lat = lat, Lng = lng });
+        }
+
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View(new ContactEmailViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Contact(ContactEmailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _emailRepository.SendAndSaveQuestion(model);
+
+                return RedirectToAction("QuestionConfirmation");
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult QuestionConfirmation()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult CreateOffer()
+        {
+            return View(new CreateOfferViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult CreateOffer(CreateOfferViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _emailRepository.SendAndSaveOfferFromUser(model);
+
+                return RedirectToAction("QuestionConfirmation");
+            }
+
+            return View(model);
         }
     }
 }

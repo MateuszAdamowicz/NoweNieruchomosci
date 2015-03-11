@@ -1,0 +1,18 @@
+﻿@model Models.ViewModels.CreateOfferViewModel
+<body>
+    <div class="col-md-12">
+        <h2>Użytkownik złożył ofertę!</h2>
+        <hr />
+        <h4>Dane użytkownika:</h4>
+        <b>Imię i nazwisko:</b> @Model.FullName<br />
+        <b>Telefon:</b> @Model.PhoneNumber<br />
+        <b>Email:</b> @Model.Email<br />
+        <hr/>
+        <h4>Informacje o nieruchomości:</h4>
+        <b>Nieruchomość: </b>@Model.AdvertType <br/>
+        <b>Lokalizacja: </b>@Model.FullLocation <br/>
+        <b>Cena: </b>@Model.Price <br/>
+        <b>Opis nieruchomości:</b>
+        <p>@Model.Description</p>
+    </div>
+</body>

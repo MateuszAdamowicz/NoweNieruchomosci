@@ -30,7 +30,7 @@ namespace Services.GenericRepository.Implementation
 
         public T Find(int id)
         {
-            return _context.GetSet<T>().Single(entity => entity.Id == id);
+            return _context.GetSet<T>().FirstOrDefault(entity => entity.Id == id);
         }
 
         public T Delete(int id)

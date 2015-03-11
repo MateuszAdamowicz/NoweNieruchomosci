@@ -204,8 +204,8 @@
                                             <label class="col-md-4 control-label label-sup">@Model.Properties[i].Name:</label>
                                             <div class="col-md-8">
                                                 @Html.Hidden("["+i+"].Name",Model.Properties[i].Name)
-                                                @Html.Editor("[" + i + "].Value", new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessage("[" + i + "].Value", "", new { @class = "feedback-error alert alert-danger" })
+                                                @Html.Editor("[" + i + "].Value", new { htmlAttributes = new { @class = "form-control"}})
+                                                @Html.ValidationMessage("[" + i + "].Value", "", new { @class = "feedback-error alert alert-danger"})
                                             </div>
                                         </div>
                                     </div>

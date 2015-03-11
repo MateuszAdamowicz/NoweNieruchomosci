@@ -26,5 +26,20 @@ namespace Services.EmailServices.EmailRepository.Implementation
             _saveEmailService.SaveEmail(email);
         }
 
+        public void SendAndSaveQuestion(ContactEmailViewModel model)
+        {
+            var msg = _parseEmailService.Question(model);
+            var email = _smtpManager.SendEmail(msg);
+
+            _saveEmailService.SaveEmail(email);
+        }
+
+        public void SendAndSaveOfferFromUser(CreateOfferViewModel model)
+        {
+            var msg = _parseEmailService.OfferFromUser(model);
+            var email = _smtpManager.SendEmail(msg);
+
+            _saveEmailService.SaveEmail(email);
+        }
     }
 }

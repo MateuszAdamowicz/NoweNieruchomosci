@@ -1095,6 +1095,14 @@
     <Content Include="Views\Admin\_AdminMenu.cshtml" />
     <Content Include="Views\Home\Texts\_IndexText.cshtml" />
     <Content Include="Templates\QuestionAboutAdvertTemplate.cshtml" />
+    <Content Include="Views\Home\AdvertNotFound.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Texts\_ContactText.cshtml" />
+    <Content Include="Templates\QuestionTemplate.cshtml" />
+    <Content Include="Views\Home\QuestionConfirmation.cshtml" />
+    <Content Include="Views\Home\CreateOffer.cshtml" />
+    <Content Include="Views\Home\Texts\_OfferText.cshtml" />
+    <Content Include="Templates\OfferFromUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

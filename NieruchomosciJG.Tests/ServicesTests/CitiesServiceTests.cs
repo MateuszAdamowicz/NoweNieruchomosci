@@ -35,7 +35,7 @@ namespace NieruchomosciJG.Tests.ServicesTests
             const string firstCityName = "city1";
             const string secondCityName = "city2";
 
-            advertRepo.Setup(x => x.GetSet()).Returns(new List<Advert>(){new Advert(){City = firstCityName}, new Advert(){City = firstCityName}, new Advert(){City = secondCityName}});
+            advertRepo.Setup(x => x.GetSet()).Returns(new List<Advert>() { new Advert() { City = firstCityName, Visible = true }, new Advert() { City = firstCityName, Visible = true }, new Advert() { City = secondCityName, Visible = true } });
             
             // Act
             var citiesService = new CitiesService(advertRepo.Object);
