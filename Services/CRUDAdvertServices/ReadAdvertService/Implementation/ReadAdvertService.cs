@@ -21,5 +21,15 @@ namespace Services.CRUDAdvertServices.ReadAdvertService.Implementation
 
             return model;
         }
+
+        public CreateAdvertViewModel GetCreateAdvertById(int id)
+        {
+            var advert = _advertRepository.Find(id);
+
+            var model = AutoMapper.Mapper.Map<CreateAdvertViewModel>(advert);
+
+            return model;
+        }
+
     }
 }

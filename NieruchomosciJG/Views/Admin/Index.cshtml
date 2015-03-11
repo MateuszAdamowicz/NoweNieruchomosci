@@ -413,7 +413,7 @@
                                         }
                                     </td>
                                     <td>@advert.CreatedAt.ToShortDateString()</td>
-                                    <td><a href="/Home/Show?key=@advert.Number">@advert.Number</a>
+                                    <td><a href="/Home/Show/@advert.Number">@advert.Number</a>
                                     </td>
                                     <td>@advert.City</td>
                                     <td>@advert.AdType.Name</td>
@@ -460,10 +460,9 @@
                                                 }
                                             </div>
                                             <div class="col-md-4" style="text-align: center">
-                                                @using (Html.BeginForm("EditAd", "Admin", FormMethod.Post))
+                                                @using (Html.BeginForm("EditAdvert", "Admin", FormMethod.Post))
                                                 {
-                                                    <input type="hidden" name="id" value="@advert.Id"> 
-                                                    <input type="hidden" name="AdType" value="@advert.AdType">                                                      
+                                                    <input type="hidden" name="id" value="@advert.Id">                                                      
                                                     <a class="submit"><span class="glyphicon glyphicon-pencil clickable" style="font-size: 1.5em"></span></a>
                                                 }
                                             </div>
@@ -508,6 +507,13 @@
     $(document).ready(
         $('[data-toggle="popover"]').popover()
     );
+
+    $(function () {
+        $('.submit').click(function () {
+            var $form = $(this).closest('form');
+            $form.trigger('submit');
+        });
+    });
 
     $("#ClearFilters").on("click", function () {
         $("#Number").val('');

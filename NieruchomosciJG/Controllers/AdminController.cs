@@ -6,6 +6,7 @@ using Context.PartialModels;
 using Models.ViewModels;
 using Services.CountMessagesAndAdverts;
 using Services.CRUD.AdvertServices.CreateAdvertService;
+using Services.CRUDAdvertServices.ReadAdvertService;
 using Services.FilterAdvertService;
 using Services.FilterOptionService;
 using Services.GetAdvertTypes;
@@ -24,6 +25,7 @@ namespace NieruchomosciJG.Controllers
         private readonly ICountMessagesAndAdverts _countMessagesAndAdverts;
         private readonly IFilterOptionService _filterOptionService;
         private readonly IFilterAdvertService _filterAdvertService;
+        private readonly IReadAdvertService _readAdvertService;
 
         public AdminController(
             IGetPropertiesByAdvertType getPropertiesByAdvertType,
@@ -32,7 +34,8 @@ namespace NieruchomosciJG.Controllers
             ICreateAdvertService createAdvertService,
             ICountMessagesAndAdverts countMessagesAndAdverts,
             IFilterOptionService filterOptionService,
-            IFilterAdvertService filterAdvertService)
+            IFilterAdvertService filterAdvertService,
+            IReadAdvertService readAdvertService)
         {
             _getPropertiesByAdvertType = getPropertiesByAdvertType;
             _photoService = photoService;
@@ -41,6 +44,7 @@ namespace NieruchomosciJG.Controllers
             _countMessagesAndAdverts = countMessagesAndAdverts;
             _filterOptionService = filterOptionService;
             _filterAdvertService = filterAdvertService;
+            _readAdvertService = readAdvertService;
         }
 
 
@@ -114,6 +118,14 @@ namespace NieruchomosciJG.Controllers
 
             model.SavedPhotos = _photoService.GetPhotosById(model.PhotosToSave);
             return View(model);
+        }
+
+        public ActionResult EditAdvert(int id)
+        {
+            var model = _readAdvertService.GetCreateAdvertById(id);
+
+            model.SavedPhotos = _photoService.GetPhotosByAdvertId(id);
+            return View("CreateAdvert", model);
         }
 
         public ActionResult Menu()

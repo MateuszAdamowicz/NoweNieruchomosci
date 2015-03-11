@@ -40,6 +40,8 @@ namespace NieruchomosciJG.App_Start
                 .ForMember(x => x.Number, opts => opts.MapFrom(src => src.Id))
                 .ForMember(x => x.Thumbnail, opts => opts.MapFrom(x => x.Photos.FirstOrDefault().Thumbnail))
                 .ForMember(x => x.AdType, opts => opts.MapFrom(x => x.AdvertType));
+
+            Mapper.CreateMap<Advert, CreateAdvertViewModel>();
         }
     }
 }

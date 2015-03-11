@@ -65,6 +65,13 @@ namespace Services.PhotoService.Implementation
             return viewModels;
         }
 
+        public IEnumerable<PhotoViewModel> GetPhotosByAdvertId(int id)
+        {
+            var photosFromRepository = _genericRepository.GetSet().Where(x => x.Advert.Id == id);
+            var viewModels = Mapper.Map<IEnumerable<PhotoViewModel>>(photosFromRepository);
+            return viewModels;
+        }
+
         private Photo AddPhotoToDB(string fileName)
         {
             var photo = new Photo() { Name = fileName, Thumbnail = "min_" + fileName };
