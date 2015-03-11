@@ -120,12 +120,20 @@ namespace NieruchomosciJG.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult EditAdvert(int id)
         {
             var model = _readAdvertService.GetCreateAdvertById(id);
 
             model.SavedPhotos = _photoService.GetPhotosByAdvertId(id);
             return View("CreateAdvert", model);
+        }
+
+        public ActionResult ChangeAdvertVisibility(int number)
+        {
+
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult Menu()

@@ -204,7 +204,8 @@
                                             <label class="col-md-4 control-label label-sup">@Model.Properties[i].Name:</label>
                                             <div class="col-md-8">
                                                 @Html.Hidden("["+i+"].Name",Model.Properties[i].Name)
-                                                @Html.Editor("[" + i + "].Value", new { htmlAttributes = new { @class = "form-control" } })
+                                                <input class="form-control" name="[@i].Value" type="text" value= @Model.Properties[i].Value>
+                                                @*@Html.Editor("[" + i + "].Value", new { htmlAttributes = new { @class = "form-control", @value = Model.Properties[i].Value } })*@
                                                 @Html.ValidationMessage("[" + i + "].Value", "", new { @class = "feedback-error alert alert-danger" })
                                             </div>
                                         </div>
@@ -306,8 +307,9 @@
                                 {
                                     foreach (var photo in Model.SavedPhotos)
                                     {
-                                        <div class="col-md-3 image">
-                                            <img src="@photo.Thumbnail"/>
+                                        <div class="col-md-3 image" data-id='@photo.Id'>
+                                            <img class="borderedImage" data-id='@photo.Id' src="@photo.Thumbnail"/>
+                                            <span class="glyphicon glyphicon-remove-sign removeImage" data-id="@photo.Id"></span>
                                         </div>
                                     }
                                 }

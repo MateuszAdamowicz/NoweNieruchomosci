@@ -67,7 +67,7 @@ namespace Services.PhotoService.Implementation
 
         public IEnumerable<PhotoViewModel> GetPhotosByAdvertId(int id)
         {
-            var photosFromRepository = _genericRepository.GetSet().Where(x => x.Advert.Id == id);
+            var photosFromRepository = _genericRepository.GetSet().Where(x => x.Advert != null && x.Advert.Id == id).ToList();
             var viewModels = Mapper.Map<IEnumerable<PhotoViewModel>>(photosFromRepository);
             return viewModels;
         }

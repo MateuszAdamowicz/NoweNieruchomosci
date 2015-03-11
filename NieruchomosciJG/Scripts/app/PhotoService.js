@@ -29,7 +29,7 @@ var addImg = function (path, id) {
     $("#PhotosToSave")[0].add(createOption(id));
     $(".toSelect").attr("selected", true);
 
-    $("<div data-id='"+id+"' class='col-md-3 image'><img data-id='"+id+"'class='borderedImage' src='" + path + "'/><span class='glyphicon glyphicon-remove-sign removeImage' data-id='" + id + "'></span></div>").insertBefore(
+    $("<div data-id='"+id+"' class='col-md-3 image'><img data-id='"+id+"' class='borderedImage' src='" + path + "'/><span class='glyphicon glyphicon-remove-sign removeImage' data-id='" + id + "'></span></div>").insertBefore(
         $("#btndiv")
         );
 };
