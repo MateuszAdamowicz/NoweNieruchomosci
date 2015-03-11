@@ -1,0 +1,15 @@
+﻿@model Models.ViewModels.AdvertContactEmailViewModel
+
+<body>
+    <div class="col-md-12">
+        <h2>Użytkownik zapytał o ofertę!</h2>
+        <b>Numer oferty: @Model.AdvertId</b>
+        <hr />
+        <h4>Dane użytkownika:</h4>
+        <b>Imię i nazwisko:</b> @Model.FullName<br/>
+        <b>Telefon:</b> @Model.PhoneNumber<br/>
+        <b>Email:</b> @Model.Email<br/>
+        <b>Treść wiadomości:</b><br/>
+        <p>@Model.Body</p>
+    </div>
+</body>

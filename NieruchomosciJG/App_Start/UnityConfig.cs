@@ -2,8 +2,12 @@ using Context;
 using Context.Entities;
 using Microsoft.Practices.Unity;
 using Models.ViewModels;
+using RazorEngine;
+using RazorEngine.Templating;
 using Services.AdvertSearchOptionsService;
 using Services.AdvertSearchOptionsService.Implementation;
+using Services.ApplicationSettingsService;
+using Services.ApplicationSettingsService.Implementation;
 using Services.CitiesService;
 using Services.CitiesService.Implementation;
 using Services.CountMessagesAndAdverts;
@@ -12,6 +16,16 @@ using Services.CRUD.AdvertServices.CreateAdvertService;
 using Services.CRUDAdvertServices.CreateAdvertService.Implementation;
 using Services.CRUDAdvertServices.ReadAdvertService;
 using Services.CRUDAdvertServices.ReadAdvertService.Implementation;
+using Services.EmailServices.EmailRepository;
+using Services.EmailServices.EmailRepository.Implementation;
+using Services.EmailServices.ParseEmailService;
+using Services.EmailServices.ParseEmailService.Implementation;
+using Services.EmailServices.SaveEmailService;
+using Services.EmailServices.SaveEmailService.Implementation;
+using Services.EmailServices.SmtpManager;
+using Services.EmailServices.SmtpManager.Implementation;
+using Services.EmailServices.TemplateRepository;
+using Services.EmailServices.TemplateRepository.Implementation;
 using Services.FilterAdvertService;
 using Services.FilterAdvertService.Implementation;
 using Services.FilterOptionService;
@@ -63,6 +77,12 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<ISearchAdvertService, SearchAdvertService>();
             container.RegisterType<IFilterAdvertService, FilterAdvertService>();
             container.RegisterType<ISortAdvertService, SortAdvertService>();
+            container.RegisterType<IApplicationSettingsService, ApplicationSettingsService>();
+            container.RegisterType<IEmailRepository, EmailRepository>();
+            container.RegisterType<IParseEmailService, ParseEmailService>();
+            container.RegisterType<ISaveEmailService, SaveEmailService>();
+            container.RegisterType<ISmtpManager, SmtpManager>();
+            container.RegisterType<ITemplateRepository, TemplateRepository>();
         }
     }
 }
