@@ -17,7 +17,7 @@ namespace Services.CitiesService.Implementation
 
         public IEnumerable<CityCount> CitiesWithMaximumNumberOfAdverts(int count)
         {
-            var cities = _advertRepository.GetSet().GroupBy(x => x.City).OrderByDescending(x => x.Count()).Take(count);
+            var cities = _advertRepository.GetSet().Where(x => x.Visible).GroupBy(x => x.City).OrderByDescending(x => x.Count()).Take(count);
             var citiesToShow = cities.Select(x => new CityCount() {CityName = x.Key, Count = x.Count()});
             return citiesToShow;
         }

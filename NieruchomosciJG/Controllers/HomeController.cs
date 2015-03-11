@@ -8,6 +8,7 @@ using Services.AdvertSearchOptionsService;
 using Services.AdvertSearchOptionsService.Implementation;
 using Services.CitiesService;
 using Services.CRUDAdvertServices.ReadAdvertService;
+using Services.EmailServices.EmailRepository;
 using Services.FilterOptionService;
 using Services.GenericRepository;
 using Services.NewestAdvertsService;
@@ -23,6 +24,7 @@ namespace NieruchomosciJG.Controllers
         private readonly IFilterOptionService _filterOptionService;
         private readonly IAdvertSearchOptionService _advertSearchOptionService;
         private readonly ISearchAdvertService _searchAdvertService;
+        private readonly IEmailRepository _emailRepository;
 
         const int PageSize = 4;
 
@@ -33,7 +35,8 @@ namespace NieruchomosciJG.Controllers
             IReadAdvertService readAdvertService, 
             IFilterOptionService filterOptionService,
             IAdvertSearchOptionService advertSearchOptionService,
-            ISearchAdvertService searchAdvertService)
+            ISearchAdvertService searchAdvertService,
+            IEmailRepository emailRepository)
         {
             _newestAdvertsService = newestAdvertsService;
             _citiesService = citiesService;
@@ -41,6 +44,7 @@ namespace NieruchomosciJG.Controllers
             _filterOptionService = filterOptionService;
             _advertSearchOptionService = advertSearchOptionService;
             _searchAdvertService = searchAdvertService;
+            _emailRepository = emailRepository;
         }
 
 
@@ -51,6 +55,8 @@ namespace NieruchomosciJG.Controllers
             var model = _readAdvertService.GetAdvertById(id);
             if (ModelState.IsValid)
             {
+                advertContactEmail.AdvertId = id;
+                _emailRepository.SendAndSaveQuestionAboutAdvert(advertContactEmail);
                 return View(model);
             }
             return View(model);

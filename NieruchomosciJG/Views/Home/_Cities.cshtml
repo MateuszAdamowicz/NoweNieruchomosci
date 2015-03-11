@@ -2,7 +2,7 @@
 
 @foreach (var city in Model)
 {
-    <a class="row menu-item-link" href="@Url.Action("Index", "Home", new {allCities = city.CityName, priceFrom = 0, priceTo = int.MaxValue})">
+    <a class="row menu-item-link" href="@Url.Action("Index", "Home", new {allCities = city.CityName, priceFrom = 0, priceTo = int.MaxValue, search=true})">
 
         <div class=" menu-subitem">
             <span class="col-md-9" style="overflow: hidden; text-overflow:ellipsis;padding-left: 0px;padding-right: 0px;">@city.CityName</span>

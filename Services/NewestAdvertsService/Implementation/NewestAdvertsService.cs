@@ -19,7 +19,7 @@ namespace Services.NewestAdvertsService.Implementation
 
         public IEnumerable<NewestAdvert> GetNewest(int count)
         {
-            var adverts = _advertsRepo.GetSet().OrderByDescending(x => x.CreatedAt).Where(x => !x.Visible).Take(count);
+            var adverts = _advertsRepo.GetSet().OrderByDescending(x => x.CreatedAt).Where(x => x.Visible).Take(count);
             var advertsToShow = Mapper.Map<List<NewestAdvert>>(adverts);
             return advertsToShow;
         }
