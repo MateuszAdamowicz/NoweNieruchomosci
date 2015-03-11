@@ -53,7 +53,9 @@
     <Compile Include="ViewModels\AdvertTypeViewModel.cs" />
     <Compile Include="ViewModels\CityCount.cs" />
     <Compile Include="ViewModels\AdvertContactEmailViewModel.cs" />
+    <Compile Include="ViewModels\ContactEmailViewModel.cs" />
     <Compile Include="ViewModels\CreateAdvertViewModel.cs" />
+    <Compile Include="ViewModels\CreateOfferViewModel.cs" />
     <Compile Include="ViewModels\EmailMessage.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="ViewModels\NewestAdvert.cs" />
