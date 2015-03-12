@@ -4,7 +4,7 @@ using Services.GenericRepository;
 
 namespace Services.CRUDAdvertServices.DeleteAdvertService.Implementation
 {
-    public class DeleteAdvertService
+    public class DeleteAdvertService : IDeleteAdvertService
     {
         private readonly IGenericRepository<Advert> _advertRepository;
 

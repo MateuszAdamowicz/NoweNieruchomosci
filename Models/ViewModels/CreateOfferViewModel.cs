@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Models.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class CreateOfferViewModel
     {
         public string FullName { get; set; }

@@ -1,5 +1,8 @@
-﻿namespace Models.ViewModels
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Models.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class ContactEmailViewModel
     {
         public string FullName { get; set; }

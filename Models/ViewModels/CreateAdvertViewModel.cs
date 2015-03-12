@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using Context.Entities;
 using Context.PartialModels;
 
 namespace Models.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class CreateAdvertViewModel
     {
         [Required]

@@ -26,7 +26,7 @@ namespace Services.SortAdvertService.Implementation
                         advertsToShow = advertsToShow.OrderBy(x => x.AdType.Name);
                         break;
                     case AdminSortOption.Number:
-                        advertsToShow = advertsToShow.OrderBy(x => Convert.ToInt32(x.Id));
+                        advertsToShow = advertsToShow.OrderBy(x => x.Id);
                         break;
                     case AdminSortOption.ToLet:
                         advertsToShow = advertsToShow.OrderBy(x => x.ToLet);

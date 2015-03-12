@@ -4,6 +4,7 @@
 @{
     Layout = "_AdminLayout.cshtml"; ;
 }
+
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <style type="text/css">
     .form-group {
@@ -27,25 +28,29 @@
         text-decoration: none !important;
     }
 
-        .clickable {
+    .clickable {
         cursor: pointer;
     }
 
     .popover-content {
-    padding-left: 0px;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
+        padding-left: 0px;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
     }
 
     .popover {
-    background-color: black;
+        background-color: black;
     }
 
     .popover.left>.arrow:after {
-    border-left-color: black;
+        border-left-color: black;
     }
 </style>
+
+@{
+    var changeAdvert = (ChangeAdvert) TempData["Change"];
+}
 
 <div class="row">
     <div class="col-md-12">
@@ -116,7 +121,33 @@
                 }
             </div>
         </div>
-        
+               @if (changeAdvert != null)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        @if (changeAdvert.Deleted)
+                        {
+                            <strong>Oferta nr. @changeAdvert.Number została usunięta!</strong>
+                        }
+                        else
+                        {
+                            if (changeAdvert.Visible)
+                            {
+                            <strong>Ofera nr. @changeAdvert.Number została odblokowana!</strong>
+                            <span>Od tej pory będzie widoczna dla użytkowników</span>
+                            }
+                            else
+                            {
+                            <strong>Ofera nr. @changeAdvert.Number została zablokowana!</strong>
+                            <span>Od tej pory nie będzie widoczna dla użytkowników</span>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
         @if (Model.AdminIndexFiltered.Filter != null && Model.AdminIndexFiltered.Filter == true && !Model.Adverts.Any())
         {
             <div class="row" style="margin-top: 60px;">
@@ -157,24 +188,24 @@
                                 <th>Zdjęcie</th>
                                 <th>
                                     @Html.ActionLink("Dodane", "Index", new
-                                   {
-                                       page = Model.AdminIndexFiltered.Page,
-                                       number = Model.AdminIndexFiltered.Number,
-                                       toLet = Model.AdminIndexFiltered.ToLet,
-                                       adType = Model.AdminIndexFiltered.AdType,
-                                       city = Model.AdminIndexFiltered.City,
-                                       priceFrom = Model.AdminIndexFiltered.PriceFrom,
-                                       priceTo = Model.AdminIndexFiltered.PriceTo,
-                                       areaFrom = Model.AdminIndexFiltered.AreaFrom,
-                                       areaTo = Model.AdminIndexFiltered.AreaTo,
-                                       dateFrom = Model.AdminIndexFiltered.DateFrom,
-                                       dateTo = Model.AdminIndexFiltered.DateTo,
-                                       filter = Model.AdminIndexFiltered.Filter,
-                                       showHidden = Model.AdminIndexFiltered.ShowHidden,
-                                       perPage = Model.AdminIndexFiltered.PerPage,
-                                       sortOption = AdminSortOption.CreatedAt,
-                                       sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
-                                   })
+                                    {
+                                        page = Model.AdminIndexFiltered.Page,
+                                        number = Model.AdminIndexFiltered.Number,
+                                        toLet = Model.AdminIndexFiltered.ToLet,
+                                        adType = Model.AdminIndexFiltered.AdType,
+                                        city = Model.AdminIndexFiltered.City,
+                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
+                                        priceTo = Model.AdminIndexFiltered.PriceTo,
+                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
+                                        areaTo = Model.AdminIndexFiltered.AreaTo,
+                                        dateFrom = Model.AdminIndexFiltered.DateFrom,
+                                        dateTo = Model.AdminIndexFiltered.DateTo,
+                                        filter = Model.AdminIndexFiltered.Filter,
+                                        showHidden = Model.AdminIndexFiltered.ShowHidden,
+                                        perPage = Model.AdminIndexFiltered.PerPage,
+                                        sortOption = AdminSortOption.CreatedAt,
+                                        sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
+                                    })
                                     @if (Model.AdminIndexFiltered.SortOption == AdminSortOption.CreatedAt && Model.AdminIndexFiltered.SortDescAsc == true)
                                     {
                                         <span class="glyphicon glyphicon-chevron-down" style="width: 20px"></span>
@@ -186,24 +217,24 @@
                                 </th>
                                 <th>
                                     @Html.ActionLink("Nr oferty", "Index", new
-                                   {
-                                       page = Model.AdminIndexFiltered.Page,
-                                       number = Model.AdminIndexFiltered.Number,
-                                       toLet = Model.AdminIndexFiltered.ToLet,
-                                       adType = Model.AdminIndexFiltered.AdType,
-                                       city = Model.AdminIndexFiltered.City,
-                                       priceFrom = Model.AdminIndexFiltered.PriceFrom,
-                                       priceTo = Model.AdminIndexFiltered.PriceTo,
-                                       areaFrom = Model.AdminIndexFiltered.AreaFrom,
-                                       areaTo = Model.AdminIndexFiltered.AreaTo,
-                                       dateFrom = Model.AdminIndexFiltered.DateFrom,
-                                       dateTo = Model.AdminIndexFiltered.DateTo,
-                                       filter = Model.AdminIndexFiltered.Filter,
-                                       showHidden = Model.AdminIndexFiltered.ShowHidden,
-                                       perPage = Model.AdminIndexFiltered.PerPage,
-                                       sortOption = AdminSortOption.Number,
-                                       sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
-                                   })
+                                    {
+                                        page = Model.AdminIndexFiltered.Page,
+                                        number = Model.AdminIndexFiltered.Number,
+                                        toLet = Model.AdminIndexFiltered.ToLet,
+                                        adType = Model.AdminIndexFiltered.AdType,
+                                        city = Model.AdminIndexFiltered.City,
+                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
+                                        priceTo = Model.AdminIndexFiltered.PriceTo,
+                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
+                                        areaTo = Model.AdminIndexFiltered.AreaTo,
+                                        dateFrom = Model.AdminIndexFiltered.DateFrom,
+                                        dateTo = Model.AdminIndexFiltered.DateTo,
+                                        filter = Model.AdminIndexFiltered.Filter,
+                                        showHidden = Model.AdminIndexFiltered.ShowHidden,
+                                        perPage = Model.AdminIndexFiltered.PerPage,
+                                        sortOption = AdminSortOption.Number,
+                                        sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
+                                    })
                                     @if (Model.AdminIndexFiltered.SortOption == AdminSortOption.Number && Model.AdminIndexFiltered.SortDescAsc == true)
                                     {
                                         <span class="glyphicon glyphicon-chevron-down" style="width: 20px"></span>
@@ -215,24 +246,24 @@
                                 </th>
                                 <th>
                                     @Html.ActionLink("Miejscowość", "Index", new
-                                   {
-                                       page = Model.AdminIndexFiltered.Page,
-                                       number = Model.AdminIndexFiltered.Number,
-                                       toLet = Model.AdminIndexFiltered.ToLet,
-                                       adType = Model.AdminIndexFiltered.AdType,
-                                       city = Model.AdminIndexFiltered.City,
-                                       priceFrom = Model.AdminIndexFiltered.PriceFrom,
-                                       priceTo = Model.AdminIndexFiltered.PriceTo,
-                                       areaFrom = Model.AdminIndexFiltered.AreaFrom,
-                                       areaTo = Model.AdminIndexFiltered.AreaTo,
-                                       dateFrom = Model.AdminIndexFiltered.DateFrom,
-                                       dateTo = Model.AdminIndexFiltered.DateTo,
-                                       filter = Model.AdminIndexFiltered.Filter,
-                                       showHidden = Model.AdminIndexFiltered.ShowHidden,
-                                       perPage = Model.AdminIndexFiltered.PerPage,
-                                       sortOption = AdminSortOption.City,
-                                       sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
-                                   })
+                                    {
+                                        page = Model.AdminIndexFiltered.Page,
+                                        number = Model.AdminIndexFiltered.Number,
+                                        toLet = Model.AdminIndexFiltered.ToLet,
+                                        adType = Model.AdminIndexFiltered.AdType,
+                                        city = Model.AdminIndexFiltered.City,
+                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
+                                        priceTo = Model.AdminIndexFiltered.PriceTo,
+                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
+                                        areaTo = Model.AdminIndexFiltered.AreaTo,
+                                        dateFrom = Model.AdminIndexFiltered.DateFrom,
+                                        dateTo = Model.AdminIndexFiltered.DateTo,
+                                        filter = Model.AdminIndexFiltered.Filter,
+                                        showHidden = Model.AdminIndexFiltered.ShowHidden,
+                                        perPage = Model.AdminIndexFiltered.PerPage,
+                                        sortOption = AdminSortOption.City,
+                                        sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
+                                    })
                                     @if (Model.AdminIndexFiltered.SortOption == AdminSortOption.City && Model.AdminIndexFiltered.SortDescAsc == true)
                                     {
                                         <span class="glyphicon glyphicon-chevron-down" style="width: 20px"></span>
@@ -244,24 +275,24 @@
                                 </th>
                                 <th>
                                     @Html.ActionLink("Nieruchomość", "Index", new
-                                   {
-                                       page = Model.AdminIndexFiltered.Page,
-                                       number = Model.AdminIndexFiltered.Number,
-                                       toLet = Model.AdminIndexFiltered.ToLet,
-                                       adType = Model.AdminIndexFiltered.AdType,
-                                       city = Model.AdminIndexFiltered.City,
-                                       priceFrom = Model.AdminIndexFiltered.PriceFrom,
-                                       priceTo = Model.AdminIndexFiltered.PriceTo,
-                                       areaFrom = Model.AdminIndexFiltered.AreaFrom,
-                                       areaTo = Model.AdminIndexFiltered.AreaTo,
-                                       dateFrom = Model.AdminIndexFiltered.DateFrom,
-                                       dateTo = Model.AdminIndexFiltered.DateTo,
-                                       filter = Model.AdminIndexFiltered.Filter,
-                                       showHidden = Model.AdminIndexFiltered.ShowHidden,
-                                       perPage = Model.AdminIndexFiltered.PerPage,
-                                       sortOption = AdminSortOption.AdType,
-                                       sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
-                                   })
+                                    {
+                                        page = Model.AdminIndexFiltered.Page,
+                                        number = Model.AdminIndexFiltered.Number,
+                                        toLet = Model.AdminIndexFiltered.ToLet,
+                                        adType = Model.AdminIndexFiltered.AdType,
+                                        city = Model.AdminIndexFiltered.City,
+                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
+                                        priceTo = Model.AdminIndexFiltered.PriceTo,
+                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
+                                        areaTo = Model.AdminIndexFiltered.AreaTo,
+                                        dateFrom = Model.AdminIndexFiltered.DateFrom,
+                                        dateTo = Model.AdminIndexFiltered.DateTo,
+                                        filter = Model.AdminIndexFiltered.Filter,
+                                        showHidden = Model.AdminIndexFiltered.ShowHidden,
+                                        perPage = Model.AdminIndexFiltered.PerPage,
+                                        sortOption = AdminSortOption.AdType,
+                                        sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
+                                    })
                                     @if (Model.AdminIndexFiltered.SortOption == AdminSortOption.AdType && Model.AdminIndexFiltered.SortDescAsc == true)
                                     {
                                         <span class="glyphicon glyphicon-chevron-down" style="width: 20px"></span>
@@ -273,24 +304,24 @@
                                 </th>
                                 <th>
                                     @Html.ActionLink("Typ oferty", "Index", new
-                                   {
-                                       page = Model.AdminIndexFiltered.Page,
-                                       number = Model.AdminIndexFiltered.Number,
-                                       toLet = Model.AdminIndexFiltered.ToLet,
-                                       adType = Model.AdminIndexFiltered.AdType,
-                                       city = Model.AdminIndexFiltered.City,
-                                       priceFrom = Model.AdminIndexFiltered.PriceFrom,
-                                       priceTo = Model.AdminIndexFiltered.PriceTo,
-                                       areaFrom = Model.AdminIndexFiltered.AreaFrom,
-                                       areaTo = Model.AdminIndexFiltered.AreaTo,
-                                       dateFrom = Model.AdminIndexFiltered.DateFrom,
-                                       dateTo = Model.AdminIndexFiltered.DateTo,
-                                       filter = Model.AdminIndexFiltered.Filter,
-                                       showHidden = Model.AdminIndexFiltered.ShowHidden,
-                                       perPage = Model.AdminIndexFiltered.PerPage,
-                                       sortOption = AdminSortOption.ToLet,
-                                       sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
-                                   })
+                                    {
+                                        page = Model.AdminIndexFiltered.Page,
+                                        number = Model.AdminIndexFiltered.Number,
+                                        toLet = Model.AdminIndexFiltered.ToLet,
+                                        adType = Model.AdminIndexFiltered.AdType,
+                                        city = Model.AdminIndexFiltered.City,
+                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
+                                        priceTo = Model.AdminIndexFiltered.PriceTo,
+                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
+                                        areaTo = Model.AdminIndexFiltered.AreaTo,
+                                        dateFrom = Model.AdminIndexFiltered.DateFrom,
+                                        dateTo = Model.AdminIndexFiltered.DateTo,
+                                        filter = Model.AdminIndexFiltered.Filter,
+                                        showHidden = Model.AdminIndexFiltered.ShowHidden,
+                                        perPage = Model.AdminIndexFiltered.PerPage,
+                                        sortOption = AdminSortOption.ToLet,
+                                        sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
+                                    })
                                     @if (Model.AdminIndexFiltered.SortOption == AdminSortOption.ToLet && Model.AdminIndexFiltered.SortDescAsc == true)
                                     {
                                         <span class="glyphicon glyphicon-chevron-down" style="width: 20px"></span>
@@ -302,24 +333,24 @@
                                 </th>
                                 <th>
                                     @Html.ActionLink("Cena", "Index", new
-                                   {
-                                       page = Model.AdminIndexFiltered.Page,
-                                       number = Model.AdminIndexFiltered.Number,
-                                       toLet = Model.AdminIndexFiltered.ToLet,
-                                       adType = Model.AdminIndexFiltered.AdType,
-                                       city = Model.AdminIndexFiltered.City,
-                                       priceFrom = Model.AdminIndexFiltered.PriceFrom,
-                                       priceTo = Model.AdminIndexFiltered.PriceTo,
-                                       areaFrom = Model.AdminIndexFiltered.AreaFrom,
-                                       areaTo = Model.AdminIndexFiltered.AreaTo,
-                                       dateFrom = Model.AdminIndexFiltered.DateFrom,
-                                       dateTo = Model.AdminIndexFiltered.DateTo,
-                                       filter = Model.AdminIndexFiltered.Filter,
-                                       showHidden = Model.AdminIndexFiltered.ShowHidden,
-                                       perPage = Model.AdminIndexFiltered.PerPage,
-                                       sortOption = AdminSortOption.Price,
-                                       sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
-                                   })
+                                    {
+                                        page = Model.AdminIndexFiltered.Page,
+                                        number = Model.AdminIndexFiltered.Number,
+                                        toLet = Model.AdminIndexFiltered.ToLet,
+                                        adType = Model.AdminIndexFiltered.AdType,
+                                        city = Model.AdminIndexFiltered.City,
+                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
+                                        priceTo = Model.AdminIndexFiltered.PriceTo,
+                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
+                                        areaTo = Model.AdminIndexFiltered.AreaTo,
+                                        dateFrom = Model.AdminIndexFiltered.DateFrom,
+                                        dateTo = Model.AdminIndexFiltered.DateTo,
+                                        filter = Model.AdminIndexFiltered.Filter,
+                                        showHidden = Model.AdminIndexFiltered.ShowHidden,
+                                        perPage = Model.AdminIndexFiltered.PerPage,
+                                        sortOption = AdminSortOption.Price,
+                                        sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
+                                    })
                                     @if (Model.AdminIndexFiltered.SortOption == AdminSortOption.Price && Model.AdminIndexFiltered.SortDescAsc == true)
                                     {
                                         <span class="glyphicon glyphicon-chevron-down" style="width: 20px"></span>
@@ -331,24 +362,24 @@
                                 </th>
                                 <th>
                                     @Html.ActionLink("Metraż", "Index", new
-                                   {
-                                       page = Model.AdminIndexFiltered.Page,
-                                       number = Model.AdminIndexFiltered.Number,
-                                       toLet = Model.AdminIndexFiltered.ToLet,
-                                       adType = Model.AdminIndexFiltered.AdType,
-                                       city = Model.AdminIndexFiltered.City,
-                                       priceFrom = Model.AdminIndexFiltered.PriceFrom,
-                                       priceTo = Model.AdminIndexFiltered.PriceTo,
-                                       areaFrom = Model.AdminIndexFiltered.AreaFrom,
-                                       areaTo = Model.AdminIndexFiltered.AreaTo,
-                                       dateFrom = Model.AdminIndexFiltered.DateFrom,
-                                       dateTo = Model.AdminIndexFiltered.DateTo,
-                                       filter = Model.AdminIndexFiltered.Filter,
-                                       showHidden = Model.AdminIndexFiltered.ShowHidden,
-                                       perPage = Model.AdminIndexFiltered.PerPage,
-                                       sortOption = AdminSortOption.Area,
-                                       sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
-                                   })
+                                    {
+                                        page = Model.AdminIndexFiltered.Page,
+                                        number = Model.AdminIndexFiltered.Number,
+                                        toLet = Model.AdminIndexFiltered.ToLet,
+                                        adType = Model.AdminIndexFiltered.AdType,
+                                        city = Model.AdminIndexFiltered.City,
+                                        priceFrom = Model.AdminIndexFiltered.PriceFrom,
+                                        priceTo = Model.AdminIndexFiltered.PriceTo,
+                                        areaFrom = Model.AdminIndexFiltered.AreaFrom,
+                                        areaTo = Model.AdminIndexFiltered.AreaTo,
+                                        dateFrom = Model.AdminIndexFiltered.DateFrom,
+                                        dateTo = Model.AdminIndexFiltered.DateTo,
+                                        filter = Model.AdminIndexFiltered.Filter,
+                                        showHidden = Model.AdminIndexFiltered.ShowHidden,
+                                        perPage = Model.AdminIndexFiltered.PerPage,
+                                        sortOption = AdminSortOption.Area,
+                                        sortDescAsc = !Model.AdminIndexFiltered.SortDescAsc
+                                    })
                                     @if (Model.AdminIndexFiltered.SortOption == AdminSortOption.Area && Model.AdminIndexFiltered.SortDescAsc == true)
                                     {
                                         <span class="glyphicon glyphicon-chevron-down" style="width: 20px"></span>
@@ -442,36 +473,34 @@
                                     <td>
                                         <div class="row">
                                             <div class="col-md-4" style="text-align: center">
-                                                @using (Html.BeginForm("ChangeAd", "Admin", FormMethod.Post))
+                                                @using (Html.BeginForm("ChangeAdvertVisibility", "Admin", FormMethod.Post))
                                                 {
                                                     @Html.AntiForgeryToken();
-                                                    <input type="hidden" name="numbers" value="@advert.Number"> 
-                                                    <input type="hidden" name="delete" value="false">    
+                                                    <input type="hidden" name="number" value="@advert.Number"> 
                                                     
-                                                                            if (advert.Visible)
-                                                                            {
-                                                    <a class="submit"><span class="fa fa-lock clickable" style="font-size: 1.5em"></span></a>
+                                                    if (advert.Visible)
+                                                    {
+                                                        <a class="submit"><span class="fa fa-lock clickable" style="font-size: 1.5em"></span></a>
 
-                                                                            }
-                                                                            else
-                                                                            {
-                                                    <a class="submit"><span class="fa fa-unlock-alt clickable" style="font-size: 1.5em"></span></a>
-                                                                            }
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="submit"><span class="fa fa-unlock-alt clickable" style="font-size: 1.5em"></span></a>
+                                                    }
                                                 }
                                             </div>
                                             <div class="col-md-4" style="text-align: center">
-                                                @using (Html.BeginForm("EditAdvert", "Admin"))
+                                                @using (Html.BeginForm("EditAdvert", "Admin", new{id =@advert.Id}, FormMethod.Get))
                                                 {
-                                                    <input type="hidden" name="id" value="@advert.Id">                                                      
-                                                    <a class="submit"><span class="glyphicon glyphicon-pencil clickable" style="font-size: 1.5em"></span></a>
+                                                    @*<input type="hidden" name="id" value="@advert.Id">                                                      
+                                                    *@<a class="submit"><span class="glyphicon glyphicon-pencil clickable" style="font-size: 1.5em"></span></a>
                                                 }
                                             </div>
                                             <div class="col-md-4" style="text-align: center">
-                                                @using (Html.BeginForm("ChangeAd", "Admin", FormMethod.Post))
+                                                @using (Html.BeginForm("DeleteAdvert", "Admin", FormMethod.Post))
                                                 {
                                                     @Html.AntiForgeryToken();  
-                                                    <input type="hidden" name="numbers" value="@advert.Number"> 
-                                                    <input type="hidden" name="delete" value="true">                                                    
+                                                    <input type="hidden" name="number" value="@advert.Number">                                                    
                                                     
                                                     <a class="submitdelete"><span class="glyphicon glyphicon-trash clickable" style="font-size: 1.5em"></span></a>
                                                 }
@@ -503,10 +532,41 @@
         }
     </div>
 </div>
+<div class="modal" id="confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom-width: 0px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Usuwanie oferty</h4>
+            </div>
+            <div class="modal-body">
+                Usunięcie oferty jest nieodwracalne.
+                Czy jesteś pewien, że chcesz ją usunąć?
+            </div>
+            <div class="modal-footer" style="border-top-width: 0px;">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Rozmyśliłem się.</button>
+                </div>
+                <div class="col-md-6">
+                    <a href="#" id="submit" class="btn btn-primary success">Tak, usuń</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(
         $('[data-toggle="popover"]').popover()
     );
+
+    $('.submitdelete').on('click', function (e) {
+        var $form = $(this).closest('form');
+        e.preventDefault();
+        $('#confirm').modal({ backdrop: 'static', keyboard: false })
+            .one('click', '#submit', function () {
+                $form.trigger('submit');
+            });
+    });
 
     $(function () {
         $('.submit').click(function () {
@@ -517,18 +577,15 @@
 
     $("#ClearFilters").on("click", function () {
         $("#Number").val('');
-        $("#AdType").val('All');
+        $("#AdType").val('');
         $("#ToLet").val('');
-        $("#FlatCity").val('');
-        $("#HouseCity").val('');
-        $("#LandCity").val('');
-        $("#AllCity").val('');
+        $("#City").val('');
         $("#PriceFrom").val('');
         $("#PriceTo").val('');
         $("#AreaFrom").val('');
         $("#AreaTo").val('');
-        $("#dateFrom").val("2014-01-01");
-        $("#dateTo").val(year + "-" + month + "-" + day);
+        $("#dateFrom").val('');
+        $("#dateTo").val('');
         $("#ShowHidden").attr("checked", false);
     });
 </script>

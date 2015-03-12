@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Context.PartialModels;
 
 namespace Models.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class NewestAdvert
     {
         public int Number { get; set; }

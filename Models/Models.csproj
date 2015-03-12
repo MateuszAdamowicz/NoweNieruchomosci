@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="ViewModels\AdminSortOption.cs" />
     <Compile Include="ViewModels\AdvertTypeViewModel.cs" />
+    <Compile Include="ViewModels\ChangeAdvert.cs" />
     <Compile Include="ViewModels\CityCount.cs" />
     <Compile Include="ViewModels\AdvertContactEmailViewModel.cs" />
     <Compile Include="ViewModels\ContactEmailViewModel.cs" />

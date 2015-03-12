@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Context.PartialModels;
 
 namespace Models.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class ShowAdvertViewModel
     {
         public ShowAdvertViewModel()

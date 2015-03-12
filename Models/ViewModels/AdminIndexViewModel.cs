@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Web;
 using PagedList;
 
 namespace Models.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class AdminIndexViewModel
     {
         public AdminIndexFilterOptions AdminIndexFilterOptions { get; set; }
         public AdminIndexFiltered AdminIndexFiltered { get; set; }
         public IPagedList<AdminAdvertToShow> Adverts { get; set; }
     }
+    [ExcludeFromCodeCoverage]
     public class AdminIndexFiltered
     {
         public int? Page { get; set; }
-        public string AdType { get; set; }
+        public int? AdType { get; set; }
         public string City { get; set; }
         public int? PriceFrom { get; set; }
         public int? PriceTo { get; set; }
@@ -51,7 +54,7 @@ namespace Models.ViewModels
             };
         }
     }
-
+    [ExcludeFromCodeCoverage]
     public class AdminIndexFilterOptions
     {
         public List<SelectOption> AdTypes { get; set; }
@@ -59,7 +62,7 @@ namespace Models.ViewModels
         public List<SelectOption> PerPage { get; set; }
         public List<SelectOption> Cities { get; set; }
     }
-
+    [ExcludeFromCodeCoverage]
     public class AdminAdvertToShow
     {
         public int Id { get; set; }

@@ -8,7 +8,7 @@ namespace Services.FilterAdvertService
     {
         IEnumerable<AdminAdvertToShow> ActiveAdverts(AdminSortOption? adminSortOption, bool sortDescAsc);
 
-        IEnumerable<AdminAdvertToShow> FilterAdverts(bool? showHidden, DateTime? dateFrom, DateTime? dateTo, string adType,
+        IEnumerable<AdminAdvertToShow> FilterAdverts(bool? showHidden, DateTime? dateFrom, DateTime? dateTo, int? adType,
             string number, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, string city, bool? toLet,
             AdminSortOption? adminSortOption, bool sortDescAsc);
 

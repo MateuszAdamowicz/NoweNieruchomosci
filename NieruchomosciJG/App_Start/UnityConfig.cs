@@ -14,8 +14,12 @@ using Services.CountMessagesAndAdverts;
 using Services.CountMessagesAndAdverts.Implementation;
 using Services.CRUD.AdvertServices.CreateAdvertService;
 using Services.CRUDAdvertServices.CreateAdvertService.Implementation;
+using Services.CRUDAdvertServices.DeleteAdvertService;
+using Services.CRUDAdvertServices.DeleteAdvertService.Implementation;
 using Services.CRUDAdvertServices.ReadAdvertService;
 using Services.CRUDAdvertServices.ReadAdvertService.Implementation;
+using Services.CRUDAdvertServices.UpdateAdvertService;
+using Services.CRUDAdvertServices.UpdateAdvertService.Implementation;
 using Services.EmailServices.EmailRepository;
 using Services.EmailServices.EmailRepository.Implementation;
 using Services.EmailServices.ParseEmailService;
@@ -83,6 +87,8 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<ISaveEmailService, SaveEmailService>();
             container.RegisterType<ISmtpManager, SmtpManager>();
             container.RegisterType<ITemplateRepository, TemplateRepository>();
+            container.RegisterType<IUpdateAdvertService, UpdateAdvertService>();
+            container.RegisterType<IDeleteAdvertService, DeleteAdvertService>();
         }
     }
 }

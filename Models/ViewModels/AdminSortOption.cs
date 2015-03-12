@@ -1,4 +1,5 @@
-﻿namespace Models.ViewModels
+﻿
+namespace Models.ViewModels
 {
     public enum AdminSortOption
     {

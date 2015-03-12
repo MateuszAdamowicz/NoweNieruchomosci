@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Web.Routing;
 using Context.PartialModels;
@@ -8,6 +9,7 @@ using PagedList;
 
 namespace Models.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class IndexViewModel
     {
         public IndexViewModel()
@@ -19,7 +21,7 @@ namespace Models.ViewModels
         public IPagedList<SimplifyAdvert> SimplifyAdverts{ get; set; }
         public RouteValues RouteValues { get; set; } 
     }
-
+    [ExcludeFromCodeCoverage]
     public class RouteValues
     {
         public bool? Search { get; set; }
@@ -31,7 +33,7 @@ namespace Models.ViewModels
         public string AdType { get; set; }
         public SortOption? SortOption { get; set; }
     }
-
+    [ExcludeFromCodeCoverage]
     public class SearchOptions
     {
         public List<SelectOption> PropertyTypes { get; set; }
@@ -42,7 +44,7 @@ namespace Models.ViewModels
         public int MaxPrice { get; set; }
 
     }
-
+    [ExcludeFromCodeCoverage]
     public class SimplifyAdvert
     {
         public int Price { get; set; }

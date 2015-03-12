@@ -29,7 +29,7 @@ namespace Services.FilterAdvertService.Implementation
             return advertsToShow;
         }
 
-        public IEnumerable<AdminAdvertToShow> FilterAdverts(bool? showHidden, DateTime? dateFrom, DateTime? dateTo, string adType, string number, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, string city, bool? toLet, AdminSortOption? adminSortOption, bool sortDescAsc)
+        public IEnumerable<AdminAdvertToShow> FilterAdverts(bool? showHidden, DateTime? dateFrom, DateTime? dateTo, int? adType, string number, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, string city, bool? toLet, AdminSortOption? adminSortOption, bool sortDescAsc)
         {
             var adverts = _genericRepository.GetSet();
             var advertsToShow = Mapper.Map<IEnumerable<AdminAdvertToShow>>(adverts);
@@ -49,7 +49,7 @@ namespace Services.FilterAdvertService.Implementation
             return advertsToShow;
         }
 
-        private IEnumerable<AdminAdvertToShow> FilterAdvertsByCity(string city, IEnumerable<AdminAdvertToShow> advertsToShow)
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByCity(string city, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
             if (!String.IsNullOrEmpty(city))
             {
@@ -58,7 +58,7 @@ namespace Services.FilterAdvertService.Implementation
             return advertsToShow;
         }
 
-        private IEnumerable<AdminAdvertToShow> FilterAdvertsByNumber(string number, IEnumerable<AdminAdvertToShow> advertsToShow)
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByNumber(string number, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
             if (!String.IsNullOrEmpty(number))
             {
@@ -67,7 +67,7 @@ namespace Services.FilterAdvertService.Implementation
             return advertsToShow;
         }
 
-        private IEnumerable<AdminAdvertToShow> FilterHiddenAdverts(bool? showHidden, IEnumerable<AdminAdvertToShow> advertsToShow)
+        public IEnumerable<AdminAdvertToShow> FilterHiddenAdverts(bool? showHidden, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
             if (showHidden == false)
             {
@@ -76,7 +76,7 @@ namespace Services.FilterAdvertService.Implementation
             return advertsToShow;
         }
 
-        private IEnumerable<AdminAdvertToShow> FilterAdvertsByDate(DateTime? dateFrom, DateTime? dateTo, IEnumerable<AdminAdvertToShow> advertsToShow)
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByDate(DateTime? dateFrom, DateTime? dateTo, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
             if (dateFrom != null)
             {
@@ -90,7 +90,7 @@ namespace Services.FilterAdvertService.Implementation
             return advertsToShow;
         }
 
-        private IEnumerable<AdminAdvertToShow> FilterAdvertsByPrice(int? priceFrom, int? priceTo, IEnumerable<AdminAdvertToShow> advertsToShow)
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByPrice(int? priceFrom, int? priceTo, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
             if (priceFrom != null)
             {
@@ -103,7 +103,7 @@ namespace Services.FilterAdvertService.Implementation
             return advertsToShow;
         }
 
-        private IEnumerable<AdminAdvertToShow> FilterAdvertsByArea(int? areaFrom, int? areaTo, IEnumerable<AdminAdvertToShow> advertsToShow)
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByArea(int? areaFrom, int? areaTo, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
             if (areaFrom != null)
             {
@@ -116,16 +116,16 @@ namespace Services.FilterAdvertService.Implementation
             return advertsToShow;
         }
 
-        private IEnumerable<AdminAdvertToShow> FilterAdvertsByAdvertType(string adType, IEnumerable<AdminAdvertToShow> advertsToShow)
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByAdvertType(int? adType, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
-            if (!String.IsNullOrEmpty(adType))
+            if (adType != null)
             {
-                advertsToShow = advertsToShow.Where(x => x.AdType.Mask == Convert.ToInt32(adType));
+                advertsToShow = advertsToShow.Where(x => x.AdType.Mask == adType);
             }
             return advertsToShow;
         }
 
-        private IEnumerable<AdminAdvertToShow> FilterAdvertsByToLet(bool? toLet, IEnumerable<AdminAdvertToShow> advertsToShow)
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByToLet(bool? toLet, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
             if (toLet != null)
             {

@@ -6,7 +6,10 @@ using Context.PartialModels;
 using Models.ViewModels;
 using Services.CountMessagesAndAdverts;
 using Services.CRUD.AdvertServices.CreateAdvertService;
+using Services.CRUDAdvertServices.DeleteAdvertService;
 using Services.CRUDAdvertServices.ReadAdvertService;
+using Services.CRUDAdvertServices.UpdateAdvertService;
+using Services.CRUDAdvertServices.UpdateAdvertService.Implementation;
 using Services.FilterAdvertService;
 using Services.FilterOptionService;
 using Services.GetAdvertTypes;
@@ -26,6 +29,8 @@ namespace NieruchomosciJG.Controllers
         private readonly IFilterOptionService _filterOptionService;
         private readonly IFilterAdvertService _filterAdvertService;
         private readonly IReadAdvertService _readAdvertService;
+        private readonly IUpdateAdvertService _updateAdvertService;
+        private readonly IDeleteAdvertService _deleteAdvertService;
 
         public AdminController(
             IGetPropertiesByAdvertType getPropertiesByAdvertType,
@@ -35,7 +40,9 @@ namespace NieruchomosciJG.Controllers
             ICountMessagesAndAdverts countMessagesAndAdverts,
             IFilterOptionService filterOptionService,
             IFilterAdvertService filterAdvertService,
-            IReadAdvertService readAdvertService)
+            IReadAdvertService readAdvertService,
+            IUpdateAdvertService updateAdvertService,
+            IDeleteAdvertService deleteAdvertService)
         {
             _getPropertiesByAdvertType = getPropertiesByAdvertType;
             _photoService = photoService;
@@ -45,11 +52,13 @@ namespace NieruchomosciJG.Controllers
             _filterOptionService = filterOptionService;
             _filterAdvertService = filterAdvertService;
             _readAdvertService = readAdvertService;
+            _updateAdvertService = updateAdvertService;
+            _deleteAdvertService = deleteAdvertService;
         }
 
 
         [HttpGet]
-        public ActionResult Index(int? page, string number, bool? toLet, string city, string adType, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, DateTime? dateFrom, DateTime? dateTo, bool? filter, AdminSortOption? sortOption, bool? showHidden, bool sortDescAsc = false, int? perPage = 20)
+        public ActionResult Index(int? page, string number, bool? toLet, string city, int? adType, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, DateTime? dateFrom, DateTime? dateTo, bool? filter, AdminSortOption? sortOption, bool? showHidden, bool sortDescAsc = false, int? perPage = 20)
         {
             var adminIndexFiltered = new AdminIndexFiltered()
             {
@@ -71,7 +80,13 @@ namespace NieruchomosciJG.Controllers
                 SortOption = sortOption
             };
 
+
             var model = new AdminIndexViewModel();
+
+            if ((ChangeAdvert)TempData["Change"] != null)
+            {
+                TempData["Change"] = (ChangeAdvert)TempData["Change"];
+            }
 
             int pageSize = (perPage ?? 20);
             int pageNumber = (page ?? 1);
@@ -80,7 +95,7 @@ namespace NieruchomosciJG.Controllers
             {
                 var adverts = _filterAdvertService.FilterAdverts(showHidden, dateFrom, dateTo, adType, number,
                        priceFrom, priceTo, areaFrom, areaTo, city, toLet, sortOption, sortDescAsc);
-                model.Adverts = adverts.ToPagedList(pageNumber, pageSize);    
+                model.Adverts = adverts.ToPagedList(pageNumber, pageSize);
             }
             else
             {
@@ -126,12 +141,48 @@ namespace NieruchomosciJG.Controllers
             var model = _readAdvertService.GetCreateAdvertById(id);
 
             model.SavedPhotos = _photoService.GetPhotosByAdvertId(id);
-            return View("CreateAdvert", model);
+            return View(model);
         }
 
+        [HttpPost]
+        public ActionResult EditAdvert(CreateAdvertViewModel model, List<PropertyViewModel> property, int id)
+        {
+            model.Properties = property;
+            if (ModelState.IsValid)
+            {
+                var idd = _updateAdvertService.UpdateAdvert(model);
+                return RedirectToAction("Index");
+            }
+
+            model.SavedPhotos = _photoService.GetPhotosById(model.PhotosToSave);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ChangeAdvertVisibility(int number)
         {
+            var changeAdvert = new ChangeAdvert();
+            changeAdvert.Deleted = false;
+            changeAdvert.Visible = _updateAdvertService.ChangeVisibility(number);
+            changeAdvert.Number = number;
 
+            TempData["Change"] = changeAdvert;
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteAdvert(int number)
+        {
+            _deleteAdvertService.DeleteAdvert(number);
+            var changeAdvert = new ChangeAdvert();
+            changeAdvert.Deleted = true;
+            changeAdvert.Visible = false; 
+            changeAdvert.Number = number;
+
+            TempData["Change"] = changeAdvert;
 
             return RedirectToAction("Index");
         }

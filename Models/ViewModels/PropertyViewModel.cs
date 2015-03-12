@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Models.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class PropertyViewModel
     {
         public PropertyViewModel(string name)
