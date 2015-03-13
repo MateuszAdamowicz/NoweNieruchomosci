@@ -1104,6 +1104,9 @@
     <Content Include="Views\Home\Texts\_OfferText.cshtml" />
     <Content Include="Templates\OfferFromUser.cshtml" />
     <Content Include="Views\Admin\EditAdvert.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Texts\_AboutText.cshtml" />
+    <Content Include="Views\Home\Credits.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

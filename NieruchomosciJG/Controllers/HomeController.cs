@@ -170,5 +170,17 @@ namespace NieruchomosciJG.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Credits()
+        {
+            return View();
+        }    
     }
 }
