@@ -107,8 +107,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvertMessageService\Implementation\AdvertMessageService.cs" />
+    <Compile Include="AdvertSortEnginesService\Implementation\AdvertSortEnginesService.cs" />
     <Compile Include="AdvertSearchOptionsService\Implementation\AdvertSearchOptionService.cs" />
     <Compile Include="AdvertSearchOptionsService\IAdvertSearchOptionService.cs" />
+    <Compile Include="AdvertSortEnginesService\IAdvertSortEnginesService.cs" />
+    <Compile Include="AdvertSortEnginesService\Implementation\Engines\SortCityAscEngine.cs" />
+    <Compile Include="AdvertSortEnginesService\Implementation\Engines\SortCityDescEngine.cs" />
+    <Compile Include="AdvertSortEnginesService\Implementation\Engines\SortDateAscEngine.cs" />
+    <Compile Include="AdvertSortEnginesService\Implementation\Engines\SortDateDescEngine.cs" />
+    <Compile Include="AdvertSortEnginesService\Implementation\Engines\SortOptionEngine.cs" />
+    <Compile Include="AdvertSortEnginesService\Implementation\Engines\SortPriceAscEngine.cs" />
+    <Compile Include="AdvertSortEnginesService\Implementation\Engines\SortPriceDescEngine.cs" />
     <Compile Include="ApplicationSettingsService\Implementation\ApplicationSettingsService.cs" />
     <Compile Include="ApplicationSettingsService\IApplicationSettingsService.cs" />
     <Compile Include="CitiesService\ICitiesService.cs" />

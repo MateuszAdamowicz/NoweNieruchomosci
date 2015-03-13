@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Diagnostics.CodeAnalysis;
 using Context.Entities;
 using Context.PartialModels;
 
 namespace Context
 {
+    [ExcludeFromCodeCoverage]
     public class Configuration : DbMigrationsConfiguration<NieruchomosciContext>
     {
         public Configuration()

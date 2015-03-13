@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Context;
 using Context.Entities;
 using Microsoft.Practices.Unity;
@@ -6,6 +7,8 @@ using RazorEngine;
 using RazorEngine.Templating;
 using Services.AdvertSearchOptionsService;
 using Services.AdvertSearchOptionsService.Implementation;
+using Services.AdvertSortEnginesService;
+using Services.AdvertSortEnginesService.Implementation;
 using Services.ApplicationSettingsService;
 using Services.ApplicationSettingsService.Implementation;
 using Services.CitiesService;
@@ -55,6 +58,7 @@ using Services.SortAdvertService.Implementation;
 
 namespace NieruchomosciJG.App_Start
 {
+    [ExcludeFromCodeCoverage]
     public class UnityConfig
     {
         public static void RegisterTypes(IUnityContainer container)
@@ -89,6 +93,7 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<ITemplateRepository, TemplateRepository>();
             container.RegisterType<IUpdateAdvertService, UpdateAdvertService>();
             container.RegisterType<IDeleteAdvertService, DeleteAdvertService>();
+            container.RegisterType<IAdvertSortEnginesService, AdvertSortEnginesService>();
         }
     }
 }

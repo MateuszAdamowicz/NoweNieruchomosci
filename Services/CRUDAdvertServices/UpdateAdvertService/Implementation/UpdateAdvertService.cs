@@ -40,7 +40,7 @@ namespace Services.CRUDAdvertServices.UpdateAdvertService.Implementation
         {
             bool visible = false;
             //parse number when implemented 
-            var advert = _genericRepository.GetSet().FirstOrDefault(x => x.Id == number);
+            var advert = _genericRepository.Find(number);
             
             if (advert != null)
             {

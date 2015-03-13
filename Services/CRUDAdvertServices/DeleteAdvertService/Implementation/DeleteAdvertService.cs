@@ -15,8 +15,10 @@ namespace Services.CRUDAdvertServices.DeleteAdvertService.Implementation
 
         public int DeleteAdvert(int id)
         {
-            _advertRepository.Delete(id);
-            return id;
+            var result = _advertRepository.Delete(id);
+            if (result != null)
+                return result.Id;
+            return 0;
         }
     }
 }

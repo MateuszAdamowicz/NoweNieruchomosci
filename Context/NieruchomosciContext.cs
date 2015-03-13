@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Context.Entities;
 using Context.PartialModels;
 
 namespace Context
 {
+    [ExcludeFromCodeCoverage]
     public class NieruchomosciContext : DbContext, INieruchomosciContext
     {
         public IDbSet<Advert> Adverts { get; set; }

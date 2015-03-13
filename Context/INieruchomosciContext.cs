@@ -7,6 +7,7 @@ using Context.PartialModels;
 
 namespace Context
 {
+
     public interface INieruchomosciContext
     {
         IDbSet<Advert> Adverts { get; set; }

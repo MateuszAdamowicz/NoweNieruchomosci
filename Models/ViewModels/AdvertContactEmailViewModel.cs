@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-
 namespace Models.ViewModels
 {
     [ExcludeFromCodeCoverage]

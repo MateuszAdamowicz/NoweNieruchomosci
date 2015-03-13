@@ -6,6 +6,8 @@ using System.Security.Cryptography.X509Certificates;
 using AutoMapper;
 using Context.Entities;
 using Models.ViewModels;
+using Services.AdvertSortEnginesService;
+using Services.AdvertSortEnginesService.Implementation;
 using Services.GenericRepository;
 
 namespace Services.SearchAdvertService.Implementation
@@ -13,10 +15,12 @@ namespace Services.SearchAdvertService.Implementation
     public class SearchAdvertService : ISearchAdvertService
     {
         private readonly IGenericRepository<Advert> _advertRepo;
+        private readonly IAdvertSortEnginesService _advertSortEnginesService;
 
-        public SearchAdvertService(IGenericRepository<Advert> advertRepo)
+        public SearchAdvertService(IGenericRepository<Advert> advertRepo, IAdvertSortEnginesService advertSortEnginesService)
         {
             _advertRepo = advertRepo;
+            _advertSortEnginesService = advertSortEnginesService;
         }
 
         public IEnumerable<SimplifyAdvert> SearchAdverts(int? priceFrom, int? priceTo, string city, bool? toLet,
@@ -51,26 +55,7 @@ namespace Services.SearchAdvertService.Implementation
         {
             if (sortOption != null)
             {
-                switch (sortOption)
-                {
-                    case SortOption.CityAsc:
-                        return adverts.OrderBy(x => x.City);
-
-                    case SortOption.CityDesc:
-                        return adverts.OrderByDescending(x => x.City);
-
-                    case SortOption.DateAsc:
-                        return adverts.OrderBy(x => x.CreatedAt);
-
-                    case SortOption.DateDesc:
-                        return adverts.OrderByDescending(x => x.CreatedAt);
-
-                    case SortOption.PriceAsc:
-                        return adverts.OrderBy(x => x.Price);
-                    
-                    case SortOption.PriceDesc:
-                        return adverts.OrderByDescending(x => x.Price);
-                }
+                adverts = _advertSortEnginesService.Sort(sortOption.Value, adverts);
             }
 
             return adverts;
