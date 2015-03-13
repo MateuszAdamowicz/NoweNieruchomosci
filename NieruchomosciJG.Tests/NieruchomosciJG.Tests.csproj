@@ -58,12 +58,17 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ServicesTests\FindPhotosByIdServiceTests.cs" />
+    <Compile Include="ServicesTests\GetAdvertTypesServiceTests.cs" />
+    <Compile Include="ServicesTests\GetPropertiesByAdvertTypeTests.cs" />
     <Compile Include="ServicesTests\CreateAdvertServiceTests.cs" />
     <Compile Include="ServicesTests\DeleteAdvertServiceTests.cs" />
     <Compile Include="ServicesTests\AdvertSearchOptionServiceTest.cs" />
     <Compile Include="ServicesTests\CitiesServiceTests.cs" />
     <Compile Include="ServicesTests\CountMessagesAndAdvertsTests.cs" />
-    <Compile Include="ServicesTests\FilterOptionServiceTests.cs" />
+    <Compile Include="ServicesTests\FilterOptionServiceTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ServicesTests\GetAdvertTypesTest.cs" />
     <Compile Include="ServicesTests\NewestAdvertsServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
