@@ -131,6 +131,17 @@
     <Compile Include="CRUDAdvertServices\ReadAdvertService\IReadAdvertService.cs" />
     <Compile Include="CRUDAdvertServices\UpdateAdvertService\IUpdateAdvertService.cs" />
     <Compile Include="CRUDAdvertServices\UpdateAdvertService\Implementation\UpdateAdvertService.cs" />
+    <Compile Include="DetailedSortService\Implementation\DetailedSortService.cs" />
+    <Compile Include="DetailedSortService\Implementation\Engines\IDetailedSort.cs" />
+    <Compile Include="DetailedSortService\IDetailedSortService.cs" />
+    <Compile Include="DetailedSortService\Implementation\Engines\DetailedSortAdType.cs" />
+    <Compile Include="DetailedSortService\Implementation\Engines\DetailedSortArea.cs" />
+    <Compile Include="DetailedSortService\Implementation\Engines\DetailedSortCity.cs" />
+    <Compile Include="DetailedSortService\Implementation\Engines\DetailedSortCreatedAt.cs" />
+    <Compile Include="DetailedSortService\Implementation\Engines\DetailedSortNumber.cs" />
+    <Compile Include="DetailedSortService\Implementation\Engines\DetailedSortPrice.cs" />
+    <Compile Include="DetailedSortService\Implementation\Engines\DetailedSortToLet.cs" />
+    <Compile Include="DetailedSortService\Implementation\Engines\DetailedSortVisible.cs" />
     <Compile Include="EmailServices\EmailRepository\Implementation\EmailRepository.cs" />
     <Compile Include="EmailServices\EmailRepository\IEmailRepository.cs" />
     <Compile Include="EmailServices\ParseEmailService\IParseEmailService.cs" />

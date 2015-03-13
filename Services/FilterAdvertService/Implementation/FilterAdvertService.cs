@@ -78,11 +78,13 @@ namespace Services.FilterAdvertService.Implementation
 
         public IEnumerable<AdminAdvertToShow> FilterAdvertsByDate(DateTime? dateFrom, DateTime? dateTo, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
-            if (dateFrom != null)
-            {
-                advertsToShow = advertsToShow.Where(x => x.CreatedAt.Date >= dateFrom);
-            }
+            advertsToShow = FilterAdvertsByFromDate(dateFrom, advertsToShow);
+            advertsToShow = FilterAdvertsByToDate(dateTo, advertsToShow);
+            return advertsToShow;
+        }
 
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByToDate(DateTime? dateTo, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
             if (dateTo != null)
             {
                 advertsToShow = advertsToShow.Where(x => x.CreatedAt.Date <= dateTo);
@@ -90,12 +92,24 @@ namespace Services.FilterAdvertService.Implementation
             return advertsToShow;
         }
 
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByFromDate(DateTime? dateFrom, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (dateFrom != null)
+            {
+                advertsToShow = advertsToShow.Where(x => x.CreatedAt.Date >= dateFrom);
+            }
+            return advertsToShow;
+        }
+
         public IEnumerable<AdminAdvertToShow> FilterAdvertsByPrice(int? priceFrom, int? priceTo, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
-            if (priceFrom != null)
-            {
-                advertsToShow = advertsToShow.Where(x => x.Price >= priceFrom);
-            }
+            advertsToShow = FilterAdvertsByFromPrice(priceFrom, advertsToShow);
+            advertsToShow = FilterAdvertsByToPrice(priceTo, advertsToShow);
+            return advertsToShow;
+        }
+
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByToPrice(int? priceTo, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
             if (priceTo != null)
             {
                 advertsToShow = advertsToShow.Where(x => x.Price <= priceTo);
@@ -103,15 +117,36 @@ namespace Services.FilterAdvertService.Implementation
             return advertsToShow;
         }
 
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByFromPrice(int? priceFrom, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (priceFrom != null)
+            {
+                advertsToShow = advertsToShow.Where(x => x.Price >= priceFrom);
+            }
+            return advertsToShow;
+        }
+
         public IEnumerable<AdminAdvertToShow> FilterAdvertsByArea(int? areaFrom, int? areaTo, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            advertsToShow = FilterAdvertsByFromArea(areaFrom, advertsToShow);
+            advertsToShow = FilterAdvertsByToArea(areaTo, advertsToShow);
+            return advertsToShow;
+        }
+
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByToArea(int? areaTo, IEnumerable<AdminAdvertToShow> advertsToShow)
+        {
+            if (areaTo != null)
+            {
+                advertsToShow = advertsToShow.Where(x => x.Area <= areaTo);
+            }
+            return advertsToShow;
+        }
+
+        public IEnumerable<AdminAdvertToShow> FilterAdvertsByFromArea(int? areaFrom, IEnumerable<AdminAdvertToShow> advertsToShow)
         {
             if (areaFrom != null)
             {
                 advertsToShow = advertsToShow.Where(x => x.Area >= areaFrom);
-            }
-            if (areaTo != null)
-            {
-                advertsToShow = advertsToShow.Where(x => x.Area <= areaTo);
             }
             return advertsToShow;
         }

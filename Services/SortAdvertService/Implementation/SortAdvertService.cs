@@ -2,45 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using Models.ViewModels;
+using Services.DetailedSortService;
 
 namespace Services.SortAdvertService.Implementation
 {
     public class SortAdvertService : ISortAdvertService
     {
+        private readonly IDetailedSortService _detailedSortService;
+
+        public SortAdvertService(IDetailedSortService detailedSortService)
+        {
+            _detailedSortService = detailedSortService;
+        }
+
         public IEnumerable<AdminAdvertToShow> SortAdverts(IEnumerable<AdminAdvertToShow> advertsToShow, AdminSortOption? adminSortOption, bool sortDescAsc)
         {
             if (adminSortOption != null)
             {
-                switch (adminSortOption)
-                {
-                    case AdminSortOption.CreatedAt:
-                        advertsToShow = advertsToShow.OrderBy(x => x.CreatedAt);
-                        break;
-                    case AdminSortOption.City:
-                        advertsToShow = advertsToShow.OrderBy(x => x.City);
-                        break;
-                    case AdminSortOption.Price:
-                        advertsToShow = advertsToShow.OrderBy(x => x.Price);
-                        break;
-                    case AdminSortOption.AdType:
-                        advertsToShow = advertsToShow.OrderBy(x => x.AdType.Name);
-                        break;
-                    case AdminSortOption.Number:
-                        advertsToShow = advertsToShow.OrderBy(x => x.Id);
-                        break;
-                    case AdminSortOption.ToLet:
-                        advertsToShow = advertsToShow.OrderBy(x => x.ToLet);
-                        break;
-                    case AdminSortOption.Area:
-                        advertsToShow = advertsToShow.OrderBy(x => x.Area);
-                        break;
-                    case AdminSortOption.Visible:
-                        advertsToShow = advertsToShow.OrderBy(x => x.Visible);
-                        break;
-                    default:
-                        advertsToShow = advertsToShow.OrderBy(x => x.CreatedAt);
-                        break;
-                }
+                _detailedSortService.Sort(adminSortOption.Value, advertsToShow);
                 if (sortDescAsc)
                 {
                     advertsToShow = advertsToShow.Reverse();

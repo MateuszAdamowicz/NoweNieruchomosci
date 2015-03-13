@@ -1,12 +1,18 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Context.Entities;
 
 namespace Services.AdvertSortEnginesService.Implementation.Engines
 {
-    public class SortDateDescEngine : SortOptionEngine
+    public interface ISortDateDescEngine : ISortOptionEngine
     {
-        public override IEnumerable<Advert> Sort(IEnumerable<Advert> adverts)
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class SortDateDescEngine : ISortDateDescEngine
+    {
+        public IEnumerable<Advert> Sort(IEnumerable<Advert> adverts)
         {
             return adverts.OrderByDescending(x => x.CreatedAt);
         }

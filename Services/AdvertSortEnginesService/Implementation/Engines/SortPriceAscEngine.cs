@@ -1,12 +1,18 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Context.Entities;
 
 namespace Services.AdvertSortEnginesService.Implementation.Engines
 {
-    public class SortPriceAscEngine : SortOptionEngine
+    public interface ISortPriceAscEngine : ISortOptionEngine
     {
-        public override IEnumerable<Advert> Sort(IEnumerable<Advert> adverts)
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class SortPriceAscEngine : ISortPriceAscEngine
+    {
+        public IEnumerable<Advert> Sort(IEnumerable<Advert> adverts)
         {
             return adverts.OrderBy(x => x.Price);
         }

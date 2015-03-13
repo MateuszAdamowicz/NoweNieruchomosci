@@ -9,6 +9,7 @@ using Services.AdvertSearchOptionsService;
 using Services.AdvertSearchOptionsService.Implementation;
 using Services.AdvertSortEnginesService;
 using Services.AdvertSortEnginesService.Implementation;
+using Services.AdvertSortEnginesService.Implementation.Engines;
 using Services.ApplicationSettingsService;
 using Services.ApplicationSettingsService.Implementation;
 using Services.CitiesService;
@@ -23,6 +24,8 @@ using Services.CRUDAdvertServices.ReadAdvertService;
 using Services.CRUDAdvertServices.ReadAdvertService.Implementation;
 using Services.CRUDAdvertServices.UpdateAdvertService;
 using Services.CRUDAdvertServices.UpdateAdvertService.Implementation;
+using Services.DetailedSortService;
+using Services.DetailedSortService.Implementation.Engines;
 using Services.EmailServices.EmailRepository;
 using Services.EmailServices.EmailRepository.Implementation;
 using Services.EmailServices.ParseEmailService;
@@ -94,6 +97,24 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<IUpdateAdvertService, UpdateAdvertService>();
             container.RegisterType<IDeleteAdvertService, DeleteAdvertService>();
             container.RegisterType<IAdvertSortEnginesService, AdvertSortEnginesService>();
+            container.RegisterType<IDetailedSortService, IDetailedSortService>();
+
+            container.RegisterType<ISortCityAscEngine, SortCityAscEngine>();
+            container.RegisterType<ISortCityDescEngine, SortCityDescEngine>();
+            container.RegisterType<ISortDateAscEngine, SortDateAscEngine>();
+            container.RegisterType<ISortDateDescEngine, SortDateDescEngine>();
+            container.RegisterType<ISortPriceAscEngine, SortPriceAscEngine>();
+            container.RegisterType<ISortPriceDescEngine, SortPriceDescEngine>();
+
+            container.RegisterType<IDetailedSortAdType, DetailedSortAdType>();
+            container.RegisterType<IDetailedSortArea, DetailedSortArea>();
+            container.RegisterType<IDetailedSortCity, DetailedSortCity>();
+            container.RegisterType<IDetailedSortCreatedAt, DetailedSortCreatedAt>();
+            container.RegisterType<IDetailedSortNumber, DetailedSortNumber>();
+            container.RegisterType<IDetailedSortPrice, DetailedSortPrice>();
+            container.RegisterType<IDetailedSortToLet, DetailedSortToLet>();
+            container.RegisterType<IDetailedSortVisible, DetailedSortVisible>();
+
         }
     }
 }

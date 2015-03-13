@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Context.Entities;
 
 namespace Services.AdvertSortEnginesService.Implementation.Engines
 {
-    public abstract class SortOptionEngine
+    public interface ISortOptionEngine
     {
-        public abstract IEnumerable<Advert> Sort(IEnumerable<Advert> adverts);
+        IEnumerable<Advert> Sort(IEnumerable<Advert> adverts);
     }
 }
