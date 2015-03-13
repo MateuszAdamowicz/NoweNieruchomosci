@@ -5,7 +5,7 @@ using Context.Entities;
 using Context.PartialModels;
 using Models.ViewModels;
 using Services.CountMessagesAndAdverts;
-using Services.CRUD.AdvertServices.CreateAdvertService;
+using Services.CRUDAdvertServices.CreateAdvertService;
 using Services.CRUDAdvertServices.DeleteAdvertService;
 using Services.CRUDAdvertServices.ReadAdvertService;
 using Services.CRUDAdvertServices.UpdateAdvertService;

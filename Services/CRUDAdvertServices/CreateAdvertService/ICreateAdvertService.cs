@@ -1,6 +1,6 @@
 ﻿using Models.ViewModels;
 
-namespace Services.CRUD.AdvertServices.CreateAdvertService
+namespace Services.CRUDAdvertServices.CreateAdvertService
 {
     public interface ICreateAdvertService
     {

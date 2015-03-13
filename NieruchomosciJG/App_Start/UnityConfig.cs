@@ -16,7 +16,7 @@ using Services.CitiesService;
 using Services.CitiesService.Implementation;
 using Services.CountMessagesAndAdverts;
 using Services.CountMessagesAndAdverts.Implementation;
-using Services.CRUD.AdvertServices.CreateAdvertService;
+using Services.CRUDAdvertServices.CreateAdvertService;
 using Services.CRUDAdvertServices.CreateAdvertService.Implementation;
 using Services.CRUDAdvertServices.DeleteAdvertService;
 using Services.CRUDAdvertServices.DeleteAdvertService.Implementation;

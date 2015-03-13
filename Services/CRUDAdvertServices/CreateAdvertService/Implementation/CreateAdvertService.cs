@@ -2,7 +2,6 @@
 using AutoMapper;
 using Context.Entities;
 using Models.ViewModels;
-using Services.CRUD.AdvertServices.CreateAdvertService;
 using Services.FindPhotosById;
 using Services.GenericRepository;
 using Services.PhotoService;
@@ -15,19 +14,16 @@ namespace Services.CRUDAdvertServices.CreateAdvertService.Implementation
         private readonly IPhotoService _photoService;
         private readonly IGenericRepository<AdvertType> _advertTypeRepository;
         private readonly IFindPhotosByIdService _findPhotosByIdService;
-        private readonly IGenericRepository<Property> _propRepository;
 
         public CreateAdvertService(IGenericRepository<Advert> genericRepository,
             IPhotoService photoService,
             IGenericRepository<AdvertType> advertTypeRepository,
-            IFindPhotosByIdService findPhotosByIdService,
-            IGenericRepository<Property> propRepository )
+            IFindPhotosByIdService findPhotosByIdService )
         {
             _genericRepository = genericRepository;
             _photoService = photoService;
             _advertTypeRepository = advertTypeRepository;
             _findPhotosByIdService = findPhotosByIdService;
-            _propRepository = propRepository;
         }
 
         public int CreateAdvert(CreateAdvertViewModel createAdvert)
