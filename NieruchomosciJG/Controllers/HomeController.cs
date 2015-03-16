@@ -28,6 +28,8 @@ namespace NieruchomosciJG.Controllers
         private readonly IEmailRepository _emailRepository;
 
         const int PageSize = 4;
+        const int NumberOfNewestAdverts = 4;
+        const int NumberOfCitiesInMenu = 4;
 
 
         // GET: Home
@@ -51,6 +53,7 @@ namespace NieruchomosciJG.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Show(AdvertContactEmailViewModel advertContactEmail, int id)
         {
             var model = _readAdvertService.GetAdvertById(id);
@@ -112,13 +115,14 @@ namespace NieruchomosciJG.Controllers
 
         public ActionResult Cities()
         {
-            var cities = _citiesService.CitiesWithMaximumNumberOfAdverts(4);
+
+            var cities = _citiesService.CitiesWithMaximumNumberOfAdverts(NumberOfCitiesInMenu);
             return PartialView("_Cities", cities);
         }
 
         public ActionResult NewestAdverts()
         {
-            var adverts = _newestAdvertsService.GetNewest(4);
+            var adverts = _newestAdvertsService.GetNewest(NumberOfNewestAdverts);
             return PartialView("_NewestAdverts",adverts);
         }
 
@@ -134,6 +138,7 @@ namespace NieruchomosciJG.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Contact(ContactEmailViewModel model)
         {
             if (ModelState.IsValid)
@@ -159,6 +164,7 @@ namespace NieruchomosciJG.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateOffer(CreateOfferViewModel model)
         {
             if (ModelState.IsValid)
@@ -181,6 +187,6 @@ namespace NieruchomosciJG.Controllers
         public ActionResult Credits()
         {
             return View();
-        }    
+        }
     }
 }

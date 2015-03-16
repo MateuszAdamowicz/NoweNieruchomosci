@@ -17,6 +17,8 @@ namespace Services.SortAdvertService.Implementation
 
         public IEnumerable<AdminAdvertToShow> SortAdverts(IEnumerable<AdminAdvertToShow> advertsToShow, AdminSortOption? adminSortOption, bool sortDescAsc)
         {
+
+            advertsToShow = advertsToShow.ToList();
             if (adminSortOption != null)
             {
                 _detailedSortService.Sort(adminSortOption.Value, advertsToShow);

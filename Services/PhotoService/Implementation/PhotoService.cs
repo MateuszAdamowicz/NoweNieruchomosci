@@ -38,7 +38,7 @@ namespace Services.PhotoService.Implementation
             return files.Select(SavePhotoAndThumbnail).ToList();
         }
 
-        private Photo SavePhotoAndThumbnail(HttpPostedFileBase file)
+        public Photo SavePhotoAndThumbnail(HttpPostedFileBase file)
         {
             var tempName = FileNameDependingOnBrowser(file);
             var fileName = FileNameWithDateTimePrefix(tempName);
@@ -81,7 +81,7 @@ namespace Services.PhotoService.Implementation
 
 
 
-        private void SaveThumbnail(string path, string fileName)
+        public void SaveThumbnail(string path, string fileName)
         {
             var resized =
                 _resizeImageService.ResizeImage(Image.FromFile(path + fileName), 170, 120);
@@ -92,20 +92,20 @@ namespace Services.PhotoService.Implementation
             resized.Dispose();
         }
 
-        private void SavePhoto(HttpPostedFileBase file, string path, string fileName)
+        public void SavePhoto(HttpPostedFileBase file, string path, string fileName)
         {
             file.SaveAs(path + fileName);
             file.InputStream.Flush();
             file.InputStream.Dispose();
         }
 
-        private string PathToPhotosDirectory()
+        public string PathToPhotosDirectory()
         {
             var path = HttpContext.Current.Server.MapPath("~/Content/Photos/");
             return path;
         }
 
-        private string FileNameWithDateTimePrefix(string tempName)
+        public string FileNameWithDateTimePrefix(string tempName)
         {
             var fileName = String.Format("{0}_{1}", DateTime.Now.ToString("FFFFFFF"), tempName);
             return fileName;

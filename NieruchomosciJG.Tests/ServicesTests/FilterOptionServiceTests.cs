@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Context.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -25,7 +26,8 @@ namespace NieruchomosciJG.Tests.ServicesTests
             var result = filterOptionService.GetCities();
 
             // Assert
-            Assert.AreEqual(result.Count,0);
+            Assert.AreEqual(result.Count,1);
+            Assert.AreEqual(result.First().Text, "Wszystkie");
         }
     }
 }
