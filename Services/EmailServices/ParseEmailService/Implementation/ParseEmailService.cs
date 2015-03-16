@@ -1,10 +1,12 @@
-﻿using Models.ViewModels;
+﻿using System.Diagnostics.CodeAnalysis;
+using Models.ViewModels;
 using RazorEngine;
 using RazorEngine.Templating;
 using Services.EmailServices.TemplateRepository;
 
 namespace Services.EmailServices.ParseEmailService.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class ParseEmailService : IParseEmailService
     {
         private readonly ITemplateRepository _templateRepository;

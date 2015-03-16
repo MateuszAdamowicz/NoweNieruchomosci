@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,7 @@ using Services.ResizeImageService;
 
 namespace Services.PhotoService.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class PhotoService : IPhotoService
     {
         private readonly IGenericRepository<Photo> _genericRepository;

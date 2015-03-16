@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Context.Entities;
 using Models.ViewModels;
 using Services.AdvertSortEnginesService.Implementation.Engines;
 
 namespace Services.AdvertSortEnginesService.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class AdvertSortEnginesService : IAdvertSortEnginesService
     {
         private readonly Dictionary<SortOption, ISortOptionEngine> _sortEngines;

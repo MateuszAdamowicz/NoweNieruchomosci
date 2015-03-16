@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Context.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,7 +7,7 @@ using Moq;
 using Services.GenericRepository;
 using Services.GetPropertiesByAdvertType.Implementation;
 
-namespace NieruchomosciJG.Tests
+namespace NieruchomosciJG.Tests.ServicesTests
 {
     [TestClass]
     public class GetPropertiesByAdvertTypeTests

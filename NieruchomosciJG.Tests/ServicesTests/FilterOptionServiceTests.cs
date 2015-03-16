@@ -29,5 +29,52 @@ namespace NieruchomosciJG.Tests.ServicesTests
             Assert.AreEqual(result.Count,1);
             Assert.AreEqual(result.First().Text, "Wszystkie");
         }
+
+        [TestMethod]
+        public void T002_GetToLets_ListWithThreeItems()
+        {
+            // Arrange
+            var advertRepo = new Mock<IGenericRepository<Advert>>();
+            var adTypesRepo = new Mock<IGenericRepository<AdvertType>>();
+
+            // Act
+            var filterOptionService = new FilterOptionService(advertRepo.Object, adTypesRepo.Object);
+            var result = filterOptionService.GetToLets();
+
+            // Assert
+            Assert.AreEqual(result.Count, 3);
+        }
+
+        [TestMethod]
+        public void T003_GetItemsPerPage_ListWithFourItems()
+        {
+            // Arrange
+            var advertRepo = new Mock<IGenericRepository<Advert>>();
+            var advertTypesRepo = new Mock<IGenericRepository<AdvertType>>();
+
+            // Act
+            var filterOptionService = new FilterOptionService(advertRepo.Object, advertTypesRepo.Object);
+            var result = filterOptionService.GetItemsPerPage();
+
+            // Assert
+            Assert.AreEqual(result.Count, 4);
+        }
+
+        [TestMethod]
+        public void T004_GetAdTypes_NoTypesFound_ReturnListWithOneOption()
+        {
+            // Arrange
+            var advertRepo = new Mock<IGenericRepository<Advert>>();
+            var adTypesRepo = new Mock<IGenericRepository<AdvertType>>();
+
+            adTypesRepo.Setup(x => x.GetSet()).Returns(new List<AdvertType>());
+
+            // Act
+            var filterOptionService = new FilterOptionService(advertRepo.Object, adTypesRepo.Object);
+            var result = filterOptionService.GetAdTypes();
+
+            // Assert
+            Assert.AreEqual(result.Count, 1);
+        }
     }
 }

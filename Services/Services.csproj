@@ -43,6 +43,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -167,6 +170,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GetPropertiesByAdvertType\Implementation\GetPropertiesByAdvertType.cs" />
+    <Compile Include="LogService\Implementation\ExceptionLogService.cs" />
     <Compile Include="NewestAdvertsService\Implementation\NewestAdvertsService.cs" />
     <Compile Include="NewestAdvertsService\INewestAdvertsService.cs" />
     <Compile Include="PhotoService\IPhotoService.cs" />

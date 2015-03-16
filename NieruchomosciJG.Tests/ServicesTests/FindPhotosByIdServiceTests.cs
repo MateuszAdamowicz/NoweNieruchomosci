@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Services.GenericRepository;
 
-namespace NieruchomosciJG.Tests
+namespace NieruchomosciJG.Tests.ServicesTests
 {
     [TestClass]
     public class FindPhotosByIdServiceTests

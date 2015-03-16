@@ -8,12 +8,12 @@
     ViewBag.Title = "Admin - Dodaj mieszkanie";
 }
 
-
+<link href="~/Content/CSS/Spinner.css" rel="stylesheet" type="text/css" />
 <style>
-    .image {
-        margin-bottom: 10px;
-        text-align: center;
-    }
+     .image {
+         margin-bottom: 10px;
+         text-align: center;
+     }
 
     .borderedImage {
         border: 1px solid black;
@@ -320,6 +320,10 @@
                                         <input type="file" id="Photos" accept="image/*" multiple />
                                     </span>
                                 </div>
+                                <div class="col-md-3" id="spinnerdiv" hidden>
+                                    <div class="spinner">
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -353,6 +357,8 @@
             jQuery.each(jQuery('#Photos')[0].files, function (i, file) {
                 data.append('Photo', file);
             });
+            $("#btndiv").hide();
+            $("#spinnerdiv").show();
             sendPhoto(data);
         }
     });

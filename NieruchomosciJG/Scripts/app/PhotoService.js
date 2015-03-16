@@ -49,9 +49,13 @@ var success = function (result, status, xhr) {
     jQuery.each(result, function (i) {
         addImg(result[i].GetPath, result[i].Id);
     });
+    $("#btndiv").show();
+    $("#spinnerdiv").hide();
 };
 
 var error = function (xhr, status, error) {
+    $("#btndiv").show();
+    $("#spinnerdiv").hide();
 };
 
 var sendPhoto = function (data) {

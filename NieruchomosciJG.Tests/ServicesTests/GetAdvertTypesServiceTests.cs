@@ -7,7 +7,7 @@ using Moq;
 using Services.GenericRepository;
 using Services.GetAdvertTypes.Implementation;
 
-namespace NieruchomosciJG.Tests
+namespace NieruchomosciJG.Tests.ServicesTests
 {
     [TestClass]
     public class GetAdvertTypesServiceTests

@@ -25,6 +25,7 @@ using Services.CRUDAdvertServices.ReadAdvertService.Implementation;
 using Services.CRUDAdvertServices.UpdateAdvertService;
 using Services.CRUDAdvertServices.UpdateAdvertService.Implementation;
 using Services.DetailedSortService;
+using Services.DetailedSortService.Implementation;
 using Services.DetailedSortService.Implementation.Engines;
 using Services.EmailServices.EmailRepository;
 using Services.EmailServices.EmailRepository.Implementation;
@@ -114,6 +115,8 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<IDetailedSortPrice, DetailedSortPrice>();
             container.RegisterType<IDetailedSortToLet, DetailedSortToLet>();
             container.RegisterType<IDetailedSortVisible, DetailedSortVisible>();
+
+            container.RegisterType<IDetailedSortService, DetailedSortService>();
 
         }
     }

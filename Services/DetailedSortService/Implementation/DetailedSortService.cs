@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Models.ViewModels;
 using Services.DetailedSortService.Implementation.Engines;
 
 namespace Services.DetailedSortService.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class DetailedSortService : IDetailedSortService
     {
         private readonly Dictionary<AdminSortOption, IDetailedSort> _sortEngines;

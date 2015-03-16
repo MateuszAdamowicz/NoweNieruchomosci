@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Context.Entities;
 using Models.ViewModels;
@@ -9,6 +10,7 @@ using Services.SortAdvertService;
 
 namespace Services.FilterAdvertService.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class FilterAdvertService : IFilterAdvertService
     {
         private readonly IGenericRepository<Advert> _genericRepository;
