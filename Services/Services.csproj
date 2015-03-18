@@ -109,6 +109,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminLoginService\Implementation\AdminLoginService.cs" />
+    <Compile Include="AdminLoginService\IAdminLoginService.cs" />
     <Compile Include="AdvertMessageService\Implementation\AdvertMessageService.cs" />
     <Compile Include="AdvertSortEnginesService\Implementation\AdvertSortEnginesService.cs" />
     <Compile Include="AdvertSearchOptionsService\Implementation\AdvertSearchOptionService.cs" />

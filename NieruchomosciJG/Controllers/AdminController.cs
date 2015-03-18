@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using System.Web.UI.WebControls;
 using Context.Entities;
 using Context.PartialModels;
 using Models.ViewModels;
+using Services.AdminLoginService;
 using Services.CountMessagesAndAdverts;
 using Services.CRUDAdvertServices.CreateAdvertService;
 using Services.CRUDAdvertServices.DeleteAdvertService;
@@ -19,6 +23,7 @@ using PagedList;
 
 namespace NieruchomosciJG.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IGetPropertiesByAdvertType _getPropertiesByAdvertType;
@@ -31,6 +36,7 @@ namespace NieruchomosciJG.Controllers
         private readonly IReadAdvertService _readAdvertService;
         private readonly IUpdateAdvertService _updateAdvertService;
         private readonly IDeleteAdvertService _deleteAdvertService;
+        private readonly IAdminLoginService _adminLoginService;
 
         public AdminController(
             IGetPropertiesByAdvertType getPropertiesByAdvertType,
@@ -42,7 +48,8 @@ namespace NieruchomosciJG.Controllers
             IFilterAdvertService filterAdvertService,
             IReadAdvertService readAdvertService,
             IUpdateAdvertService updateAdvertService,
-            IDeleteAdvertService deleteAdvertService)
+            IDeleteAdvertService deleteAdvertService,
+            IAdminLoginService adminLoginService)
         {
             _getPropertiesByAdvertType = getPropertiesByAdvertType;
             _photoService = photoService;
@@ -54,8 +61,45 @@ namespace NieruchomosciJG.Controllers
             _readAdvertService = readAdvertService;
             _updateAdvertService = updateAdvertService;
             _deleteAdvertService = deleteAdvertService;
+            _adminLoginService = adminLoginService;
         }
 
+        [AllowAnonymous]
+        public ActionResult Login()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View(new LoginViewModel());
+            }
+            var ticket = new FormsAuthenticationTicket(1, "", DateTime.Now, DateTime.Now.AddMinutes(-30), false, String.Empty, FormsAuthentication.FormsCookiePath);
+            _adminLoginService.Cookies().Add(new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket)));
+            _adminLoginService.Logout();
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Login(LoginViewModel loginViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _adminLoginService.Login(loginViewModel);
+                if (result.Authorized)
+                {
+                    string user = HttpContext.User.ToString();
+                    _adminLoginService.SetLoginCookies(loginViewModel.Login);
+                    return RedirectToAction("Index");
+                }
+                ViewBag.LoginError = true;
+                return View(loginViewModel);
+            }
+            ViewBag.LoginError = true;
+            return View(loginViewModel);
+        }
 
         [HttpGet]
         public ActionResult Index(int? page, string number, bool? toLet, string city, int? adType, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, DateTime? dateFrom, DateTime? dateTo, bool? filter, AdminSortOption? sortOption, bool? showHidden, bool sortDescAsc = false, int? perPage = 20)

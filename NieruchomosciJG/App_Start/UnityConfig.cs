@@ -5,6 +5,8 @@ using Microsoft.Practices.Unity;
 using Models.ViewModels;
 using RazorEngine;
 using RazorEngine.Templating;
+using Services.AdminLoginService;
+using Services.AdminLoginService.Implementation;
 using Services.AdvertSearchOptionsService;
 using Services.AdvertSearchOptionsService.Implementation;
 using Services.AdvertSortEnginesService;
@@ -99,6 +101,7 @@ namespace NieruchomosciJG.App_Start
             container.RegisterType<IDeleteAdvertService, DeleteAdvertService>();
             container.RegisterType<IAdvertSortEnginesService, AdvertSortEnginesService>();
             container.RegisterType<IDetailedSortService, IDetailedSortService>();
+            container.RegisterType<IAdminLoginService, AdminLoginService>();
 
             container.RegisterType<ISortCityAscEngine, SortCityAscEngine>();
             container.RegisterType<ISortCityDescEngine, SortCityDescEngine>();

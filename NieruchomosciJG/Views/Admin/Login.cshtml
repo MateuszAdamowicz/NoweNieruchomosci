@@ -1,0 +1,71 @@
+﻿﻿@model Models.ViewModels.LoginViewModel
+@{
+    Layout = null;
+
+    ViewBag.Title = "Admin - Zaloguj się";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Nieruchomości ;)</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <meta name="description" content="The description of my page" />
+</head>
+<body>
+    <div class="container">
+        <div class="body-content">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="row" style="text-align: center; margin-top: 30px">
+                    <img src="/Content/img/logo.png" />
+                </div>
+                @if (ViewBag.LoginError != null && (bool)ViewBag.LoginError)
+                {
+                    <div class="row" style="margin-top: 30px">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger" role="alert">
+                                <b>Błąd logowania!</b><br />
+                                Podałeś błędną kombinację loginu i hasła!
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-md-12">
+                        <div class="jumbotron">
+                            <div style="font-size: 20px; font-weight:bold">Panel administracyjny</div>
+                            @using (Html.BeginForm("Login", "Admin"))
+                            {
+                                <div class="form-group">
+                                    @Html.AntiForgeryToken()
+                                    <div class="row" style="margin-top: 30px">
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", @placeholder = "Login" } })
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" style="margin-top: 15px">
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Hasło", @type = "password" } })
+                                        </div>
+
+                                    </div>
+                                    <div class="row" style="margin-top: 15px; text-align: right;">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary">Zaloguj</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

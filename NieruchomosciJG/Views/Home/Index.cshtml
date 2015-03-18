@@ -86,8 +86,9 @@
                             <div class="row">
                                 <div class="col-md-4 col-md-push-4">
                                     <div class="row">
-                                        <div class="col-md-12" style="text-align: center;">
-                                            <input type="text" id="amount" readonly style="border: 0; color: white; font-weight: bold; background-color: #b31621; text-align: center; width: 100%" value="@((Model.RouteValues.PriceFrom)?? 0) - @((Model.RouteValues.PriceTo)?? Model.SearchOptions.MaxPrice) PLN">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-9 pull-right" style="text-align: center;">
+                                            <input type="text" id="amount" readonly style="border: 0; color: white; font-weight: bold; background-color: #C24747; border-radius:5px; text-align: center; width: 100%" value="@((Model.RouteValues.PriceFrom)?? 0) - @((Model.RouteValues.PriceTo)?? Model.SearchOptions.MaxPrice) PLN">
                                         </div>
                                     </div>
                                 </div>
@@ -215,7 +216,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-md-3 short-advert-social">
-                                <div class="row">
+                                <div class="row" style="margin-bottom:5px">
                                     Okazja? przekaż dalej!
                                 </div>
                                 @{

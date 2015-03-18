@@ -64,6 +64,7 @@
     <Compile Include="ViewModels\IndexViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\NewestAdvert.cs" />
     <Compile Include="ViewModels\PhotoViewModel.cs" />
     <Compile Include="ViewModels\PropertyViewModel.cs" />
