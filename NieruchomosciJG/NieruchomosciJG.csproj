@@ -1115,6 +1115,7 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Home\Texts\_NotFoundText.cshtml" />
+    <Content Include="Views\Admin\Messages.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

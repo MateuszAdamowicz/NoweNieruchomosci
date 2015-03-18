@@ -1,0 +1,110 @@
+﻿@using PagedList.Mvc
+@model Models.ViewModels.MessagesViewModel
+
+@{
+    Layout = "_AdminLayout.cshtml";
+    ViewBag.Title = "Admin - Lista wiadomości";
+}
+
+<style type="text/css">
+    .icon {
+        font-size: 1.5em;
+        color: black;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Lista wiadomości</h3>
+        <hr />
+        @if (Model.Deleted != null)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading"><b>Wiadomość nr @Model.Deleted została usunięta</b></div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    @foreach (var msg in Model.Messages)
+                    {
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading@(msg.Id)">
+                                <div class="panel-title" style="font-size: 14px">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse@(msg.Id)" aria-expanded="true" aria-controls="collapse@(msg.Id)">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-2">@msg.CreatedAt.ToShortDateString()</div>
+                                                    <div class="col-md-4">@msg.FullName</div>
+                                                    <div class="col-md-4">@msg.Email</div>
+                                                    <div class="col-md-2" style="text-align: right">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-3">
+
+                                                                    <a href="/Admin/DeleteMessage?id=@msg.Id" onclick=" return confirm('Na pewno usunąć wiadomość?'); " data-toggle="tooltip" data-placement="top" title="Usuń">
+                                                                        <span class="icon glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <a href="mailto:@(msg.Email)">
+                                                                        <span class="icon glyphicon glyphicon-envelope" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Odpowiedz"></span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="collapse@(msg.Id)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading@(msg.Id)">
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <div class="form-horizontal">
+                                            <div class="row">
+                                                <div class="col-md-2" style="text-align: right; font-weight: bold">Imię i nazwisko:</div>
+                                                <div class="col-md-10" style="padding-left: 50px">@msg.FullName</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-2" style="text-align: right; font-weight: bold">Email:</div>
+                                                <div class="col-md-10" style="padding-left: 50px">@msg.Email</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-2" style="text-align: right; font-weight: bold">Numer telefonu:</div>
+                                                <div class="col-md-10" style="padding-left: 50px">@msg.PhoneNumber</div>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-md-2" style="text-align: right; font-weight: bold">Treść wiadomości:</div>
+                                                <div class="col-md-10" style="padding-left: 50px">@Html.Raw(msg.Body)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <small>Strona @(Model.Messages.PageCount < Model.Messages.PageNumber ? 0 : Model.Messages.PageNumber) z @Model.Messages.PageCount</small>
+                    <div style="text-align: center">@Html.PagedListPager(Model.Messages, page => Url.Action("Messages", new { page }))</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

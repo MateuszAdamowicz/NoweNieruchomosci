@@ -21,7 +21,7 @@ namespace Services.SortAdvertService.Implementation
             advertsToShow = advertsToShow.ToList();
             if (adminSortOption != null)
             {
-                _detailedSortService.Sort(adminSortOption.Value, advertsToShow);
+                advertsToShow = _detailedSortService.Sort(adminSortOption.Value, advertsToShow);
                 if (sortDescAsc)
                 {
                     advertsToShow = advertsToShow.Reverse();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Security;
@@ -7,6 +8,7 @@ using Services.ApplicationSettingsService;
 
 namespace Services.AdminLoginService.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class AdminLoginService : IAdminLoginService
     {
         private readonly string _login;

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Security;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using Context.Entities;
 using Context.PartialModels;
@@ -18,6 +20,7 @@ using Services.FilterAdvertService;
 using Services.FilterOptionService;
 using Services.GetAdvertTypes;
 using Services.GetPropertiesByAdvertType;
+using Services.MessageSerivce;
 using Services.PhotoService;
 using PagedList;
 
@@ -37,6 +40,7 @@ namespace NieruchomosciJG.Controllers
         private readonly IUpdateAdvertService _updateAdvertService;
         private readonly IDeleteAdvertService _deleteAdvertService;
         private readonly IAdminLoginService _adminLoginService;
+        private readonly IMessageService _messageService;
 
         public AdminController(
             IGetPropertiesByAdvertType getPropertiesByAdvertType,
@@ -49,7 +53,8 @@ namespace NieruchomosciJG.Controllers
             IReadAdvertService readAdvertService,
             IUpdateAdvertService updateAdvertService,
             IDeleteAdvertService deleteAdvertService,
-            IAdminLoginService adminLoginService)
+            IAdminLoginService adminLoginService,
+            IMessageService messageService)
         {
             _getPropertiesByAdvertType = getPropertiesByAdvertType;
             _photoService = photoService;
@@ -62,6 +67,7 @@ namespace NieruchomosciJG.Controllers
             _updateAdvertService = updateAdvertService;
             _deleteAdvertService = deleteAdvertService;
             _adminLoginService = adminLoginService;
+            _messageService = messageService;
         }
 
         [AllowAnonymous]
@@ -194,7 +200,7 @@ namespace NieruchomosciJG.Controllers
             model.Properties = property;
             if (ModelState.IsValid)
             {
-                var idd = _updateAdvertService.UpdateAdvert(model);
+                var idd = _updateAdvertService.UpdateAdvert(model, id);
                 return RedirectToAction("Index");
             }
 
@@ -238,6 +244,29 @@ namespace NieruchomosciJG.Controllers
             model = _countMessagesAndAdverts.Count(model);
 
             return View("_AdminMenu", model);
+        }
+
+
+
+        public ActionResult Messages(int? page, int? deleted)
+        {
+            IEnumerable<MessageViewModel> messages = _messageService.GetMessages();
+            
+            const int pageSize = 20;
+            int pageNumber = (page ?? 1);
+
+            var model = messages.ToPagedList(pageNumber, pageSize);
+
+            var mvm = new MessagesViewModel() { Messages = model, Deleted = deleted };
+
+            return View(mvm);
+        }
+
+        public ActionResult DeleteMessage(int id)
+        {
+            _messageService.DeleteMessage(id);
+            TempData["Deleted"] = id;
+            return RedirectToAction("Messages",new {deleted = id});
         }
     }
 }

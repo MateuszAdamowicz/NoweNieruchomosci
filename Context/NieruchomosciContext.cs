@@ -43,6 +43,7 @@ namespace Context
 
         public void Modified<T>(T entity) where T : BusinessObject
         {
+            GetSet<T>().Attach(entity);
             Entry(entity).State = System.Data.Entity.EntityState.Modified;
             SaveChanges();
         }

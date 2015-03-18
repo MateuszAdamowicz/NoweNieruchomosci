@@ -51,6 +51,8 @@ using Services.GetAdvertTypes;
 using Services.GetAdvertTypes.Implementation;
 using Services.GetPropertiesByAdvertType;
 using Services.GetPropertiesByAdvertType.Implementation;
+using Services.MessageSerivce;
+using Services.MessageSerivce.Implementation;
 using Services.NewestAdvertsService;
 using Services.NewestAdvertsService.Implementation;
 using Services.PhotoService;
@@ -121,6 +123,7 @@ namespace NieruchomosciJG.App_Start
 
             container.RegisterType<IDetailedSortService, DetailedSortService>();
 
+            container.RegisterType<IMessageService, MessageService>();
         }
     }
 }

@@ -46,6 +46,12 @@ namespace NieruchomosciJG.App_Start
             Mapper.CreateMap<MailMessage, Message>();
 
             Mapper.CreateMap<Advert, CreateAdvertViewModel>();
+
+            Mapper.CreateMap<Message, MessageViewModel>();
+
+            Mapper.CreateMap<AdvertContactEmailViewModel, Message>();
+            Mapper.CreateMap<ContactEmailViewModel, Message>();
+            Mapper.CreateMap<CreateOfferViewModel, Message>();
         }
     }
 }

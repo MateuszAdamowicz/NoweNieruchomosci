@@ -87,7 +87,7 @@ _advertTypeRepository.Object, _findPhotosById.Object, _photoService.Object);
             var updateAdvertService = new UpdateAdvertService(_advertRepository.Object,
 _advertTypeRepository.Object, _findPhotosById.Object, _photoService.Object);
 
-            var result = updateAdvertService.UpdateAdvert(new CreateAdvertViewModel());
+            var result = updateAdvertService.UpdateAdvert(new CreateAdvertViewModel(), 1);
             // Assert
         }
 
@@ -107,7 +107,7 @@ _advertTypeRepository.Object, _findPhotosById.Object, _photoService.Object);
     updateAdvertService.UpdateAdvert(new CreateAdvertViewModel()
     {
         AdvertType = new AdvertTypeViewModel() { Mask = 1 }
-    });
+    }, 1);
             // Assert
             Assert.AreEqual(result, 1);
         }

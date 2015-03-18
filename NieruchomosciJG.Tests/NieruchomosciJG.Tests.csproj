@@ -73,6 +73,7 @@
     <Compile Include="ServicesTests\NewestAdvertsServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicesTests\ReadAdvertServiceTests.cs" />
+    <Compile Include="ServicesTests\SortAdvertServiceTests.cs" />
     <Compile Include="ServicesTests\UpdateAdvertServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>

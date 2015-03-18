@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 
 namespace Services.ResizeImageService.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class ResizeImageService : IResizeImageService
     {
         public Image ResizeImage(Image image, int maxWidth, int maxHeight)

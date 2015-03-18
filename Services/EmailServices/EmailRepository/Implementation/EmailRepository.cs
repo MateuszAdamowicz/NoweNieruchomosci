@@ -1,4 +1,6 @@
-﻿using Models.ViewModels;
+﻿using AutoMapper;
+using Context.Entities;
+using Models.ViewModels;
 using Services.EmailServices.ParseEmailService;
 using Services.EmailServices.SaveEmailService;
 using Services.EmailServices.SmtpManager;
@@ -23,7 +25,10 @@ namespace Services.EmailServices.EmailRepository.Implementation
             var msg = _parseEmailService.QuestionAboutAdvert(model);
             var email = _smtpManager.SendEmail(msg);
 
-            _saveEmailService.SaveEmail(email);
+            var message = Mapper.Map<Message>(model);
+            message.Body = email.Body;
+
+            _saveEmailService.SaveEmail(message);
         }
 
         public void SendAndSaveQuestion(ContactEmailViewModel model)
@@ -31,7 +36,10 @@ namespace Services.EmailServices.EmailRepository.Implementation
             var msg = _parseEmailService.Question(model);
             var email = _smtpManager.SendEmail(msg);
 
-            _saveEmailService.SaveEmail(email);
+            var message = Mapper.Map<Message>(model);
+            message.Body = email.Body;
+
+            _saveEmailService.SaveEmail(message);
         }
 
         public void SendAndSaveOfferFromUser(CreateOfferViewModel model)
@@ -39,7 +47,10 @@ namespace Services.EmailServices.EmailRepository.Implementation
             var msg = _parseEmailService.OfferFromUser(model);
             var email = _smtpManager.SendEmail(msg);
 
-            _saveEmailService.SaveEmail(email);
+            var message = Mapper.Map<Message>(model);
+            message.Body = email.Body;
+
+            _saveEmailService.SaveEmail(message);
         }
     }
 }

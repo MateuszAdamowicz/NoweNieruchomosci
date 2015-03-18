@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using Context;
@@ -7,6 +8,7 @@ using Context.Entities;
 
 namespace Services.GenericRepository.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class GenericRepository<T> : IGenericRepository<T> where T : BusinessObject
     {
         private readonly INieruchomosciContext _context;
@@ -46,11 +48,6 @@ namespace Services.GenericRepository.Implementation
 
         public T Update(T entity)
         {
-            if (_context.EntityState(entity) == EntityState.Detached)
-            {
-                _context.GetSet<T>().Attach(entity);
-                
-            }
             _context.Modified(entity);
             return entity;
         }

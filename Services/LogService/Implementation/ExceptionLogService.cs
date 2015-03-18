@@ -1,8 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
 using log4net;
 
 namespace Services.LogService.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class ExceptionLoggingFilter : IExceptionFilter
     {
         private readonly ILog _logger;

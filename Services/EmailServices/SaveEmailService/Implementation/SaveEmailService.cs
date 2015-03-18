@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net.Mail;
 using AutoMapper;
 using Context.Entities;
 using Models.ViewModels;
@@ -6,6 +7,7 @@ using Services.GenericRepository;
 
 namespace Services.EmailServices.SaveEmailService.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class SaveEmailService: ISaveEmailService
     {
         private readonly IGenericRepository<Message> _msgRepository;
@@ -15,10 +17,9 @@ namespace Services.EmailServices.SaveEmailService.Implementation
             _msgRepository = msgRepository;
         }
 
-        public void SaveEmail(MailMessage model)
+        public void SaveEmail(Message model)
         {
-            var msg = Mapper.Map<Message>(model);
-            _msgRepository.Add(msg);
+            _msgRepository.Add(model);
         }
     }
 }
