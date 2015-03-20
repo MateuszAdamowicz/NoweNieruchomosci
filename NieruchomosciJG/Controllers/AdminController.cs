@@ -204,7 +204,7 @@ namespace NieruchomosciJG.Controllers
                 return RedirectToAction("Index");
             }
 
-            model.SavedPhotos = _photoService.GetPhotosById(model.PhotosToSave);
+            model.SavedPhotos = _photoService.GetPhotosByIdAndAdvertId(model.PhotosToSave,id);
             return View(model);
         }
 
