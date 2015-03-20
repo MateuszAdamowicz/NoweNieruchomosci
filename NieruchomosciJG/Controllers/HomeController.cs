@@ -69,7 +69,17 @@ namespace NieruchomosciJG.Controllers
         [HttpGet]
         public ActionResult Show(int id)
         {
-            var model = _readAdvertService.GetAdvertById(id);
+            var isAdmin = User.Identity.IsAuthenticated;
+            ShowAdvertViewModel model;
+            if (isAdmin)
+            {
+                model = _readAdvertService.GetAdvertByIdIncludeHidden(id);
+            }
+            else
+            {
+                model = _readAdvertService.GetAdvertById(id);
+            }
+            
             if (model != null)
                 return View(model);
 

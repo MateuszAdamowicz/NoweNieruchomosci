@@ -6,5 +6,6 @@ namespace Services.CRUDAdvertServices.ReadAdvertService
     {
         ShowAdvertViewModel GetAdvertById(int id);
         CreateAdvertViewModel GetCreateAdvertById(int id);
+        ShowAdvertViewModel GetAdvertByIdIncludeHidden(int id);
     }
 }

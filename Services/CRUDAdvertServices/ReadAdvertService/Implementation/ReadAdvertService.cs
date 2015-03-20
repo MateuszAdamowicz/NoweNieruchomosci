@@ -17,9 +17,13 @@ namespace Services.CRUDAdvertServices.ReadAdvertService.Implementation
         {
             var advert = _advertRepository.Find(id);
 
-            var model = AutoMapper.Mapper.Map<ShowAdvertViewModel>(advert);
+            if (advert.Visible)
+            {
+                var model = AutoMapper.Mapper.Map<ShowAdvertViewModel>(advert);
 
-            return model;
+                return model;
+            }
+            return null;
         }
 
         public CreateAdvertViewModel GetCreateAdvertById(int id)
@@ -31,5 +35,13 @@ namespace Services.CRUDAdvertServices.ReadAdvertService.Implementation
             return model;
         }
 
+        public ShowAdvertViewModel GetAdvertByIdIncludeHidden(int id)
+        {
+            var advert = _advertRepository.Find(id);
+
+            var model = AutoMapper.Mapper.Map<ShowAdvertViewModel>(advert);
+
+            return model;
+        }
     }
 }

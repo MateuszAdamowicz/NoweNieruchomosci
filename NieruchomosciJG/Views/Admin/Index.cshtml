@@ -438,7 +438,7 @@
                                         @if (advert.GetPhotoPath != "")
                                         {
                                             <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
-                                                <a tabindex="0"  style="font-size: 1.5em" data-placement="left" data-toggle="popover" data-trigger="hover" data-html="true" data-content='<img src="@advert.GetPhotoPath" style="border-radius: 6px;" />'>
+                                                <a href="/Home/Show/@advert.Number" tabindex="0"  style="font-size: 1.5em" data-placement="left" data-toggle="popover" data-trigger="hover" data-html="true" data-content='<img src="@advert.GetPhotoPath" style="border-radius: 6px;" />'>
                                                     <img src="@advert.GetPhotoPath" style="max-height:36px;  max-width:48px; cursor: pointer;"/></a>
                                             </div>
                                         }
