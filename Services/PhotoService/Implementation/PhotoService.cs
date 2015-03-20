@@ -76,6 +76,15 @@ namespace Services.PhotoService.Implementation
             return tempName;
         }
 
+        public IEnumerable<PhotoViewModel> GetPhotosByIdAndAdvertId(IEnumerable<int> ids, int id)
+        {
+            var photosById = GetPhotosById(ids);
+            var photosByAdvertId = GetPhotosByAdvertId(id);
+            var viewModels = photosByAdvertId.Concat(photosById);
+
+            return viewModels;
+        }
+
         public IEnumerable<PhotoViewModel> GetPhotosById(IEnumerable<int> ids)
         {
             var photosFromRepository = _genericRepository.GetSet().Where(x => ids.Contains(x.Id));
