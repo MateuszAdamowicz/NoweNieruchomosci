@@ -45,7 +45,6 @@ namespace Context
         {
 
             var original = GetSet<T>().Find(entity.Id);
-
             Entry(original).CurrentValues.SetValues(entity);
             SaveChanges();
         }

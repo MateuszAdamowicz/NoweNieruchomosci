@@ -29,12 +29,13 @@ namespace Models.ViewModels
         public IEnumerable<PhotoViewModel> SavedPhotos { get; set; }
         public List<PropertyViewModel> Properties { get; set; }
         public MapCords MapCords { get; set; }
-
+        public IEnumerable<int> PhotosToDelete { get; set; }
         public CreateAdvertViewModel()
         {
             PhotosToSave = new List<int>();
             SavedPhotos = new List<PhotoViewModel>();
             Properties = new List<PropertyViewModel>();
+            PhotosToDelete = new List<int>();
         }
     }
 }

@@ -56,7 +56,7 @@
         <h3>Edytuj nieruchomość</h3>
         <h4>Rodzaj: @Model.AdvertType.Name</h4><hr />
 
-        @using (Html.BeginForm("EditAdvert", "Admin", FormMethod.Post, new { @class = "createForm", enctype = "multipart/form-data"}))
+        @using (Html.BeginForm("EditAdvert", "Admin", FormMethod.Post, new { @class = "createForm"}))
         {
             Html.AntiForgeryToken();
             @Html.HiddenFor(x => x.AdvertType.Name)
@@ -346,6 +346,7 @@
     });
     $('body').on("click", ".removeImage", function () {
         var id = $(this).attr("data-id");
+        removeImage(id);
         removeOption(id);
     });
 

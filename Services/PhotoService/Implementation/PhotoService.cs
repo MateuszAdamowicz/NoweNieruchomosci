@@ -18,22 +18,38 @@ namespace Services.PhotoService.Implementation
     {
         private readonly IGenericRepository<Photo> _genericRepository;
         private readonly IResizeImageService _resizeImageService;
+        private readonly IGenericRepository<Advert> _advertRepo;
 
-        public PhotoService(IGenericRepository<Photo> genericRepository, IResizeImageService resizeImageService)
+        public PhotoService(IGenericRepository<Photo> genericRepository, IResizeImageService resizeImageService, IGenericRepository<Advert> advertRepo )
         {
             _genericRepository = genericRepository;
             _resizeImageService = resizeImageService;
+            _advertRepo = advertRepo;
         }
 
 
-        public void AddAdvertToPhotos(Advert advert, IEnumerable<Photo> photos)
+        public void AddAdvertToPhotos(int advertId, IEnumerable<Photo> photos)
         {
+            var ad = _advertRepo.Find(advertId);
+
             foreach (var photo in photos)
             {
-                photo.Advert = advert;
-                _genericRepository.Update(photo);
+                photo.Advert = ad;
+                _genericRepository.Update(photo);   
             }
-        } 
+        }
+
+        public bool RemovePhotosFromAdvert(int photoToDelete)
+        {
+            var photo = _genericRepository.Find(photoToDelete);
+            if (photo.Advert == null)
+            {
+                return false;
+            }
+            photo.Advert = null;
+            _genericRepository.Update(photo);
+            return true;
+        }
 
         public List<Photo> AddAdvertPhotos(IEnumerable<HttpPostedFileBase> files)
         {

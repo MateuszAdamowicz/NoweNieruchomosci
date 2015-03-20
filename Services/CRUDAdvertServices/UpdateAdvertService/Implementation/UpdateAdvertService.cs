@@ -28,11 +28,12 @@ namespace Services.CRUDAdvertServices.UpdateAdvertService.Implementation
             var advertToSave = Mapper.Map<Advert>(updateAdvert);
             advertToSave.AdvertType = _advertTypeRepository.GetSet().Single(x => x.Mask == updateAdvert.AdvertType.Mask);
             advertToSave.Id = id;
+
             var advert = _genericRepository.Update(advertToSave);
 
 
             var savedPhotos = _findPhotosByIdService.Find(updateAdvert.PhotosToSave);
-            _photoService.AddAdvertToPhotos(advert, savedPhotos);
+            _photoService.AddAdvertToPhotos(advert.Id, savedPhotos);
 
             return advert.Id;
         }

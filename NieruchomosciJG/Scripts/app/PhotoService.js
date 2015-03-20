@@ -25,6 +25,14 @@ var removeOption = function(id) {
     $("#PhotosToSave")[0].remove(index);
 };
 
+var removeImage = function(id) {
+    $.ajax({
+        url: "/api/Photo/RemovePhoto",
+        data: {id : id},
+        method: "GET"
+    });
+};
+
 var addImg = function (path, id) {
     $("#PhotosToSave")[0].add(createOption(id));
     $(".toSelect").attr("selected", true);

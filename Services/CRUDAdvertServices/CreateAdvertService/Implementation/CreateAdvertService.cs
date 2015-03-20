@@ -35,7 +35,7 @@ namespace Services.CRUDAdvertServices.CreateAdvertService.Implementation
             var advert = _genericRepository.Add(advertToSave);
 
             var savedPhotos = _findPhotosByIdService.Find(createAdvert.PhotosToSave);
-            _photoService.AddAdvertToPhotos(advert, savedPhotos);
+            _photoService.AddAdvertToPhotos(advert.Id, savedPhotos);
 
             return advert.Id;
         }

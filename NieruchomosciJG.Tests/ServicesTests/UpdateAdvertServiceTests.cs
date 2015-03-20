@@ -98,7 +98,7 @@ _advertTypeRepository.Object, _findPhotosById.Object, _photoService.Object);
             _advertTypeRepository.Setup(x => x.GetSet()).Returns(new List<AdvertType>(){new AdvertType(){Mask = 1}});
             _advertRepository.Setup(x => x.Update(It.IsAny<Advert>())).Returns(new Advert(){Id = 1});
             _findPhotosById.Setup(x => x.Find(It.IsAny<IEnumerable<int>>())).Returns(new List<Photo>());
-            _photoService.Setup(x => x.AddAdvertToPhotos(It.IsAny<Advert>(),It.IsAny<IEnumerable<Photo>>()));
+            _photoService.Setup(x => x.AddAdvertToPhotos(It.IsAny<int>(),It.IsAny<IEnumerable<Photo>>()));
 
             // Act
             var updateAdvertService = new UpdateAdvertService(_advertRepository.Object,
