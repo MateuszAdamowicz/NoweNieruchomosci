@@ -51,6 +51,7 @@ namespace Services.AdvertSearchOptionsService.Implementation
         {
             var adTypes =
                 _adTypesRepo.GetSet().Select(x => x.Name).Distinct().Select(x => new SelectOption("Nieruchomość: "+x, x)).ToList();
+            adTypes.Insert(0, new SelectOption("Nieruchomość: Wszystkie", ""));
             return adTypes;
         }
 

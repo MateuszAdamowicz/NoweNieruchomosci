@@ -62,9 +62,9 @@ namespace NieruchomosciJG.Tests.ServicesTests
             var result = advertSearchOptionService.GetPropertyTypes();
 
             // Assert
-            Assert.AreEqual(result.Count, 1);
-            Assert.AreEqual(result[0].Text, expectedName);
-            Assert.AreEqual(result[0].Value, typeName);
+            Assert.AreEqual(result.Count, 2);
+            Assert.AreEqual(result[1].Text, expectedName);
+            Assert.AreEqual(result[1].Value, typeName);
         }
 
         [TestMethod]
@@ -130,7 +130,7 @@ namespace NieruchomosciJG.Tests.ServicesTests
 
             // Assert
             Assert.AreEqual(result.Cities.Count, 1);
-            Assert.AreEqual(result.PropertyTypes.Count, 0);
+            Assert.AreEqual(result.PropertyTypes.Count, 1);
             Assert.AreEqual(result.MaxPrice, 2000000);
         }
 

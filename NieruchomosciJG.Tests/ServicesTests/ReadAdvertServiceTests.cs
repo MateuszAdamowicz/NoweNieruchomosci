@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Context.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -11,6 +12,7 @@ namespace NieruchomosciJG.Tests.ServicesTests
     public class ReadAdvertServiceTests
     {
         [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
         public void T001_GetAdvertById_AdvertNotFound_ReturnNull()
         {
             // Arrange
@@ -20,9 +22,6 @@ namespace NieruchomosciJG.Tests.ServicesTests
             // Act
             var readAdvertService = new ReadAdvertService(advertRepo.Object);
             var result = readAdvertService.GetAdvertById(3);
-
-            // Assert
-            Assert.IsNull(result);
         }
 
         [TestMethod]
