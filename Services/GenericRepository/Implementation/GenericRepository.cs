@@ -32,7 +32,12 @@ namespace Services.GenericRepository.Implementation
 
         public T Find(int id)
         {
-            return _context.GetSet<T>().Find(id);
+            var entity = _context.GetSet<T>().Find(id);
+            if (entity != null && entity.Deleted)
+            {
+                return null;
+            }
+            return entity;
         }
 
         public T Delete(int id)
