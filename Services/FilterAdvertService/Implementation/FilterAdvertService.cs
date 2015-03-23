@@ -23,7 +23,7 @@ namespace Services.FilterAdvertService.Implementation
         }
         public IEnumerable<AdminAdvertToShow> ActiveAdverts(AdminSortOption? adminSortOption, bool sortDescAsc)
         {
-            var adverts = _genericRepository.GetSet().Where(x => x.Visible);
+            IEnumerable<Advert> adverts = _genericRepository.GetSet().Where(x => x.Visible);
             var advertsToShow = Mapper.Map<IEnumerable<AdminAdvertToShow>>(adverts);
 
             advertsToShow = _sortAdvertService.SortAdverts(advertsToShow, adminSortOption, sortDescAsc);
@@ -33,7 +33,7 @@ namespace Services.FilterAdvertService.Implementation
 
         public IEnumerable<AdminAdvertToShow> FilterAdverts(bool? showHidden, DateTime? dateFrom, DateTime? dateTo, int? adType, string number, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, string city, bool? toLet, AdminSortOption? adminSortOption, bool sortDescAsc)
         {
-            var adverts = _genericRepository.GetSet();
+            IEnumerable<Advert> adverts = _genericRepository.GetSet();
             var advertsToShow = Mapper.Map<IEnumerable<AdminAdvertToShow>>(adverts);
 
             advertsToShow = FilterAdvertsByCity(city, advertsToShow);
