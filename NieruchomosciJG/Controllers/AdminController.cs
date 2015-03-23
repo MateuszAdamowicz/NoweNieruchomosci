@@ -210,31 +210,32 @@ namespace NieruchomosciJG.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangeAdvertVisibility(int number)
+        public ActionResult ChangeAdvertVisibility(int advertId, int? page, string number, bool? toLet, string city, int? adType, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, DateTime? dateFrom, DateTime? dateTo, bool? filter, AdminSortOption? sortOption, bool? showHidden, bool sortDescAsc, int? perPage)
         {
             var changeAdvert = new ChangeAdvert();
             changeAdvert.Deleted = false;
-            changeAdvert.Visible = _updateAdvertService.ChangeVisibility(number);
-            changeAdvert.Number = number;
+            changeAdvert.Visible = _updateAdvertService.ChangeVisibility(advertId);
+            changeAdvert.Number = advertId;
 
             TempData["Change"] = changeAdvert;
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {page, number, toLet, city, adType, priceFrom, priceTo, areaFrom,  areaTo, dateFrom, dateTo, filter, sortOption, showHidden, sortDescAsc, perPage});
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteAdvert(int number)
+        public ActionResult DeleteAdvert(int advertId, int? page, string number, bool? toLet, string city, int? adType, int? priceFrom, int? priceTo, int? areaFrom, int? areaTo, DateTime? dateFrom, DateTime? dateTo, bool? filter, AdminSortOption? sortOption, bool? showHidden, bool sortDescAsc, int? perPage)
         {
-            _deleteAdvertService.DeleteAdvert(number);
+            _deleteAdvertService.DeleteAdvert(advertId);
             var changeAdvert = new ChangeAdvert();
             changeAdvert.Deleted = true;
             changeAdvert.Visible = false; 
-            changeAdvert.Number = number;
+            changeAdvert.Number = advertId;
 
             TempData["Change"] = changeAdvert;
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { page, number, toLet, city, adType, priceFrom, priceTo, areaFrom, areaTo, dateFrom, dateTo, filter, sortOption, showHidden, sortDescAsc, perPage });
+
         }
 
         public ActionResult Menu()

@@ -36,13 +36,13 @@ namespace NieruchomosciJG.Controllers
 
                 return Mapper.Map<List<UploadedPhoto>>(photos);
             }
-            return new List<UploadedPhoto>(){null};
+            return new List<UploadedPhoto>() { null };
         }
 
-        [HttpGet]
-        public bool RemovePhoto(int id)
-        {
-            var result = _photoService.RemovePhotosFromAdvert(id);
+        [HttpPost]
+        public bool RemovePhoto([FromBody]int id)
+        {        
+           var result = _photoService.RemovePhotosFromAdvert(id);
 
             return result;
         } 

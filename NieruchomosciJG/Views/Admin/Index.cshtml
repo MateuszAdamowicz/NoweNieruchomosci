@@ -43,9 +43,9 @@
         background-color: black;
     }
 
-    .popover.left>.arrow:after {
-        border-left-color: black;
-    }
+        .popover.left > .arrow:after {
+            border-left-color: black;
+        }
 </style>
 
 @{
@@ -121,8 +121,8 @@
                 }
             </div>
         </div>
-               @if (changeAdvert != null)
-               {
+        @if (changeAdvert != null)
+        {
             <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-info alert-dismissible" role="alert">
@@ -147,10 +147,10 @@
                     </div>
                 </div>
             </div>
-               }
+        }
         @if (Model.AdminIndexFiltered.Filter != null && Model.AdminIndexFiltered.Filter == true && !Model.Adverts.Any())
         {
-            <div class="row" style="margin-top: 60px;">
+            <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-danger alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -190,7 +190,7 @@
                                     
                                     <div class="form-inline">
                                         <label>Ofert na stronie:</label>
-                                        @Html.DropDownList("PerPage", new SelectList(Model.AdminIndexFilterOptions.PerPage, "Value", "Text"), new { @class = "form-control find-input PerPage", @onchange = "this.form.submit()" })
+                                        @Html.DropDownList("PerPage", new SelectList(Model.AdminIndexFilterOptions.PerPage, "Value", "Text", Model.AdminIndexFiltered.PerPage), new { @class = "form-control find-input PerPage", @onchange = "this.form.submit()" })
                                     </div>
 
                                 }
@@ -482,7 +482,9 @@
                                     <td>
                                         @if (!advert.Visible)
                                         {
-                                            <span class="label label-danger">Blokada</span>
+                                            <div style="padding-top: 4px">
+                                                <span class="label label-danger">Blokada</span>
+                                            </div>
                                         }
                                     </td>
                                     <td>
@@ -491,32 +493,64 @@
                                                 @using (Html.BeginForm("ChangeAdvertVisibility", "Admin", FormMethod.Post))
                                                 {
                                                     @Html.AntiForgeryToken();
-                                                    <input type="hidden" name="number" value="@advert.Number"> 
+                                                    <input type="hidden" name="advertId" value="@advert.Number"> 
+                                                    
+                                                    <input type="hidden" name="page" value="@Model.AdminIndexFiltered.Page">
+                                                    <input type="hidden" name="number" value="@Model.AdminIndexFiltered.Number">
+                                                    <input type="hidden" name="toLet" value="@Model.AdminIndexFiltered.ToLet">
+                                                    <input type="hidden" name="city" value="@Model.AdminIndexFiltered.City">
+                                                    <input type="hidden" name="adType" value="@Model.AdminIndexFiltered.AdType">
+                                                    <input type="hidden" name="priceFrom" value="@Model.AdminIndexFiltered.PriceFrom">
+                                                    <input type="hidden" name="priceTo" value="@Model.AdminIndexFiltered.PriceTo">
+                                                    <input type="hidden" name="areaFrom" value="@Model.AdminIndexFiltered.AreaFrom">
+                                                    <input type="hidden" name="areaTo" value="@Model.AdminIndexFiltered.AreaTo">
+                                                    <input type="hidden" name="dateTo" value="@Model.AdminIndexFiltered.DateTo">
+                                                    <input type="hidden" name="dateFrom" value="@Model.AdminIndexFiltered.DateFrom">
+                                                    <input type="hidden" name="ShowHidden" value="@Model.AdminIndexFiltered.ShowHidden.ToString()">
+                                                    <input type="hidden" name="sortDescAsc" value="@Model.AdminIndexFiltered.SortDescAsc.ToString()">
+                                                    <input type="hidden" name="filter" value="@Model.AdminIndexFiltered.Filter.ToString()">
+                                                    <input type="hidden" name="sortOption" value="@Model.AdminIndexFiltered.SortOption">
+                                                    <input type="hidden" name="perPage" value="@Model.AdminIndexFiltered.PerPage">
                                                     
                                                                             if (advert.Visible)
                                                                             {
-                                                        <a class="submit"><span class="fa fa-lock clickable" style="font-size: 1.5em"></span></a>
-
+                                                    <a class="submit"><span class="fa fa-lock clickable" style="font-size: 1.5em"></span></a>
                                                                             }
                                                                             else
                                                                             {
-                                                        <a class="submit"><span class="fa fa-unlock-alt clickable" style="font-size: 1.5em"></span></a>
+                                                    <a class="submit"><span class="fa fa-unlock-alt clickable" style="font-size: 1.5em"></span></a>
                                                                             }
                                                 }
                                             </div>
                                             <div class="col-md-4" style="text-align: center">
                                                 @using (Html.BeginForm("EditAdvert", "Admin", new { id = @advert.Id }, FormMethod.Get))
                                                 {
-                                                    @*<input type="hidden" name="id" value="@advert.Id">                                                      
-                                                    *@<a class="submit"><span class="glyphicon glyphicon-pencil clickable" style="font-size: 1.5em"></span></a>
+                                                    <a class="submit"><span class="glyphicon glyphicon-pencil clickable" style="font-size: 1.5em"></span></a>
                                                 }
                                             </div>
                                             <div class="col-md-4" style="text-align: center">
                                                 @using (Html.BeginForm("DeleteAdvert", "Admin", FormMethod.Post))
                                                 {
                                                     @Html.AntiForgeryToken();  
-                                                    <input type="hidden" name="number" value="@advert.Number">                                                    
+                                                    <input type="hidden" name="advertId" value="@advert.Number">
                                                     
+                                                    <input type="hidden" name="page" value="@Model.AdminIndexFiltered.Page">
+                                                    <input type="hidden" name="number" value="@Model.AdminIndexFiltered.Number">
+                                                    <input type="hidden" name="toLet" value="@Model.AdminIndexFiltered.ToLet">
+                                                    <input type="hidden" name="city" value="@Model.AdminIndexFiltered.City">
+                                                    <input type="hidden" name="adType" value="@Model.AdminIndexFiltered.AdType">
+                                                    <input type="hidden" name="priceFrom" value="@Model.AdminIndexFiltered.PriceFrom">
+                                                    <input type="hidden" name="priceTo" value="@Model.AdminIndexFiltered.PriceTo">
+                                                    <input type="hidden" name="areaFrom" value="@Model.AdminIndexFiltered.AreaFrom">
+                                                    <input type="hidden" name="areaTo" value="@Model.AdminIndexFiltered.AreaTo">
+                                                    <input type="hidden" name="dateTo" value="@Model.AdminIndexFiltered.DateTo">
+                                                    <input type="hidden" name="dateFrom" value="@Model.AdminIndexFiltered.DateFrom">
+                                                    <input type="hidden" name="ShowHidden" value="@Model.AdminIndexFiltered.ShowHidden.ToString()">
+                                                    <input type="hidden" name="sortDescAsc" value="@Model.AdminIndexFiltered.SortDescAsc.ToString()">
+                                                    <input type="hidden" name="filter" value="@Model.AdminIndexFiltered.Filter.ToString()">
+                                                    <input type="hidden" name="sortOption" value="@Model.AdminIndexFiltered.SortOption">
+                                                    <input type="hidden" name="perPage" value="@Model.AdminIndexFiltered.PerPage">
+                                                                                                                                                      
                                                     <a class="submitdelete"><span class="glyphicon glyphicon-trash clickable" style="font-size: 1.5em"></span></a>
                                                 }
                                             </div>
@@ -548,10 +582,10 @@
                                     <input type="hidden" name="sortDescAsc" value="@Model.AdminIndexFiltered.SortDescAsc.ToString()">
                                     <input type="hidden" name="filter" value="@Model.AdminIndexFiltered.Filter.ToString()">
                                     <input type="hidden" name="sortOption" value="@Model.AdminIndexFiltered.SortOption">
-                                    
+
                                     <div class="form-inline">
                                         <label>Ofert na stronie:</label>
-                                        @Html.DropDownList("PerPage", new SelectList(Model.AdminIndexFilterOptions.PerPage, "Value", "Text"), new { @class = "form-control find-input PerPage", @onchange = "this.form.submit()" })
+                                        @Html.DropDownList("PerPage", new SelectList(Model.AdminIndexFilterOptions.PerPage, "Value", "Text",  Model.AdminIndexFiltered.PerPage), new { @class = "form-control find-input PerPage", @onchange = "this.form.submit()" })
                                     </div>
                                 }
                             </div>
@@ -616,6 +650,7 @@
         $("#AreaTo").val('');
         $("#dateFrom").val('');
         $("#dateTo").val('');
+        $("#Filter").val('');
         $("#ShowHidden").attr("checked", false);
     });
 
