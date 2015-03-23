@@ -28,8 +28,8 @@ var removeOption = function(id) {
 var removeImage = function(id) {
     $.ajax({
         url: "/api/Photo/RemovePhoto",
-        data: {id : id},
-        method: "GET"
+        data: {id: id},
+        method: "GET",
     });
 };
 

@@ -10,33 +10,35 @@
 
 <link href="~/Content/CSS/Spinner.css" rel="stylesheet" type="text/css" />
 <style>
-     .image {
-         margin-bottom: 10px;
-         text-align: center;
-     }
+    .image {
+        margin-bottom: 10px;
+        text-align: center;
+    }
 
     .borderedImage {
         border: 1px solid black;
     }
+
     .btn-file {
         position: relative;
         overflow: hidden;
     }
-    .btn-file input[type=file] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
-        text-align: right;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        outline: none;
-        background: white;
-        cursor: inherit;
-        display: block;
-    }
+
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
 </style>
 
 @{
@@ -56,21 +58,25 @@
         <h3>Dodaj nieruchomość</h3>
         <h4>Rodzaj: @Model.AdvertType.Name</h4><hr />
 
-        @using (Html.BeginForm("CreateAdvert", "Admin", FormMethod.Post, new{@class ="createForm"}))
+        @using (Html.BeginForm("CreateAdvert", "Admin", FormMethod.Post, new { @class = "createForm" }))
         {
             Html.AntiForgeryToken();
             @Html.HiddenFor(x => x.AdvertType.Name)
             @Html.HiddenFor(x => x.AdvertType.Mask)
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-horizontal">
+                    <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group form-group-sm has-feedback">
-                                <label class="col-md-2 control-label label-sup">Tytuł:</label>
-                                <div class="col-md-10">
-                                    @Html.EditorFor(x => x.Title, new { htmlAttributes = new { @class = "form-control required" } })
-                                    <span class="glyphicon glyphicon-asterisk form-control-feedback" aria-hidden="true"></span>
-                                    @Html.ValidationMessageFor(x => x.Title, "", new { @class = "feedback-error alert alert-danger" })
+                            <div class="form-horizontal">
+                                <div class="col-md-12">
+                                    <div class="form-group form-group-sm has-feedback">
+                                        <label class="col-md-2 control-label label-sup">Tytuł:</label>
+                                        <div class="col-md-10" style="padding-left:11px;">
+                                            @Html.EditorFor(x => x.Title, new { htmlAttributes = new { @class = "form-control required" } })
+                                            <span class="glyphicon glyphicon-asterisk form-control-feedback" aria-hidden="true"></span>
+                                            @Html.ValidationMessageFor(x => x.Title, "", new { @class = "feedback-error alert alert-danger" })
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -203,8 +209,8 @@
                                         <div class="form-group form-group-sm">
                                             <label class="col-md-4 control-label label-sup">@Model.Properties[i].Name:</label>
                                             <div class="col-md-8">
-                                                @Html.Hidden("["+i+"].Name",Model.Properties[i].Name)
-                                                <input class="form-control" name="[@i].Value" type="text" value= @Model.Properties[i].Value>
+                                                @Html.Hidden("[" + i + "].Name", Model.Properties[i].Name)
+                                                <input class="form-control" name="[@i].Value" type="text" value=@Model.Properties[i].Value>
                                                 @*@Html.Editor("[" + i + "].Value", new { htmlAttributes = new { @class = "form-control", @value = Model.Properties[i].Value } })*@
                                                 @Html.ValidationMessage("[" + i + "].Value", "", new { @class = "feedback-error alert alert-danger" })
                                             </div>
@@ -280,11 +286,11 @@
                     </div>
                 </div>
             </div>
-            
+
             @Html.ListBoxFor(x => x.PhotosToSave, new SelectList(photosToSave), new { @class = "form-control", @style = "max-width:none; height: 100px" })
-            <hr/>
+            <hr />
         }
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="form-horizontal">
@@ -296,7 +302,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="form-horizontal">
@@ -308,12 +314,12 @@
                                     foreach (var photo in Model.SavedPhotos)
                                     {
                                         <div class="col-md-3 image" data-id='@photo.Id'>
-                                            <img class="borderedImage" data-id='@photo.Id' src="@photo.Thumbnail"/>
+                                            <img class="borderedImage" data-id='@photo.Id' src="@photo.Thumbnail" />
                                             <span class="glyphicon glyphicon-remove-sign removeImage" data-id="@photo.Id"></span>
                                         </div>
                                     }
                                 }
-                            
+
                                 <div class="col-md-3" id="btndiv">
                                     <span class="btn btn-success btn-lg btn-file">
                                         <span class="glyphicon glyphicon-camera"></span>
@@ -323,16 +329,16 @@
                                 <div class="col-md-3" id="spinnerdiv" hidden>
                                     <div class="spinner">
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <hr/>
-        
+
+        <hr />
+
         <button class="btn btn-primary btn-lg" type="submit" id="submitForm">Zapisz</button>
     </div>
 </div>
@@ -341,10 +347,10 @@
 <script type="text/javascript" src="/Scripts/app/PhotoService.js"></script>
 <script>
 
-    $("#submitForm").on("click", function() {
+    $("#submitForm").on("click", function () {
         $(".createForm").submit();
     });
-    $('body').on("click", ".removeImage", function() {
+    $('body').on("click", ".removeImage", function () {
         var id = $(this).attr("data-id");
         removeOption(id);
     });
@@ -362,7 +368,7 @@
             sendPhoto(data);
         }
     });
-    
+
     $(document).ready(function () {
         var alerts = $(".feedback-error");
         for (var i = 0; i < alerts.length; i++) {

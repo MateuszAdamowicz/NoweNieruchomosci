@@ -47,6 +47,7 @@ namespace Services.PhotoService.Implementation
                 return false;
             }
             photo.Advert = null;
+            photo.Deleted = true;
             _genericRepository.Update(photo);
             return true;
         }
