@@ -37,6 +37,7 @@ namespace Models.ViewModels
                 DateFrom,
                 DateTo,
                 Filter,
+                SortOption,
                 ShowHidden,
                 PerPage,
                 SortDescAsc,
