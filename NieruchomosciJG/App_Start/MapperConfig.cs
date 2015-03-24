@@ -22,6 +22,8 @@ namespace NieruchomosciJG.App_Start
             Mapper.CreateMap<PhotoViewModel, Photo>();
             Mapper.CreateMap<PropertyViewModel, Property>();
             Mapper.CreateMap<AdvertTypeViewModel, AdvertType>();
+            Mapper.CreateMap<MapCordsViewModel, MapCords>();
+
             Mapper.CreateMap<Advert, NewestAdvert>().
                 ForMember(dst => dst.Picture, opts => opts.MapFrom(x => Mapper.Map<PhotoViewModel>(x.Photos.FirstOrDefault())))
                 .ForMember(dst => dst.AdType, opts => opts.MapFrom(x => x.AdvertType.Name))
@@ -33,6 +35,7 @@ namespace NieruchomosciJG.App_Start
                 .ForMember(x => x.Number, opts => opts.MapFrom(x => x.Id));
 
             Mapper.CreateMap<Property, PropertyViewModel>();
+            Mapper.CreateMap<MapCords, MapCordsViewModel>();
 
             Mapper.CreateMap<Advert, SimplifyAdvert>().ForMember(x => x.Photo, opts => opts.MapFrom(x => x.Photos.FirstOrDefault()))
                 .ForMember(x => x.Number, opts => opts.MapFrom(src => src.Id));

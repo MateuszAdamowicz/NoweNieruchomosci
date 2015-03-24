@@ -328,7 +328,12 @@
         <script src="/Scripts/jquery-ui-1.11.2.js"></script>
         <script src="/Scripts/bootstrap.js"></script>
 
-        <script>
+<script>
+    
+    if (document.getElementById("oferty")) {
+        window.location = '#oferty';
+    }
+
     $(function () {
         $("#slider-range").slider({
             range: true,
@@ -342,4 +347,4 @@
             }
         });
     });
-        </script>
+</script>

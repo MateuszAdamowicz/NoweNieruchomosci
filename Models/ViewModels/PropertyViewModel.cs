@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using Models.Resources;
 
 namespace Models.ViewModels
 {
@@ -15,6 +16,8 @@ namespace Models.ViewModels
         {
         }
         public string Name { get; set; }
+
+        [MaxLength(40, ErrorMessageResourceType = typeof(StringResource), ErrorMessageResourceName = "MaxLengthProperties")]
         public string Value { get; set; }
     }
 }
